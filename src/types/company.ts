@@ -250,6 +250,35 @@ export interface MarketShareSlice {
     cls?: string
 }
 
+export interface TamPoint {
+    year: string
+    totalTam: number      // $B，全球 AI 基础设施总 TAM
+    neocloudTam: number   // $B，Neocloud 子赛道
+    selfRevenue: number   // $B，Nebius 营收
+    status: 'actual' | 'estimate'
+}
+
+export interface TamAnalysis {
+    narrative: string
+    points: TamPoint[]
+    keyNumbers: { label: string; value: string; sub: string; cls: PriceCls }[]
+    sourcesNote: string
+}
+
+export interface RadarDimension {
+    dim: string
+    self: number
+    peer1: number
+    peer2: number
+}
+
+export interface RadarCompare {
+    peer1Name: string
+    peer2Name: string
+    dimensions: RadarDimension[]
+    note: string
+}
+
 export interface CompetitiveLandscape {
     summary: string
     competitors: CompetitorRow[]
@@ -257,6 +286,8 @@ export interface CompetitiveLandscape {
     marketShare2026: MarketShareSlice[]
     winLoss: WinLossScenario[]
     structuralTrend: string
+    radar: RadarCompare
+    tam: TamAnalysis
 }
 
 /* ================= NEW: Profitability ================= */
@@ -306,7 +337,115 @@ export interface Profitability {
     keyRisks: string[]
 }
 
+/* ================= NEW: Key Person Risk ================= */
+
+export interface KeyPersonRisk {
+    name: string
+    role: string
+    departProb: string      // 离职概率
+    departImpact: string    // 离职影响
+    mitigation: string      // 继任/缓释预案
+    criticality: 'critical' | 'high' | 'medium' | 'low'
+}
+
+/* ================= NEW: Cash Flow ================= */
+
+export interface CashFlowRow {
+    year: string
+    ocf: number         // $M，经营性现金流
+    icf: number         // $M，投资性现金流（CapEx 为负）
+    fcf: number         // $M，筹资性现金流
+    freeCashFlow: number // $M，OCF - CapEx
+    status: 'actual' | 'guidance' | 'estimate'
+}
+
+export interface CashFlowAnalysis {
+    narrative: string
+    rows: CashFlowRow[]
+    conversionNote: string
+    keyRisks: string[]
+}
+
+/* ================= NEW: Historical Valuation ================= */
+
+export interface ValuationHistory {
+    period: string       // "2024-Q4" etc.
+    evSales: number
+    note?: string
+}
+
+export interface HistoricalValuation {
+    narrative: string
+    history: ValuationHistory[]
+    currentPercentile: string   // "90%" "50%"
+    verdict: 'cheap' | 'fair' | 'rich'
+}
+
+/* ================= NEW: Downside Risk ================= */
+
+export interface DownsideMetrics {
+    narrative: string
+    scenarioStdDev: number       // 情景分布标准差（市值 $B）
+    sharpeLike: number           // 期望回报 / 标准差
+    probLoss30Pct5Y: number      // P(5 年内亏损 30%+)
+    maxDrawdownEstimate: string  // 最大回撤估计
+    downsideToUpsideRatio: string
+}
+
+/* ================= NEW: Sensitivity ================= */
+
+export interface SensitivityVariable {
+    variable: string
+    downImpact: number   // $B，负向扰动对 10Y E[Mcap] 的影响
+    upImpact: number     // $B，正向扰动的影响
+    description: string
+}
+
+export interface SensitivityAnalysis {
+    narrative: string
+    variables: SensitivityVariable[]
+    takeaway: string
+}
+
+/* ================= NEW: Bear Playbook ================= */
+
+export interface BearStep {
+    when: string
+    event: string
+    signal: string   // 如何识别这一步开始发生
+}
+
+export interface BearPlaybook {
+    scenario: string
+    steps: BearStep[]
+    exitTrigger: string
+}
+
+/* ================= NEW: Correlation ================= */
+
+export interface CorrelationRow {
+    asset: string
+    beta: number          // 相对于 Nebius
+    correlation: number   // -1 to 1
+    hedgeValue: 'high' | 'medium' | 'low'
+    note: string
+}
+
+export interface PortfolioCorrelation {
+    narrative: string
+    rows: CorrelationRow[]
+    suggestedHedge: string
+}
+
 /* ================= NEW: Recommendation ================= */
+
+export interface PositionSizingFormula {
+    method: string       // "Kelly" / "Vol-targeting" / "Fixed"
+    formula: string      // 公式字符串
+    inputs: { label: string; value: string }[]
+    computedSize: string
+    reasoning: string
+}
 
 export interface Recommendation {
     rating: string
@@ -317,6 +456,7 @@ export interface Recommendation {
     stopLoss: string
     thesis: string
     keyAssumptions: string[]
+    sizingFormula: PositionSizingFormula
 }
 
 /* ================= MASTER ================= */
@@ -359,4 +499,11 @@ export interface CompanyDetail {
     competitiveLandscape: CompetitiveLandscape
     valuation: ValuationFramework
     recommendation: Recommendation
+    keyPersonRisks: KeyPersonRisk[]
+    cashFlow: CashFlowAnalysis
+    historicalValuation: HistoricalValuation
+    downsideMetrics: DownsideMetrics
+    sensitivity: SensitivityAnalysis
+    bearPlaybook: BearPlaybook
+    correlation: PortfolioCorrelation
 }

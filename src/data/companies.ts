@@ -12,7 +12,7 @@ export const companies: CompanySummary[] = [
         name: 'Nebius Group',
         market: 'US',
         currency: 'USD',
-        desc: '西方阵营纯血 AI Neocloud，全栈自研 GPU 云平台，Nvidia 战略伙伴。',
+        desc: '西方阵营纯血 AI Neocloud，全栈自研 GPU 云平台，英伟达战略伙伴。',
         price: '$166.77',
         marketCap: '~$40B',
         verdict: 'neutral',

@@ -5,7 +5,7 @@ export const nebius: CompanyDetail = {
     ticker: 'NASDAQ:NBIS',
     name: 'Nebius Group N.V.',
     tagline:
-        '从 Yandex 遗产拆分而来的西方阵营 AI Neocloud 龙头之一。凭借 Microsoft、Meta 超级订单与 Nvidia 战略入股，未来 5 年合同积压 ~$46B。核心争议：资本强度能否换来软件边际？',
+        '从 Yandex 遗产拆分而来的西方阵营 AI Neocloud 龙头之一。凭借微软、Meta 超级订单与英伟达战略入股，未来 5 年合同积压 ~$46B。核心争议：资本强度能否换来软件边际？',
     date: '2026-04-17',
 
     priceCards: [
@@ -24,8 +24,8 @@ export const nebius: CompanyDetail = {
         '2026 营收指引': '$3.0 - 3.4B',
         '2026 ARR 指引': '$7 - 9B',
         '2026 EBITDA margin': '40% (指引)',
-        '合同积压': '~$46B (Microsoft + Meta)',
-        'Nvidia 持股': '8.3% ($2B 入股)',
+        '合同积压': '~$46B (微软 + Meta)',
+        '英伟达持股': '8.3% ($2B 入股)',
         现金: '~$6B+',
         可转债: '$4.34B',
         '2026 末合同电力': '2.5-3GW',
@@ -33,9 +33,9 @@ export const nebius: CompanyDetail = {
     },
 
     contracts: [
-        { customer: 'Microsoft', amount: '$17.4-19.4B', years: 5, detail: '100k+ GB300 起交，2027 年达 run-rate' },
+        { customer: '微软', amount: '$17.4-19.4B', years: 5, detail: '100k+ GB300 起交，2027 年达 run-rate' },
         { customer: 'Meta', amount: '~$27B', years: 5, detail: '$12B 专属 + $15B 选购，2027 起交付' },
-        { customer: 'Nvidia', amount: '$2B 股权 + 战略', years: '至 2030', detail: '5GW Nvidia 系统部署路径' },
+        { customer: '英伟达', amount: '$2B 股权 + 战略', years: '至 2030', detail: '5GW 英伟达系统部署路径' },
     ],
 
     subsidiaries: [
@@ -47,7 +47,7 @@ export const nebius: CompanyDetail = {
 
     bullPoints: [
         { title: '$46B 合同积压', body: '未来 3-4 年收入可见性，所有 Neocloud 中最厚的' },
-        { title: 'Nvidia "亲儿子"地位', body: '8.3% 股权 + 5GW 系统部署路径图' },
+        { title: '英伟达 "亲儿子"地位', body: '8.3% 股权 + 5GW 系统部署路径图' },
         { title: '干净的资产负债表', body: 'P/B 6.28x（CoreWeave 10.15x），$6B+ 现金' },
         { title: '子公司期权价值', body: 'Avride $4.2B + Toloka $500M' },
         { title: '创始人回归', body: 'Volozh 2026-02 回任 CEO，Yandex 成功先例' },
@@ -75,7 +75,7 @@ export const nebius: CompanyDetail = {
             desc: '5Y 内 MSFT + Meta 合同全兑现 + 商业模式跃迁（如主权 AI 平台或自有模型栈）启动；10Y 营收 $100-150B，Operating margin 25-30%',
         },
         {
-            name: '中性: AI 时代的 Oracle',
+            name: '中性: AI 时代的甲骨文',
             cls: 'neutral',
             prob: 55,
             y5Mcap: '$120 - 200B',
@@ -102,7 +102,7 @@ export const nebius: CompanyDetail = {
             y5Value: 70,
             y10Mcap: '~$80B (溢价)',
             y10Value: 80,
-            desc: '股价长期低迷，Nvidia/MSFT 战略收购，或被迫出售欧洲资产',
+            desc: '股价长期低迷，英伟达/MSFT 战略收购，或被迫出售欧洲资产',
         },
     ],
 
@@ -130,7 +130,7 @@ export const nebius: CompanyDetail = {
         },
         breakdown: [
             { scenario: 'A. Mag 7 级', prob: 12, y5Mid: 360, y10Mid: 1200, y5Contrib: 43, y10Contrib: 144 },
-            { scenario: 'B. AI Oracle', prob: 55, y5Mid: 160, y10Mid: 350, y5Contrib: 88, y10Contrib: 193 },
+            { scenario: 'B. AI 甲骨文', prob: 55, y5Mid: 160, y10Mid: 350, y5Contrib: 88, y10Contrib: 193 },
             { scenario: 'C. 规模被压', prob: 25, y5Mid: 70, y10Mid: 85, y5Contrib: 18, y10Contrib: 21 },
             { scenario: 'D. 并购退出', prob: 8, y5Mid: 70, y10Mid: 80, y5Contrib: 6, y10Contrib: 6 },
         ],
@@ -145,7 +145,7 @@ export const nebius: CompanyDetail = {
         { metric: 'P/B', nbis: '6.28x', cwv: '10.15x', winner: 'nbis' },
         { metric: '资产负债表', nbis: '干净 $6B+ 现金', cwv: '重债务', winner: 'nbis' },
         { metric: '客户集中度', nbis: 'MSFT+Meta 主导', cwv: '略分散', winner: 'cwv' },
-        { metric: 'Nvidia 持股', nbis: '8.3% ($2B)', cwv: '无', winner: 'nbis' },
+        { metric: '英伟达持股', nbis: '8.3% ($2B)', cwv: '无', winner: 'nbis' },
     ],
 
     analysts: [
@@ -164,7 +164,7 @@ export const nebius: CompanyDetail = {
     ],
 
     finalQuote:
-        '卖铲子的公司能赚很多钱，但"Mag 7"这张牌桌上，从来只坐<strong>制造铲子的</strong>（Nvidia）和<strong>买下金矿的</strong>（Microsoft/Google/Amazon/Meta），没有替人租铲子的。Nebius 的 10 年终局，大概率是 AI 时代最成功的"铲子租赁商"，而不是 Mag 7 的第八名。',
+        '卖铲子的公司能赚很多钱，但"Mag 7"这张牌桌上，从来只坐<strong>制造铲子的</strong>（英伟达）和<strong>买下金矿的</strong>（微软/Google/亚马逊/Meta），没有替人租铲子的。Nebius 的 10 年终局，大概率是 AI 时代最成功的"铲子租赁商"，而不是 Mag 7 的第八名。',
 
     revenueChart: {
         labels: ['2024 Revenue', '2025 Revenue', '2026E Revenue', '2025 CapEx', '2026E CapEx'],
@@ -187,10 +187,10 @@ export const nebius: CompanyDetail = {
             { year: '2022-06', event: 'Volozh 辞去 Yandex CEO 职位', tag: '关键节点' },
             { year: '2024-07', event: 'Yandex 俄罗斯业务以 $5.2B 出售给俄方财团', tag: '重组' },
             { year: '2024-10', event: '剩余国际资产重组为 Nebius，重启 NBIS 交易', tag: 'IPO' },
-            { year: '2025-09', event: '与 Microsoft 签署 $17.4-19.4B 5 年 GPU 产能合同', tag: '里程碑' },
+            { year: '2025-09', event: '与微软签署 $17.4-19.4B 5 年 GPU 产能合同', tag: '里程碑' },
             { year: '2025-12', event: 'Q4 核心 AI 云收入 YoY +830%，ARR 达 $1.2B', tag: '业绩' },
             { year: '2026-02', event: 'Volozh 以荷兰公民身份回任 CEO，放弃俄罗斯国籍', tag: '关键节点' },
-            { year: '2026-03', event: 'Meta $27B 合同 + Nvidia $2B 战略入股 (8.3%)', tag: '里程碑' },
+            { year: '2026-03', event: 'Meta $27B 合同 + 英伟达 $2B 战略入股 (8.3%)', tag: '里程碑' },
             { year: '2026-03', event: '$4.34B 可转债发行；Missouri 1.2GW 场地奠基', tag: '融资' },
             { year: '2026-04', event: '股价 $167，市值 ~$40B；合同积压达 $46B', tag: '当前' },
         ],
@@ -229,28 +229,28 @@ export const nebius: CompanyDetail = {
             name: 'Jon Teherani',
             role: 'Chief Commercial Officer (CCO)',
             background:
-                '据 2025 年公司披露从 Nvidia GTM 团队加入，主导 Microsoft、Meta 两笔超级合同的商务条款。Nvidia 背景是与芯片供给方深度绑定的关键润滑剂。',
+                '据 2025 年公司披露从英伟达 GTM 团队加入，主导微软、Meta 两笔超级合同的商务条款。英伟达背景是与芯片供给方深度绑定的关键润滑剂。',
             rating: 3,
         },
     ],
 
     shareholders: [
         { name: 'Volozh 家族信托', pct: '~13-17%', type: '创始人', note: '具体比例随可转债稀释浮动' },
-        { name: 'Nvidia Corp.', pct: '8.3%', type: '战略投资者', note: '2026-03 以 $2B 入股' },
+        { name: '英伟达', pct: '8.3%', type: '战略投资者', note: '2026-03 以 $2B 入股' },
         { name: '原 Yandex 机构股东', pct: '~20-25%', type: '老股东', note: '部分仍持有，含老 UFG 系' },
         { name: '公众流通股', pct: '~50%', type: '机构 + 散户', note: 'ARK / Baillie Gifford / Fidelity 等' },
     ],
 
     advantages: [
         {
-            title: 'Nvidia 战略绑定 (独特性 ★★★★★)',
+            title: '英伟达战略绑定 (独特性 ★★★★★)',
             body: '8.3% 股权 + 5GW 系统部署路径图，是 CoreWeave、Lambda 都没有的待遇。意味着下一代 Rubin/下下代架构的首批分配、工程合作、GTM 联动。',
-            evidence: '2026-03-11 Nvidia 官宣；Nvidia 董事会指派代表进入 Nebius 战略委员会。',
+            evidence: '2026-03-11 英伟达官宣；英伟达董事会指派代表进入 Nebius 战略委员会。',
         },
         {
             title: '全栈自研软件层 (护城河 ★★★★)',
             body: '继承 Yandex 的基础设施传统，自研 Soperator (Kubernetes 扩展)、Slurm 分支、Observability 栈，客户不仅租 GPU，还租 "可直接运行千卡训练任务的工厂"。对比单纯倒卖产能的 Neocloud 有明确差异化。',
-            evidence: '开源仓库活跃度、Microsoft / Meta 愿意签 5 年独占合同本身是对技术层的背书。',
+            evidence: '开源仓库活跃度、微软 / Meta 愿意签 5 年独占合同本身是对技术层的背书。',
         },
         {
             title: '$46B 合同积压 (可见性 ★★★★★)',
@@ -287,11 +287,11 @@ export const nebius: CompanyDetail = {
         },
         {
             title: '纯 B2B，没有消费者品牌',
-            body: '估值倍数上限受限。所有万亿美元公司 (Apple/Google/Meta/Amazon/Microsoft/Tesla/Nvidia) 都有强品牌或开发者心智。Nebius 不具备。',
-            evidence: '行业可比：Equinix $80B、Oracle $500B、AWS (内嵌 Amazon)；纯 B2B 基建公司历史天花板难以突破 Mag 7。',
+            body: '估值倍数上限受限。所有万亿美元公司 (Apple/Google/Meta/亚马逊/微软/特斯拉/英伟达) 都有强品牌或开发者心智。Nebius 不具备。',
+            evidence: '行业可比：Equinix $80B、甲骨文 $500B、AWS (内嵌亚马逊)；纯 B2B 基建公司历史天花板难以突破 Mag 7。',
         },
         {
-            title: '定价权弱 — Microsoft / Meta 是价格决定方',
+            title: '定价权弱 — 微软 / Meta 是价格决定方',
             body: '5 年合同条款中对价格调整的控制权主要在客户侧。折旧快的 GPU 叠加长期锁价，是毛利率恶化的结构性风险。',
             evidence: '长期产能合同标准条款；CoreWeave 招股书披露的类似条款可作对照。',
         },
@@ -327,7 +327,7 @@ export const nebius: CompanyDetail = {
         },
         {
             when: '2026 Q2-Q3',
-            event: 'Microsoft 第二批产能交付 (GB300 升级)',
+            event: '微软第二批产能交付 (GB300 升级)',
             impact: 'positive',
             probability: '已确认',
             magnitude: '+5-10%',
@@ -376,7 +376,7 @@ export const nebius: CompanyDetail = {
         },
         {
             when: '持续',
-            event: 'Nvidia 下一代 (Rubin) 首发卡分配',
+            event: '英伟达下一代 (Rubin) 首发卡分配',
             impact: 'positive',
             probability: '~70%',
             magnitude: '+5-10%',
@@ -404,10 +404,10 @@ export const nebius: CompanyDetail = {
             enabling: 'EU AI Act、法国 La Ferme 数据战略、北约数字化采购预算',
         },
         {
-            name: 'Nvidia 绑定深化为"第三家 Nvidia 云"',
+            name: '英伟达绑定深化为"第三家英伟达云"',
             horizon: '2026-2030',
-            body: '类似 DGX Cloud 在 AWS/Azure/OCI 之外，Nvidia 可能把 Nebius 培育为"Nvidia 直营色彩最强的 Neocloud"。若 Nvidia 持股加码至 15-20%，本质上 Nebius 成为 Nvidia 云事业部的独立上市载体，估值倍数会结构性提升。',
-            enabling: 'Nvidia 董事席位、技术合作深度、互为单一最大供应商 / 客户',
+            body: '类似 DGX Cloud 在 AWS/Azure/OCI 之外，英伟达可能把 Nebius 培育为"英伟达直营色彩最强的 Neocloud"。若英伟达持股加码至 15-20%，本质上 Nebius 成为英伟达云事业部的独立上市载体，估值倍数会结构性提升。',
+            enabling: '英伟达董事席位、技术合作深度、互为单一最大供应商 / 客户',
         },
         {
             name: '商业模式向上跃迁 (IaaS → PaaS → Model)',
@@ -464,7 +464,7 @@ export const nebius: CompanyDetail = {
                 },
                 {
                     name: '客户自建替代',
-                    body: 'Microsoft 自有 Azure AI 基础设施、Meta 自建 Llama 训练集群均在加速。Nebius 是"补缺"而非"替代"。',
+                    body: '微软自有 Azure AI 基础设施、Meta 自建 Llama 训练集群均在加速。Nebius 是"补缺"而非"替代"。',
                     mitigation: '5 年锁定合同；Nebius 交付速度优势',
                 },
                 {
@@ -485,8 +485,8 @@ export const nebius: CompanyDetail = {
                     mitigation: '多地并行建设、风险分散',
                 },
                 {
-                    name: 'Nvidia 供应优先级',
-                    body: '虽 8.3% 持股，但 Nvidia 仍需平衡 AWS / Azure / GCP / OCI / Meta / xAI 等大客户诉求。',
+                    name: '英伟达供应优先级',
+                    body: '虽 8.3% 持股，但英伟达仍需平衡 AWS / Azure / GCP / OCI / Meta / xAI 等大客户诉求。',
                     mitigation: '官方战略合作协议 + 5GW 部署承诺',
                 },
                 {
@@ -684,7 +684,7 @@ export const nebius: CompanyDetail = {
         ],
 
         fcfPath:
-            '2025 FCF 深度为负（-$3B+ 级），2026 预计 -$8 至 -$10B（CapEx 占大头），2027 随着 Microsoft 合同收入确认 + CapEx 节奏放缓，FCF 缺口缩窄至 -$3 至 -$5B，2028 有望首次接近 FCF breakeven，2029-2030 可实现稳态 FCF 正（年化 $3-6B）。关键变量：CapEx 节奏、折旧口径、客户预付款比例能否维持 60%。',
+            '2025 FCF 深度为负（-$3B+ 级），2026 预计 -$8 至 -$10B（CapEx 占大头），2027 随着微软合同收入确认 + CapEx 节奏放缓，FCF 缺口缩窄至 -$3 至 -$5B，2028 有望首次接近 FCF breakeven，2029-2030 可实现稳态 FCF 正（年化 $3-6B）。关键变量：CapEx 节奏、折旧口径、客户预付款比例能否维持 60%。',
 
         keyRisks: [
             '若 2026 Q2 实际 gross margin < 35%，40% EBITDA margin 指引基本不可能达成 → 估值重估',
@@ -696,7 +696,7 @@ export const nebius: CompanyDetail = {
 
     competitiveLandscape: {
         summary:
-            'AI 基础设施市场正分化为三层：**超大规模云厂（AWS/Azure/GCP/OCI）**拥有规模与客户，**Neocloud（CoreWeave/Nebius/Lambda/Crusoe）**拥有速度与专注，**垂直专家（SambaNova/Cerebras）**拥有差异化硬件。Nebius 的位置是 Neocloud 第二名，面对 CoreWeave 的规模压制与超大规模云的资源碾压，核心护城河是 Nvidia 战略绑定 + 欧洲主权卡位。',
+            'AI 基础设施市场正分化为三层：**超大规模云厂（AWS/Azure/GCP/OCI）**拥有规模与客户，**Neocloud（CoreWeave/Nebius/Lambda/Crusoe）**拥有速度与专注，**垂直专家（SambaNova/Cerebras）**拥有差异化硬件。Nebius 的位置是 Neocloud 第二名，面对 CoreWeave 的规模压制与超大规模云的资源碾压，核心护城河是英伟达战略绑定 + 欧洲主权卡位。',
 
         competitors: [
             {
@@ -711,7 +711,7 @@ export const nebius: CompanyDetail = {
                 marketCap: '~$40B',
                 nvidiaLevel: 5,
                 threat: 'low',
-                strength: 'Nvidia 8.3% 股权、全栈软件栈、欧洲主权卡位、干净资产负债表',
+                strength: '英伟达 8.3% 股权、全栈软件栈、欧洲主权卡位、干净资产负债表',
                 weakness: '规模落后 CoreWeave 4x、纯 B2B、地域集中',
             },
             {
@@ -760,7 +760,7 @@ export const nebius: CompanyDetail = {
                 weakness: '能源叙事难扩展到百 GW 规模、合规复杂',
             },
             {
-                name: 'Microsoft Azure',
+                name: '微软 Azure',
                 type: 'hyperscaler',
                 ticker: 'MSFT',
                 revenue2026E: '~$90B (Azure)',
@@ -790,12 +790,12 @@ export const nebius: CompanyDetail = {
                 weakness: '在前沿 AI (OpenAI/Anthropic 级) 竞争落后',
             },
             {
-                name: 'Google Cloud (GCP)',
+                name: '谷歌云 (GCP)',
                 type: 'hyperscaler',
                 ticker: 'GOOG',
                 revenue2026E: '~$60B',
                 aiRevenue: '~$15B',
-                gpuFleet: '~500k Nvidia + 自研 TPU',
+                gpuFleet: '~500k 英伟达 + 自研 TPU',
                 backlog: '~$100B',
                 ebitdaMargin: '~15-20%',
                 marketCap: '~$2.5T (母公司)',
@@ -805,7 +805,7 @@ export const nebius: CompanyDetail = {
                 weakness: '企业销售弱于 AWS/Azure、TPU 生态与 CUDA 竞争',
             },
             {
-                name: 'Oracle Cloud (OCI)',
+                name: '甲骨文云 (OCI)',
                 type: 'hyperscaler',
                 ticker: 'ORCL',
                 revenue2026E: '~$30B (OCI)',
@@ -825,7 +825,7 @@ export const nebius: CompanyDetail = {
             { dimension: '收入规模', nebius: '$3.0-3.4B', industryAvg: '$4-8B', leader: 'AWS ~$130B', nebiusStrong: false },
             { dimension: '合同积压 / 营收比', nebius: '15x', industryAvg: '2-4x', leader: 'Nebius 15x', nebiusStrong: true },
             { dimension: 'GPU 队列规模', nebius: '~100k', industryAvg: '50-250k', leader: 'AWS ~800k', nebiusStrong: false },
-            { dimension: 'Nvidia 绑定深度', nebius: '战略股东 + 5GW', industryAvg: 'GTM 合作', leader: 'Nebius / OCI 并列', nebiusStrong: true },
+            { dimension: '英伟达绑定深度', nebius: '战略股东 + 5GW', industryAvg: 'GTM 合作', leader: 'Nebius / OCI 并列', nebiusStrong: true },
             { dimension: '欧洲主权定位', nebius: '荷兰 N.V. + 北欧节点', industryAvg: '美国主导', leader: 'Nebius / Mistral', nebiusStrong: true },
             { dimension: 'EBITDA margin', nebius: '40% (指引)', industryAvg: '15-60%', leader: 'CoreWeave 60%', nebiusStrong: false },
             { dimension: '客户集中度 (Top 2)', nebius: '~70% (MSFT+Meta)', industryAvg: '30-50%', leader: 'AWS < 20%', nebiusStrong: false },
@@ -837,8 +837,8 @@ export const nebius: CompanyDetail = {
         marketShare2026: [
             { name: 'AWS', pct: 32 },
             { name: 'Azure', pct: 22 },
-            { name: 'Google Cloud', pct: 14 },
-            { name: 'Oracle Cloud', pct: 8 },
+            { name: '谷歌云', pct: 14 },
+            { name: '甲骨文云', pct: 8 },
             { name: 'CoreWeave', pct: 7 },
             { name: 'Nebius', pct: 2 },
             { name: 'Lambda / Crusoe / 其他', pct: 15 },
@@ -855,7 +855,7 @@ export const nebius: CompanyDetail = {
                 scenario: '专属产能 (10-50k GPU)',
                 winners: 'Nebius / CoreWeave',
                 losers: 'Lambda / Crusoe',
-                reasoning: 'Nebius 的全栈软件 + Nvidia 优先级可与 CoreWeave 分庭抗礼，Microsoft / Meta 大单正是此类',
+                reasoning: 'Nebius 的全栈软件 + 英伟达优先级可与 CoreWeave 分庭抗礼，微软 / Meta 大单正是此类',
             },
             {
                 scenario: '欧洲 / 主权 AI 客户',
@@ -876,15 +876,57 @@ export const nebius: CompanyDetail = {
                 reasoning: '企业客户粘性极高，迁移成本大，AWS/Azure 的完整服务栈（数据库、分析、安全）是 Nebius 短期无法替代的',
             },
             {
-                scenario: 'Nvidia 下一代 (Rubin) 首发',
+                scenario: '英伟达下一代 (Rubin) 首发',
                 winners: 'Nebius / OCI',
-                losers: '无 Nvidia 深度绑定的玩家',
-                reasoning: 'Nvidia 战略股权关系使 Nebius 进入首批分配名单，这是相对 CoreWeave 的独特优势',
+                losers: '无英伟达深度绑定的玩家',
+                reasoning: '英伟达战略股权关系使 Nebius 进入首批分配名单，这是相对 CoreWeave 的独特优势',
             },
         ],
 
         structuralTrend:
-            '未来 3 年行业结构性变化：①超大规模云 vs Neocloud 的边界模糊化（MSFT 既是 Nebius 客户又是对手）②欧洲会诞生 1-2 个千亿美元级主权 AI 平台（Nebius 是最强候选）③价格战不可避免（GPU 供应正在从紧缺转向平衡）④整合潮：中小 Neocloud (Lambda/Crusoe/Fluidstack) 会被并购或被挤出。Nebius 需要在 2027 年前锁定"欧洲主权 + Nvidia 亲儿子"双重身份，否则将被 CoreWeave 吃掉 Neocloud 第二的定位。',
+            '未来 3 年行业结构性变化：①超大规模云 vs Neocloud 的边界模糊化（MSFT 既是 Nebius 客户又是对手）②欧洲会诞生 1-2 个千亿美元级主权 AI 平台（Nebius 是最强候选）③价格战不可避免（GPU 供应正在从紧缺转向平衡）④整合潮：中小 Neocloud (Lambda/Crusoe/Fluidstack) 会被并购或被挤出。Nebius 需要在 2027 年前锁定"欧洲主权 + 英伟达亲儿子"双重身份，否则将被 CoreWeave 吃掉 Neocloud 第二的定位。',
+
+        tam: {
+            narrative:
+                '全球 AI 基础设施 TAM 处在**指数级扩张期**：2024 年 ~$300B，2030 年预计 $1.5-2T（5-7x 增长）。Nebius 所在的 **Neocloud 子赛道**（第三方 GPU 云，排除 AWS/Azure/GCP 自建）增长更猛：2024 年 ~$12B → 2030 年 $150-300B（~20x）。Nebius 要做到 10x 回报，必须在 Neocloud 里占到 **10-15% 市占率**（对应 2030 年年营收 $30-50B）。以 2026 年 $3B 对应 ~10% 市占为起点，保住这个份额就能兑现。',
+            points: [
+                { year: '2024', totalTam: 300, neocloudTam: 12, selfRevenue: 0.12, status: 'actual' },
+                { year: '2025', totalTam: 400, neocloudTam: 20, selfRevenue: 0.53, status: 'actual' },
+                { year: '2026', totalTam: 500, neocloudTam: 30, selfRevenue: 3.2, status: 'estimate' },
+                { year: '2028', totalTam: 1000, neocloudTam: 75, selfRevenue: 14, status: 'estimate' },
+                { year: '2030', totalTam: 1750, neocloudTam: 225, selfRevenue: 35, status: 'estimate' },
+                { year: '2035', totalTam: 4000, neocloudTam: 600, selfRevenue: 90, status: 'estimate' },
+            ],
+            keyNumbers: [
+                { label: '2026 AI 基建 TAM', value: '$500B', sub: '当前总赛道', cls: 'cyan' },
+                { label: '2030E AI 基建 TAM', value: '$1.5-2T', sub: '5-7x vs 2024', cls: 'purple' },
+                { label: '2026 Neocloud TAM', value: '$30B', sub: '第三方 GPU 云', cls: 'cyan' },
+                { label: '2030E Neocloud TAM', value: '$150-300B', sub: '~20x vs 2024', cls: 'purple' },
+                { label: 'Nebius 市占 (2025)', value: '2.7%', sub: 'Neocloud 中', cls: 'green' },
+                { label: 'Nebius 市占 (2026E)', value: '~10%', sub: '跨越式上升', cls: 'green' },
+                { label: 'Nebius 10x 所需市占', value: '15%', sub: '2030 年 $30-50B 营收', cls: 'red' },
+                { label: 'Neocloud CAGR', value: '~50%', sub: '2024→2030 复合增速', cls: 'purple' },
+            ],
+            sourcesNote:
+                '数据来源：IDC / Gartner 公开 AI 基建 TAM 预测、Forrester Neocloud 2026 年 $20B 估算、Mordor Intelligence $35B 估算（本分析取中值 $30B）、Nebius 2024-2026 实际/指引营收。2028-2035 为本分析基于 50% Neocloud CAGR 推演。',
+        },
+
+        radar: {
+            peer1Name: 'CoreWeave',
+            peer2Name: 'Lambda',
+            // 0-10 分量化评分，方便雷达图可视化
+            dimensions: [
+                { dim: '收入规模', self: 3, peer1: 9, peer2: 2 },
+                { dim: '增长速度', self: 9, peer1: 8, peer2: 5 },
+                { dim: '盈利能力', self: 3, peer1: 9, peer2: 4 },
+                { dim: '英伟达绑定', self: 10, peer1: 7, peer2: 5 },
+                { dim: '欧洲/主权定位', self: 10, peer1: 2, peer2: 3 },
+                { dim: '资产负债表健康', self: 9, peer1: 5, peer2: 4 },
+                { dim: '客户分散度', self: 3, peer1: 5, peer2: 7 },
+                { dim: '软件栈完整性', self: 8, peer1: 7, peer2: 5 },
+            ],
+            note: '1-10 分主观评分。Nebius 的"形状"告诉你它在什么维度上有**结构性优势**（英伟达绑定、欧洲定位、资产负债表、增速），哪些维度是**结构性短板**（收入规模、盈利能力、客户分散度）。越不规则的多边形 = 越明显的差异化定位。',
+        },
     },
 
     valuation: {
@@ -913,15 +955,180 @@ export const nebius: CompanyDetail = {
         timeHorizon: '3-5 年（10 年视角下的中期节奏）',
         positionSize: '5-8% 组合权重上限 · 高成长卫星仓',
         addingZone: '$130-145 （Cantor 目标价下限 + 技术支撑）',
-        stopLoss: 'Microsoft / Meta 任一合同重大修订或 2026 Q2 指引下修 → 重新评估',
+        stopLoss: '微软 / Meta 任一合同重大修订或 2026 Q2 指引下修 → 重新评估',
         thesis:
-            '当前 $167 已接近共识目标价 $163，风险收益比不再对称。合同积压提供下行保护（SOTP 底在 $140），但上行需要"商业模式跃迁"（概率 ~12%）才能打开 Mag 7 级空间。适合作为 AI 基础设施敞口的一部分，与 CoreWeave、Nvidia、Oracle 搭配降低单一执行风险。',
+            '当前 $167 已接近共识目标价 $163，风险收益比不再对称。合同积压提供下行保护（SOTP 底在 $140），但上行需要"商业模式跃迁"（概率 ~12%）才能打开 Mag 7 级空间。适合作为 AI 基础设施敞口的一部分，与 CoreWeave、英伟达、甲骨文搭配降低单一执行风险。',
         keyAssumptions: [
-            'Microsoft 合同 2027 全年 run-rate 如期实现',
+            '微软合同 2027 全年 run-rate 如期实现',
             'Meta 合同 2027 Q1 开始交付，无实质延期',
             '再融资发生但稀释 <15%',
             '欧洲主权 AI 合同 2027-2028 出现至少 1 单 $1B+',
             '2028 年前 AI capex 周期不进入下行阶段',
         ],
+        sizingFormula: {
+            method: 'Kelly 公式（保守版，使用 1/2 Kelly）',
+            formula: 'f* = (期望回报率 − 无风险利率) / 方差 × 0.5',
+            inputs: [
+                { label: '10Y 期望回报率', value: '24% CAGR' },
+                { label: '无风险利率', value: '4.5% (10Y 国债)' },
+                { label: '情景标准差', value: '~45%' },
+                { label: '完整 Kelly', value: '~10%' },
+                { label: '1/2 Kelly (保守)', value: '~5%' },
+            ],
+            computedSize: '5-8% 组合权重',
+            reasoning:
+                '完整 Kelly 假设概率估算准确（12% / 55% / 25% / 8%）。但情景概率本身有主观误差，且 Nebius 存在尾部风险（地缘 / 合同单点 / GPU 代际切换），应取 1/2 到 3/4 Kelly。范围 5-8% 是标准做法：下限 5% 当概率估算不确定时用；上限 8% 仅当你对创始人 + 合同积压极有把握。',
+        },
+    },
+
+    keyPersonRisks: [
+        {
+            name: 'Arkady Volozh (CEO · 创始人)',
+            role: '战略决策 · 投资人关系 · 合同谈判',
+            departProb: '低 (~5% / 5 年)',
+            departImpact: '极高 —— 股价短期 -20%，长期战略执行能力打折',
+            mitigation: '已有 Yandex 到 Nebius 的过渡经验，但没有明确继任者',
+            criticality: 'critical',
+        },
+        {
+            name: '核心技术团队（原 Yandex 骨干）',
+            role: '自研软件栈 · GPU 集群运营',
+            departProb: '中 (~20% 流失 / 5 年)',
+            departImpact: '中 —— 关键工程师流失拖慢 Soperator/Slurm 迭代',
+            mitigation: '团队深度 3-5 层，Amsterdam 有吸引力的 remote + equity',
+            criticality: 'high',
+        },
+        {
+            name: 'Jon Teherani (CCO)',
+            role: '超大客户商务 · 英伟达关系',
+            departProb: '中 (~15% / 5 年)',
+            departImpact: '中高 —— 微软/Meta 后续续约可能受影响',
+            mitigation: '核心合同已锁定 5 年，替代者可从英伟达/AWS GTM 招募',
+            criticality: 'high',
+        },
+        {
+            name: 'Charles Ryan (非执行董事长)',
+            role: '公司治理 · 机构股东关系',
+            departProb: '低 (~8% / 5 年)',
+            departImpact: '中 —— 过渡可靠，董事会深度足够',
+            mitigation: 'UFG 背景丰富，董事会继任者池充足',
+            criticality: 'medium',
+        },
+    ],
+
+    cashFlow: {
+        narrative:
+            '对重资本公司，**现金流比利润重要 10 倍**。Nebius 2025-2027 是"烧钱建设期"，自由现金流深度为负；2028 开始靠微软 + Meta 合同付款回血，2029-2030 实现稳态正现金流。**关键观察指标：OCF / Revenue 比率** —— 决定未来不依赖融资的可持续性。',
+        rows: [
+            { year: '2024', ocf: -180, icf: -600, fcf: 720, freeCashFlow: -480, status: 'actual' },
+            { year: '2025', ocf: -65, icf: -2000, fcf: 2200, freeCashFlow: -2065, status: 'actual' },
+            { year: '2026E', ocf: 800, icf: -18000, fcf: 9500, freeCashFlow: -9200, status: 'estimate' },
+            { year: '2027E', ocf: 3500, icf: -12000, fcf: 5000, freeCashFlow: -5500, status: 'estimate' },
+            { year: '2028E', ocf: 6500, icf: -8000, fcf: 1500, freeCashFlow: -1500, status: 'estimate' },
+            { year: '2029E', ocf: 8000, icf: -6000, fcf: 0, freeCashFlow: 2000, status: 'estimate' },
+            { year: '2030E', ocf: 10000, icf: -5000, fcf: -500, freeCashFlow: 5000, status: 'estimate' },
+        ],
+        conversionNote:
+            'Cash Conversion Ratio = OCF / Net Income。SaaS 健康水位 >1.2x，Neocloud 因折旧重通常 0.8-1.2x。Nebius 2028+ 预期稳定在 1.1-1.3x（合同预付款改善 OCF）。',
+        keyRisks: [
+            '微软 / Meta 预付比例若下降（目前 60% 预付），OCF 路径整体后移 1-2 年',
+            '2028 前任何大规模 GPU 减值会造成 OCF 单季度锐减',
+            '再融资若被迫发股权（非可转债），稀释但不影响 OCF；发优先债则利息支付压 OCF',
+        ],
+    },
+
+    historicalValuation: {
+        narrative:
+            'Nebius 2024-10 才重新上市，历史不长。使用**季度 forward EV/Sales** 分位。当前 47x（TTM）/ 7-8x（2026E）—— 在自己上市以来区间的 **85% 分位**（偏贵），但在 Neocloud 同业里属中位（CoreWeave 曾高达 15x forward）。',
+        history: [
+            { period: '2024-Q4', evSales: 35, note: '上市初期，市值小' },
+            { period: '2025-Q1', evSales: 22, note: '估值消化' },
+            { period: '2025-Q2', evSales: 28, note: '首份 Q1 财报后' },
+            { period: '2025-Q3', evSales: 40, note: '微软合同公布' },
+            { period: '2025-Q4', evSales: 55, note: 'Q4 ARR 超指引' },
+            { period: '2026-Q1', evSales: 62, note: 'Meta 合同 + 英伟达入股' },
+            { period: '2026-Q2', evSales: 47, note: '情绪回落，当前位置' },
+        ],
+        currentPercentile: '85%',
+        verdict: 'rich',
+    },
+
+    downsideMetrics: {
+        narrative:
+            '只看期望值 9.1x 是 research theater。真正的决策框架需要**下行分布**。基于 4 档情景，Nebius 10Y **情景标准差约 $470B**（1.3x 期望值），波动极大。**5Y 内亏损 30%+ 的概率约 25%** —— 不能承受这种回撤就不该上 5-8% 仓位。',
+        scenarioStdDev: 470,
+        sharpeLike: 0.78,
+        probLoss30Pct5Y: 25,
+        maxDrawdownEstimate: '-40% 到 -60%（参考 CoreWeave 2024 IPO 后首次回调）',
+        downsideToUpsideRatio: '下行 1 vs 上行 8（单次下跌 $15B，单次上冲 $120B）',
+    },
+
+    sensitivity: {
+        narrative: '哪个变量对 10Y 期望市值最敏感？按单变量 ±1σ 扰动排序 ——',
+        variables: [
+            { variable: '微软合同交付延期 ±6 个月', downImpact: -85, upImpact: 20, description: '5 年 run-rate 推后，收入曲线整体右移' },
+            { variable: 'Meta 合同 ±20% 规模', downImpact: -60, upImpact: 80, description: 'Meta 签更多产能或削减' },
+            { variable: '2028 EBITDA margin ±10pp', downImpact: -70, upImpact: 90, description: 'GPU 折旧 / 定价压力' },
+            { variable: '欧洲主权合同 0 vs 2 单 $2B+', downImpact: -40, upImpact: 120, description: 'Mag 7 级情景的关键触发器' },
+            { variable: '再融资稀释 ±10pp', downImpact: -35, upImpact: 15, description: '股权稀释直接影响每股权益' },
+            { variable: 'Avride IPO 估值 ±50%', downImpact: -12, upImpact: 15, description: 'SOTP 期权价值' },
+            { variable: 'AI 基建 CAGR ±10pp', downImpact: -55, upImpact: 100, description: '行业整体增速' },
+        ],
+        takeaway:
+            '**最敏感三变量：AI 基建 CAGR、微软合同、EBITDA margin**。每季度追踪时优先看这三项，而不是股价或短期新闻。',
+    },
+
+    bearPlaybook: {
+        scenario: '"悲观：规模被压 / 价格战"（25% 概率）的完整 ruin 路径',
+        steps: [
+            {
+                when: '2026 Q4 - 2027 Q2',
+                event: '微软完成自建 1.5GW 数据中心，续约需求减半',
+                signal: '微软 capex 指引上修 + 新 Azure AI 数据中心公告密集',
+            },
+            {
+                when: '2027 Q2 - Q4',
+                event: 'CoreWeave 借微软业务爆发筹 $10B+，规模优势扩大到 5x',
+                signal: 'CRWV 市占率持续高于 2x NBIS + 财报 YoY 超 150%',
+            },
+            {
+                when: '2028 Q1 - Q3',
+                event: 'GPU 代际切换（Rubin）导致 B200 残值下杀，Nebius 计提 $1B+ 减值',
+                signal: '英伟达 Rubin 交付时间线 + 二手 GPU 挂牌价暴跌',
+            },
+            {
+                when: '2028 Q3',
+                event: '为维持建设节奏被迫 $3-5B 股权定增，稀释 15-20%',
+                signal: '投行调研 + 股价长期低迷',
+            },
+            {
+                when: '2029',
+                event: 'Meta 第二阶段合同重新谈判，单价降 20%',
+                signal: 'Meta 季报 capex 指引下修 + AI 基建分析师降级',
+            },
+            {
+                when: '2030',
+                event: '市值稳定在 $80-120B，未能进入千亿梯队',
+                signal: '多季度 YoY 增速 < 50%',
+            },
+        ],
+        exitTrigger:
+            '任一步骤在时间表前 1 个季度提前发生 → **减仓 50%**。连续 2 条发生 → **清仓观望**。',
+    },
+
+    correlation: {
+        narrative:
+            'Nebius 不是独立资产，它的涨跌 70-80% 由 AI 基建情绪驱动。如果你已持有英伟达 / 微软 / CoreWeave，加 Nebius 的**边际多元化几乎为零**。真正的 hedge 应该是**反相关或低相关**的资产。',
+        rows: [
+            { asset: 'CoreWeave (CRWV)', beta: 1.3, correlation: 0.82, hedgeValue: 'low', note: '同赛道高度相关，共涨共跌' },
+            { asset: '英伟达 (NVDA)', beta: 1.1, correlation: 0.75, hedgeValue: 'low', note: 'AI 基建情绪主导' },
+            { asset: '微软 (MSFT)', beta: 0.7, correlation: 0.55, hedgeValue: 'medium', note: '客户同时是对手，复杂' },
+            { asset: '甲骨文 (ORCL)', beta: 0.6, correlation: 0.50, hedgeValue: 'medium', note: '企业云对冲' },
+            { asset: '特斯拉 (TSLA)', beta: 0.8, correlation: 0.45, hedgeValue: 'medium', note: '另一个高贝塔成长股' },
+            { asset: '10Y 国债 (TLT)', beta: -0.3, correlation: -0.35, hedgeValue: 'high', note: '避险资产，加息周期反向' },
+            { asset: '黄金 (GLD)', beta: -0.1, correlation: -0.15, hedgeValue: 'high', note: '宏观对冲' },
+        ],
+        suggestedHedge:
+            '如果 Nebius 占组合 5-8%，建议搭配 5-10% TLT + 3-5% GLD 作为尾部保护。AI 情绪崩盘时这两类资产通常上涨，能抵消 Nebius 30-50% 的下行。',
     },
 }

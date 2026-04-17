@@ -23,8 +23,8 @@ const steps = [
 const roadmap = [
     { name: 'CoreWeave', ticker: 'CRWV', sector: 'AI 基建', market: '🇺🇸' },
     { name: 'Palantir', ticker: 'PLTR', sector: '企业软件', market: '🇺🇸' },
-    { name: 'Tesla', ticker: 'TSLA', sector: '电动车 · 自驾', market: '🇺🇸' },
-    { name: 'TSMC', ticker: 'TSM', sector: '半导体', market: '🇺🇸' },
+    { name: '特斯拉', ticker: 'TSLA', sector: '电动车 · 自驾', market: '🇺🇸' },
+    { name: '台积电', ticker: 'TSM', sector: '半导体', market: '🇺🇸' },
     { name: 'SpaceX', ticker: '未上市', sector: '航天', market: '⚫' },
     { name: '宁德时代', ticker: 'SH:300750', sector: '动力电池', market: '🇨🇳' },
     { name: '中芯国际', ticker: 'SH:688981', sector: '半导体代工', market: '🇨🇳' },
@@ -32,7 +32,7 @@ const roadmap = [
     { name: '腾讯控股', ticker: 'HK:00700', sector: '互联网平台', market: '🇭🇰' },
     { name: '小鹏汽车', ticker: 'HK:09868', sector: '电动车', market: '🇭🇰' },
     { name: '贵州茅台', ticker: 'SH:600519', sector: '消费白马', market: '🇨🇳' },
-    { name: 'Oracle', ticker: 'ORCL', sector: '企业云', market: '🇺🇸' },
+    { name: '甲骨文', ticker: 'ORCL', sector: '企业云', market: '🇺🇸' },
 ]
 </script>
 
