@@ -5,10 +5,15 @@ export type PriceCls = 'cyan' | 'purple' | 'green' | 'red'
 export type RiskLevel = 'low' | 'medium' | 'high' | 'critical'
 export type CatalystImpact = 'positive' | 'negative' | 'mixed'
 
+export type Market = 'US' | 'A' | 'HK' | 'PRIVATE'
+export type Currency = 'USD' | 'CNY' | 'HKD'
+
 export interface CompanySummary {
     id: string
     ticker: string
     name: string
+    market: Market
+    currency: Currency
     desc: string
     price: string
     marketCap: string
@@ -50,14 +55,16 @@ export interface Scenario {
     name: string
     cls: ScenarioCls
     prob: number
-    mcap: string
-    mcapValue: number
+    y5Mcap: string
+    y5Value: number
+    y10Mcap: string
+    y10Value: number
     desc: string
 }
 
-export interface Mag7GapRow {
+export interface TenXGeneRow {
     dim: string
-    mag7: string
+    tenBagger: string
     nebius: string
     status: GapStatus
 }
@@ -65,15 +72,22 @@ export interface Mag7GapRow {
 export interface WeightBreakdown {
     scenario: string
     prob: number
-    mid: number
-    contrib: number
+    y5Mid: number
+    y10Mid: number
+    y5Contrib: number
+    y10Contrib: number
+}
+
+export interface HorizonExpectation {
+    expectedMcap: number
+    multiplier: number
+    cagr: number
 }
 
 export interface WeightedExpectation {
     currentMcap: number
-    expectedMcap: number
-    multiplier: number
-    cagr: number
+    y5: HorizonExpectation
+    y10: HorizonExpectation
     breakdown: WeightBreakdown[]
 }
 
@@ -92,9 +106,9 @@ export interface AnalystTarget {
 
 export interface WatchRow {
     indicator: string
-    mag7Signal: string
-    oracleSignal: string
-    pressedSignal: string
+    strongSignal: string
+    baseSignal: string
+    weakSignal: string
 }
 
 /* ================= NEW: Company Overview ================= */
@@ -319,8 +333,8 @@ export interface CompanyDetail {
     subsidiaries: Subsidiary[]
     bullPoints: ThesisPoint[]
     bearPoints: ThesisPoint[]
-    scenarios10y: Scenario[]
-    mag7Gap: Mag7GapRow[]
+    scenarios: Scenario[]
+    tenXGene: TenXGeneRow[]
     weightedExpectation: WeightedExpectation
     coreWeaveCompare: PeerCompareRow[]
     peerName: string

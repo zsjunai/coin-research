@@ -127,15 +127,80 @@ const revenueConfig = computed<ChartConfiguration>(() => {
     }
 })
 
+const horizonCompareConfig = computed<ChartConfiguration>(() => {
+    const d = data.value!
+    return {
+        type: 'bar',
+        data: {
+            labels: d.scenarios.map((s) => s.name.replace(/^.+?: /, '')),
+            datasets: [
+                {
+                    label: '5Y 市值 ($B)',
+                    data: d.scenarios.map((s) => s.y5Value),
+                    backgroundColor: 'rgba(5, 150, 105, 0.75)',
+                    borderColor: '#059669',
+                    borderWidth: 1,
+                    borderRadius: 6,
+                },
+                {
+                    label: '10Y 市值 ($B)',
+                    data: d.scenarios.map((s) => s.y10Value),
+                    backgroundColor: 'rgba(67, 56, 202, 0.75)',
+                    borderColor: '#4338ca',
+                    borderWidth: 1,
+                    borderRadius: 6,
+                },
+                {
+                    label: '当前市值 $40B',
+                    data: d.scenarios.map(() => d.weightedExpectation.currentMcap),
+                    type: 'line',
+                    borderColor: '#dc2626',
+                    backgroundColor: 'rgba(220, 38, 38, 0.08)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    borderDash: [6, 4],
+                    fill: false,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'top', labels: { padding: 14, boxWidth: 12 } },
+                tooltip: {
+                    backgroundColor: '#ffffff',
+                    titleColor: '#0a0a0a',
+                    bodyColor: '#52525b',
+                    borderColor: '#e7e5e0',
+                    borderWidth: 1,
+                    padding: 12,
+                    callbacks: { label: (ctx) => ctx.dataset.label + ': $' + ctx.parsed.y + 'B' },
+                },
+            },
+            scales: {
+                y: {
+                    type: 'logarithmic',
+                    grid: { color: 'rgba(10, 10, 10, 0.05)' },
+                    ticks: {
+                        callback: (v) => '$' + (Number(v) >= 1000 ? Number(v) / 1000 + 'T' : v + 'B'),
+                    },
+                },
+                x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+            },
+        },
+    }
+})
+
 const scenarioConfig = computed<ChartConfiguration>(() => {
     const d = data.value!
     return {
         type: 'doughnut',
         data: {
-            labels: d.scenarios10y.map((s) => s.name),
+            labels: d.scenarios.map((s) => s.name),
             datasets: [
                 {
-                    data: d.scenarios10y.map((s) => s.prob),
+                    data: d.scenarios.map((s) => s.prob),
                     backgroundColor: [
                         'rgba(5, 150, 105, 0.85)',
                         'rgba(67, 56, 202, 0.85)',
@@ -928,7 +993,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         <ChartView :config="marketShareConfig" />
                     </div>
                     <div class="hint-box" style="margin-top: 12px">
-                        Nebius 约占 ~2%，与 Lambda/Crusoe 同属第二梯队。CoreWeave 7%、Oracle 8% 是 Neocloud/新云第一梯队。要成为 Mag 7，至少需要做到 10-15%。
+                        Nebius 约占 ~2%，与 Lambda/Crusoe 同属第二梯队。CoreWeave 7%、Oracle 8% 是 Neocloud/新云第一梯队。要做到 10x ($400B+)，市占至少需爬到 10-15%。
                     </div>
                 </div>
                 <div class="card">
@@ -1023,29 +1088,29 @@ const analystConfig = computed<ChartConfiguration>(() => {
             </div>
         </section>
 
-        <!-- ============= F3. Mag 7 基因 ============= -->
+        <!-- ============= F3. 十倍基因 ============= -->
         <section class="section">
             <div class="section-head">
                 <div class="title-group">
-                    <div class="tag">// F3 · MAG 7 GAP</div>
-                    <h2>Mag 7 基因差距扫描</h2>
+                    <div class="tag">// F3 · 10X GENE</div>
+                    <h2>十倍基因差距扫描</h2>
                 </div>
-                <p>Mag 7 共同点：<strong style="color: var(--accent-primary)">软件边际 + 网络效应 + 数据闭环</strong>三项。</p>
+                <p>十倍股共同点：<strong style="color: var(--accent-primary)">规模化杠杆 + 护城河 + 再投资空间</strong>三项缺一不可。</p>
             </div>
             <div class="card">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>维度</th>
-                            <th style="text-align: left">Mag 7 表现</th>
+                            <th style="text-align: left">十倍股该有的表现</th>
                             <th style="text-align: left">Nebius 现状</th>
                             <th>差距</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="g in data.mag7Gap" :key="g.dim">
+                        <tr v-for="g in data.tenXGene" :key="g.dim">
                             <td>{{ g.dim }}</td>
-                            <td style="text-align: left">{{ g.mag7 }}</td>
+                            <td style="text-align: left">{{ g.tenBagger }}</td>
                             <td style="text-align: left">{{ g.nebius }}</td>
                             <td><span class="badge" :class="g.status">{{ gapLabel[g.status] }}</span></td>
                         </tr>
@@ -1054,18 +1119,18 @@ const analystConfig = computed<ChartConfiguration>(() => {
             </div>
         </section>
 
-        <!-- ============= G1. 10年情景 ============= -->
+        <!-- ============= G1. 情景推演 (5Y + 10Y) ============= -->
         <section class="section">
             <div class="section-head">
                 <div class="title-group">
-                    <div class="tag">// G1 · 10-YEAR SCENARIOS</div>
-                    <h2>10 年情景推演</h2>
+                    <div class="tag">// G1 · 5Y &amp; 10Y SCENARIOS</div>
+                    <h2>双时间轴情景推演</h2>
                 </div>
-                <p>四档情景，概率为本分析主观判断。</p>
+                <p>四档情景同一概率，分别落在 5 年和 10 年两个时间点。概率为本分析主观判断。</p>
             </div>
             <div class="grid-scenario">
                 <div class="scenario-list">
-                    <ScenarioRow v-for="s in data.scenarios10y" :key="s.name" :scenario="s" />
+                    <ScenarioRow v-for="s in data.scenarios" :key="s.name" :scenario="s" />
                 </div>
                 <div class="card">
                     <h3>概率加权分布</h3>
@@ -1074,58 +1139,97 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     </div>
                 </div>
             </div>
+
+            <div class="card" style="margin-top: 20px">
+                <h3>5Y vs 10Y 市值中值对比</h3>
+                <div class="chart-container tall">
+                    <ChartView :config="horizonCompareConfig" />
+                </div>
+                <div class="hint-box" style="margin-top: 12px">
+                    对数坐标 —— 读法：红色虚线是当前 $40B，各情景 5Y（绿）和 10Y（蓝）达到的位置。
+                    10Y 与 5Y 的差值体现"后半程能否继续放大"。乐观情景 10Y / 5Y 比值最大（$1.2T / $360B ≈ 3.3x），说明这档是真正的"后半段加速"。
+                </div>
+            </div>
         </section>
 
-        <!-- ============= G2. 加权期望 ============= -->
+        <!-- ============= G2. 加权期望 5Y + 10Y ============= -->
         <section class="section">
             <div class="section-head">
                 <div class="title-group">
-                    <div class="tag">// G2 · WEIGHTED EXPECTATION</div>
-                    <h2>10 年加权期望值</h2>
+                    <div class="tag">// G2 · WEIGHTED EXPECTATION (5Y + 10Y)</div>
+                    <h2>双时间轴加权期望</h2>
                 </div>
-                <p>概率加权 × 各情景市值中值 = 期望终局市值。</p>
+                <p>5 年视角拿回报节奏，10 年视角看终局 —— 两个数字一起看才能判断买入时点。</p>
             </div>
+            <div class="card" style="margin-bottom: 20px">
+                <h3>计算过程</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>情景</th>
+                            <th style="text-align: left">概率</th>
+                            <th style="text-align: left">5Y 中值 ($B)</th>
+                            <th style="text-align: left">10Y 中值 ($B)</th>
+                            <th style="text-align: left">5Y 贡献</th>
+                            <th>10Y 贡献</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="b in data.weightedExpectation.breakdown" :key="b.scenario">
+                            <td>{{ b.scenario }}</td>
+                            <td style="text-align: left">{{ b.prob }}%</td>
+                            <td style="text-align: left">${{ b.y5Mid }}B</td>
+                            <td style="text-align: left">${{ b.y10Mid }}B</td>
+                            <td style="text-align: left">${{ b.y5Contrib }}B</td>
+                            <td>${{ b.y10Contrib }}B</td>
+                        </tr>
+                        <tr style="background: var(--bg-elevated)">
+                            <td><strong>合计期望</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: left">
+                                <strong style="color: var(--accent-green)">${{ data.weightedExpectation.y5.expectedMcap }}B</strong>
+                            </td>
+                            <td>
+                                <strong style="color: var(--accent-primary)">${{ data.weightedExpectation.y10.expectedMcap }}B</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="grid-2">
-                <div class="card">
-                    <h3>计算过程</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>情景</th>
-                                <th style="text-align: left">概率</th>
-                                <th style="text-align: left">市值中值 ($B)</th>
-                                <th>贡献 ($B)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="b in data.weightedExpectation.breakdown" :key="b.scenario">
-                                <td>{{ b.scenario }}</td>
-                                <td style="text-align: left">{{ b.prob }}%</td>
-                                <td style="text-align: left">${{ b.mid }}B</td>
-                                <td>${{ b.contrib }}B</td>
-                            </tr>
-                            <tr style="background: var(--bg-elevated)">
-                                <td><strong>合计期望</strong></td>
-                                <td></td>
-                                <td></td>
-                                <td><strong style="color: var(--accent-primary)">${{ data.weightedExpectation.expectedMcap }}B</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
                 <div class="card accent-cyan exp-card">
                     <div class="exp-inner">
-                        <div class="exp-tag">WEIGHTED 10Y EXPECTATION</div>
-                        <div class="exp-big">${{ data.weightedExpectation.expectedMcap }}B</div>
-                        <div class="exp-caption">期望终局市值</div>
+                        <div class="exp-tag">WEIGHTED 5Y EXPECTATION</div>
+                        <div class="exp-big">${{ data.weightedExpectation.y5.expectedMcap }}B</div>
+                        <div class="exp-caption">5 年期望市值</div>
                         <div class="exp-foot">
                             <div class="exp-stat">
                                 <div class="el">MULTIPLIER</div>
-                                <div class="ev cyan">{{ data.weightedExpectation.multiplier }}x</div>
+                                <div class="ev cyan">{{ data.weightedExpectation.y5.multiplier }}x</div>
                             </div>
                             <div class="exp-stat">
                                 <div class="el">CAGR</div>
-                                <div class="ev purple">{{ data.weightedExpectation.cagr }}%</div>
+                                <div class="ev purple">{{ data.weightedExpectation.y5.cagr }}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card accent-purple exp-card">
+                    <div class="exp-inner">
+                        <div class="exp-tag">WEIGHTED 10Y EXPECTATION</div>
+                        <div class="exp-big">${{ data.weightedExpectation.y10.expectedMcap }}B</div>
+                        <div class="exp-caption">10 年期望市值</div>
+                        <div class="exp-foot">
+                            <div class="exp-stat">
+                                <div class="el">MULTIPLIER</div>
+                                <div class="ev cyan">{{ data.weightedExpectation.y10.multiplier }}x</div>
+                            </div>
+                            <div class="exp-stat">
+                                <div class="el">CAGR</div>
+                                <div class="ev purple">{{ data.weightedExpectation.y10.cagr }}%</div>
                             </div>
                         </div>
                     </div>
@@ -1215,17 +1319,17 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <thead>
                         <tr>
                             <th>指标</th>
-                            <th style="text-align: left; color: var(--accent-green)">Mag 7 信号</th>
-                            <th style="text-align: left; color: var(--accent-yellow)">Oracle 信号</th>
-                            <th style="text-align: right; color: var(--accent-red)">被压制信号</th>
+                            <th style="text-align: left; color: var(--accent-green)">10x 轨迹信号</th>
+                            <th style="text-align: left; color: var(--accent-yellow)">基线信号</th>
+                            <th style="text-align: right; color: var(--accent-red)">落后信号</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="w in data.watchlist" :key="w.indicator">
                             <td><strong>{{ w.indicator }}</strong></td>
-                            <td style="text-align: left">{{ w.mag7Signal }}</td>
-                            <td style="text-align: left">{{ w.oracleSignal }}</td>
-                            <td style="text-align: right">{{ w.pressedSignal }}</td>
+                            <td style="text-align: left">{{ w.strongSignal }}</td>
+                            <td style="text-align: left">{{ w.baseSignal }}</td>
+                            <td style="text-align: right">{{ w.weakSignal }}</td>
                         </tr>
                     </tbody>
                 </table>

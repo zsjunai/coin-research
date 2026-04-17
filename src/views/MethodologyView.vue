@@ -9,15 +9,15 @@ const bigSteps = [
     },
     {
         n: '02',
-        title: 'Mag 7 基因体检',
-        en: 'DNA Check',
-        body: '对照 Mag 7 五项核心基因做差距扫描，识别结构性缺口：',
+        title: '十倍基因体检',
+        en: '10x DNA Check',
+        body: '对照十倍股共同基因做差距扫描，识别结构性缺口：',
         dims: [
-            { cls: 'cyan', label: '软件边际成本', sub: '复制成本是否趋近 0' },
-            { cls: 'purple', label: '网络/平台效应', sub: '用户越多价值越大' },
-            { cls: 'green', label: '数据闭环', sub: '数据反哺产品' },
+            { cls: 'cyan', label: '规模化杠杆', sub: '软件边际成本 ≈ 0' },
+            { cls: 'purple', label: '网络/平台效应', sub: '用户/合作方越多越值钱' },
+            { cls: 'green', label: '数据/资产壁垒', sub: '独占数据、IP、规模' },
             { cls: 'yellow', label: '定价权', sub: '毛利 60%+ 可持续' },
-            { cls: 'red', label: '跨代际转型', sub: '长出第二条 S 曲线' },
+            { cls: 'red', label: '再投资空间', sub: '高 ROIC × TAM 足够大' },
         ],
     },
     {
@@ -36,29 +36,29 @@ const bigSteps = [
     },
     {
         n: '05',
-        title: '三档情景推演',
-        en: 'Scenario Projection',
-        body: '在 10 年尺度上构建三档情景（可扩展第四档"退出"）：',
+        title: '双时间轴情景推演',
+        en: '5Y + 10Y Scenarios',
+        body: '每档情景同时推到 <strong class="cyan">5 年</strong> 和 <strong class="purple">10 年</strong> 两个时点。5Y 判断回报节奏（什么时候能兑现），10Y 判断终局（是不是真的 10-bagger）：',
         scenarios: [
-            { cls: 'green', name: '乐观 Bull', body: '商业模式跃迁成功 → Mag 7 / 巨头级' },
-            { cls: 'cyan', name: '中性 Base', body: '赛道第二 / 盈利稳健 → 类 Oracle' },
-            { cls: 'red', name: '悲观 Bear', body: '被规模碾压 / 价格战 → 估值回归' },
+            { cls: 'green', name: '乐观 Bull', body: '商业模式跃迁 → 10x+ 回报' },
+            { cls: 'cyan', name: '中性 Base', body: '稳态增长 → 3-5x 回报' },
+            { cls: 'red', name: '悲观 Bear', body: '被压制 / 价格战 → 1-2x 或下跌' },
         ],
     },
     {
         n: '06',
-        title: '加权期望值计算',
+        title: '双时间轴加权期望',
         en: 'Weighted Expectation',
-        body: '核心公式：',
-        formula: 'E[Mcap₁₀ᵧ] = Σ Pᵢ × Midᵢ',
-        followUp: '再推导出<strong class="cyan">回报倍数</strong>与<strong class="purple">CAGR</strong>，作为仓位判断的锚。',
-        example: 'Multiplier = E[Mcap] / Current Mcap\nCAGR = (Multiplier)^(1/10) - 1',
+        body: '核心公式（分别算 5Y 与 10Y）：',
+        formula: 'E[Mcap] = Σ Pᵢ × Midᵢ  →  两个时间点各一个数',
+        followUp: '再推导出<strong class="cyan">回报倍数</strong>（Multiplier）与<strong class="purple">CAGR</strong>。5Y 决定何时加仓，10Y 决定持有几年。',
+        example: 'Multiplier_5Y = E[Mcap_5Y] / Current\nCAGR_5Y = Multiplier_5Y^(1/5) - 1\n\nMultiplier_10Y = E[Mcap_10Y] / Current\nCAGR_10Y = Multiplier_10Y^(1/10) - 1',
     },
     {
         n: '07',
         title: '观察指标清单',
         en: 'Tracking Signals',
-        body: '输出 5 项<strong class="cyan">季度级跟踪指标</strong>，每个指标给出三种信号值（Mag 7 / Oracle / 被压制），用于动态判定公司走在哪条轨迹上，并据此调整仓位。',
+        body: '输出 5 项<strong class="cyan">季度级跟踪指标</strong>，每个指标给出三种信号值（10x 轨迹 / 基线 / 落后），用于动态判定公司走在哪条轨迹上，并据此调整仓位。',
         example: '典型指标：CapEx/Rev · 客户集中度 · Gross Margin · 开发者规模 · 商业模式层级',
     },
 ]
@@ -69,6 +69,7 @@ const doItems = [
     { title: '标注数据时点', body: '老数据会腐烂，所有结论都要标注 anchor date' },
     { title: '情景概率显式化', body: '不说"可能"，只说"概率约 X%"' },
     { title: '区分事实与推断', body: '哪些是公司披露，哪些是本分析的主观判断' },
+    { title: '双时间轴并列', body: '5Y 与 10Y 两个数字一起给，回报节奏 + 终局分开看' },
 ]
 
 const dontItems = [
@@ -77,13 +78,14 @@ const dontItems = [
     { title: '堆砌数据', body: '数据只在推出决策时才有意义' },
     { title: '使用 PR 话术', body: '"颠覆性"、"革命性"、"无可替代" 全部禁用' },
     { title: '给单一目标价', body: '必须给情景分布，不是点估计' },
+    { title: '只看 10Y 终局', body: '10Y 翻 10 倍，但 5Y 只 1.5x 也是差投资' },
 ]
 
 const benchmarks = [
-    { cls: 'cyan', label: 'MCAP 门槛', value: '$1T+' },
-    { cls: 'purple', label: '年营收', value: '$100B+' },
-    { cls: 'green', label: 'Operating Margin', value: '25%+' },
-    { cls: 'yellow', label: 'FCF', value: '$20B+' },
+    { cls: 'cyan', label: '目标回报', value: '10x+' },
+    { cls: 'purple', label: '时间跨度', value: '5Y + 10Y' },
+    { cls: 'green', label: '情景档位', value: '3 - 4 档' },
+    { cls: 'yellow', label: '概率显式', value: '必须 %' },
 ]
 </script>
 
@@ -92,14 +94,14 @@ const benchmarks = [
         <section class="hero" style="padding: 80px 0 40px">
             <div class="hero-eyebrow">
                 <span class="dot"></span>
-                <span class="mono">RESEARCH FRAMEWORK</span>
+                <span class="mono">RESEARCH FRAMEWORK · 10-BAGGER HUNT</span>
             </div>
             <h1>
                 分析方法论<br />
-                <span class="gradient-text">7 步 · 从事实到终局</span>
+                <span class="gradient-text">7 步 · 5Y 与 10Y 双时间轴</span>
             </h1>
             <p class="hero-subtitle">
-                一套可复用的分析框架。回答的核心问题是：这家公司有多大概率成为下一个 Mag 7？10 年加权期望回报是多少？
+                一套可复用的选股框架。回答同一个核心问题 —— 这家公司 5 年和 10 年后分别值多少钱？有多大概率翻 10 倍？
             </p>
         </section>
 
@@ -133,10 +135,10 @@ const benchmarks = [
                             <div
                                 v-for="sc in s.scenarios"
                                 :key="sc.name"
-                                :style="`padding:16px; background:rgba(${sc.cls === 'green' ? '16,185,129' : sc.cls === 'cyan' ? '59,130,246' : '244,63,94'},0.08); border:1px solid rgba(${sc.cls === 'green' ? '16,185,129' : sc.cls === 'cyan' ? '59,130,246' : '244,63,94'},0.3); border-radius:8px`"
+                                :style="`padding:16px; background:rgba(${sc.cls === 'green' ? '5,150,105' : sc.cls === 'cyan' ? '67,56,202' : '220,38,38'},0.06); border:1px solid rgba(${sc.cls === 'green' ? '5,150,105' : sc.cls === 'cyan' ? '67,56,202' : '220,38,38'},0.25); border-radius:8px`"
                             >
                                 <div
-                                    :style="`color:var(--accent-${sc.cls}); font-family:'Space Grotesk',sans-serif; font-weight:700; margin-bottom:4px`"
+                                    :style="`color:var(--accent-${sc.cls}); font-family:'Space Grotesk Variable','Space Grotesk',sans-serif; font-weight:700; margin-bottom:4px`"
                                 >
                                     {{ sc.name }}
                                 </div>
@@ -162,7 +164,7 @@ const benchmarks = [
             </div>
             <div class="grid-2">
                 <div class="card accent-cyan">
-                    <h3 style="color: var(--accent-cyan)">✓ 必须做的</h3>
+                    <h3 style="color: var(--accent-primary)">✓ 必须做的</h3>
                     <ul class="list-plain">
                         <li v-for="i in doItems" :key="i.title">
                             <strong>{{ i.title }}</strong> — {{ i.body }}
@@ -183,10 +185,10 @@ const benchmarks = [
         <section class="section">
             <div class="section-head">
                 <div class="title-group">
-                    <div class="tag">// MAG 7 BENCHMARK</div>
-                    <h2>为什么拿 Mag 7 做标尺？</h2>
+                    <div class="tag">// 10-BAGGER STANDARD</div>
+                    <h2>为什么是"10 倍 + 5Y/10Y"？</h2>
                 </div>
-                <p>因为"下一个 Apple/Nvidia/Microsoft"是所有 AI 基础设施投资的终极提问。</p>
+                <p>Peter Lynch 的 10-bagger 是普通人能复盘、能检验、能下注的最小有意义单位。</p>
             </div>
             <div class="card">
                 <div class="bench-grid">
@@ -195,25 +197,37 @@ const benchmarks = [
                         <div class="ev" :class="b.cls">{{ b.value }}</div>
                     </div>
                 </div>
-                <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.7">
-                    Mag 7 的共同点不是"规模大"，而是<strong style="color: var(--accent-cyan)">软件边际 + 网络效应 + 数据闭环</strong>三项全部拥有。这个组合允许收入 scale 不靠堆资本，毛利率维持 60%+，现金流持续滚大雪球。任何一家缺其中两项的公司，即使做到 $500B，也很难跨过 $1T 门槛。
+                <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.8">
+                    <p style="margin-bottom: 12px">
+                        <strong style="color: var(--accent-primary)">为什么 10x？</strong>
+                        因为"2-3x"是市场 beta + 运气能给出的基准回报，不需要特殊研究。能在 5-10 年做到 10x 的公司，必然存在可被识别的结构性因子（商业模式杠杆、护城河、再投资空间）——这些因子可以前置分析出来。
+                    </p>
+                    <p style="margin-bottom: 12px">
+                        <strong style="color: var(--accent-primary)">为什么 5Y 与 10Y 同时看？</strong>
+                        单看 10Y 的问题：一个 10Y 翻 10 倍的公司，前 5 年可能只涨 20%，最后 5 年才爆发。如果中途股价横盘你很可能割肉离场。<br />
+                        单看 5Y 的问题：5Y 5x 听起来很猛，但如果 10Y 也只有 5x，说明增长是一次性的，后半程没有空间——不是真 10-bagger，是估值修复。
+                    </p>
+                    <p>
+                        <strong style="color: var(--accent-primary)">两个数字一起看</strong>，
+                        能区分"真 10-bagger"（5Y 3x + 10Y 10x）vs "假命中"（5Y 8x + 10Y 9x，增长已耗尽）vs "估值陷阱"（5Y 2x + 10Y 3x，跑不赢大盘）。
+                    </p>
                 </div>
             </div>
         </section>
 
         <div class="footer">
-            <div class="mono-line">METHODOLOGY v0.1 · LAST UPDATED 2026-04-17</div>
+            <div class="mono-line">METHODOLOGY v0.2 · 10-BAGGER HUNTING · LAST UPDATED 2026-04-17</div>
             <div style="margin-top: 8px">本方法论将随着覆盖公司增多持续迭代。</div>
         </div>
     </div>
 </template>
 
 <style scoped>
-.dim-grid strong.cyan { color: var(--accent-cyan); }
-.dim-grid strong.purple { color: var(--accent-purple); }
+.dim-grid strong.cyan { color: var(--accent-primary); }
+.dim-grid strong.purple { color: var(--accent-secondary); }
 .dim-grid strong.green { color: var(--accent-green); }
 .dim-grid strong.yellow { color: var(--accent-yellow); }
 .dim-grid strong.red { color: var(--accent-red); }
-:deep(strong.cyan) { color: var(--accent-cyan); }
-:deep(strong.purple) { color: var(--accent-purple); }
+:deep(strong.cyan) { color: var(--accent-primary); }
+:deep(strong.purple) { color: var(--accent-secondary); }
 </style>
