@@ -34,7 +34,7 @@
 # 安装依赖
 pnpm install
 
-# 本地开发（端口 1000）
+# 本地开发（端口 10000）
 pnpm dev
 
 # 生产构建
@@ -44,7 +44,7 @@ pnpm build
 pnpm preview
 ```
 
-访问 **http://localhost:1000**。
+访问 **http://localhost:10000**。
 
 ## 添加新公司（3 步）
 

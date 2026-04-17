@@ -10,12 +10,12 @@ export default defineConfig({
         },
     },
     server: {
-        port: 1000,
+        port: 10000,
         host: true,
         strictPort: true,
     },
     preview: {
-        port: 1000,
+        port: 10000,
     },
     build: {
         rollupOptions: {
