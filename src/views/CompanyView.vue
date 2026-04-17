@@ -677,7 +677,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <h3>自由现金流路径</h3>
                     <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7">{{ data.profitability.fcfPath }}</p>
 
-                    <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; margin-top: 20px; margin-bottom: 12px; color: var(--accent-red)">盈利兑现关键风险</h4>
+                    <h4 style="font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif; font-size: 15px; margin-top: 20px; margin-bottom: 12px; color: var(--accent-red)">盈利兑现关键风险</h4>
                     <ul class="list-plain red">
                         <li v-for="k in data.profitability.keyRisks" :key="k">{{ k }}</li>
                     </ul>
@@ -701,7 +701,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     </h3>
                     <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7">{{ a.body }}</p>
                     <div v-if="a.evidence" class="hint-box" style="margin-top: 14px">
-                        <strong style="color: var(--accent-primary); font-family: 'Space Grotesk', sans-serif">证据：</strong>{{ a.evidence }}
+                        <strong style="color: var(--accent-primary); font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif">证据：</strong>{{ a.evidence }}
                     </div>
                 </div>
             </div>
@@ -721,7 +721,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <h3 style="color: var(--accent-red)"><span class="num">✗</span>{{ d.title }}</h3>
                     <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7">{{ d.body }}</p>
                     <div v-if="d.evidence" class="hint-box" style="margin-top: 14px">
-                        <strong style="color: var(--accent-red); font-family: 'Space Grotesk', sans-serif">证据：</strong>{{ d.evidence }}
+                        <strong style="color: var(--accent-red); font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif">证据：</strong>{{ d.evidence }}
                     </div>
                 </div>
             </div>
@@ -781,7 +781,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         {{ d.body }}
                     </p>
                     <div class="hint-box" style="margin-top: 14px">
-                        <strong style="color: var(--accent-primary); font-family: 'Space Grotesk', sans-serif">使能条件：</strong>{{ d.enabling }}
+                        <strong style="color: var(--accent-primary); font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif">使能条件：</strong>{{ d.enabling }}
                     </div>
                 </div>
             </div>
@@ -882,7 +882,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                             <tr v-for="c in data.competitiveLandscape.competitors" :key="c.name" :class="c.name.includes('自身') ? 'self-row' : ''">
                                 <td>
                                     <strong>{{ c.name }}</strong>
-                                    <div v-if="c.ticker" style="font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; margin-top: 2px">{{ c.ticker }}</div>
+                                    <div v-if="c.ticker" style="font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace; margin-top: 2px">{{ c.ticker }}</div>
                                 </td>
                                 <td style="text-align: left">
                                     <span class="badge" :class="competitorTypeClass[c.type]">{{ competitorTypeLabel[c.type] }}</span>
@@ -914,8 +914,8 @@ const analystConfig = computed<ChartConfiguration>(() => {
                             <span class="badge" :class="threatClass[c.threat]">{{ threatLabel[c.threat] }}</span>
                         </div>
                         <div class="comp-detail-body">
-                            <div><strong style="color: var(--accent-green); font-family: 'Space Grotesk', sans-serif">优势：</strong>{{ c.strength }}</div>
-                            <div style="margin-top: 6px"><strong style="color: var(--accent-red); font-family: 'Space Grotesk', sans-serif">短板：</strong>{{ c.weakness }}</div>
+                            <div><strong style="color: var(--accent-green); font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif">优势：</strong>{{ c.strength }}</div>
+                            <div style="margin-top: 6px"><strong style="color: var(--accent-red); font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif">短板：</strong>{{ c.weakness }}</div>
                         </div>
                     </div>
                 </div>
@@ -1316,7 +1316,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     </div>
                 </div>
 
-                <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; margin-top: 24px; margin-bottom: 12px">
+                <h4 style="font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif; font-size: 16px; margin-top: 24px; margin-bottom: 12px">
                     关键假设（任一被证伪 → 重新评估）
                 </h4>
                 <ul class="list-plain">
@@ -1359,7 +1359,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 .timeline-row:last-child { border-bottom: none; }
 
 .timeline-year {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
     font-weight: 600;
     color: var(--accent-primary);
     font-size: 13px;
@@ -1404,7 +1404,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 }
 
 .team-name {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
     font-weight: 700;
     font-size: 16px;
     color: var(--text-ink);
@@ -1413,7 +1413,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 .team-role {
     font-size: 13px;
     color: var(--accent-primary);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
     margin-top: 2px;
 }
 
@@ -1492,7 +1492,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 }
 
 .risk-name {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
     font-weight: 700;
     font-size: 14px;
     color: var(--text-ink);
@@ -1517,7 +1517,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
 .mit-label {
     color: var(--accent-green);
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
     font-weight: 700;
 }
 
@@ -1537,7 +1537,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 }
 
 .rec-label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
     font-size: 11px;
     color: var(--text-muted);
     letter-spacing: 0.15em;
@@ -1546,7 +1546,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 }
 
 .rec-rating {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
     font-size: 32px;
     font-weight: 700;
     background: var(--gradient-primary);
@@ -1558,7 +1558,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 .rec-badge {
     padding: 10px 18px;
     border-radius: 10px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
     font-weight: 700;
     font-size: 16px;
     letter-spacing: 0.1em;
@@ -1589,7 +1589,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 }
 
 .rec-cell .el {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
     font-size: 11px;
     color: var(--text-muted);
     letter-spacing: 0.1em;
@@ -1598,7 +1598,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 }
 
 .rec-cell .ev {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
     font-weight: 700;
     font-size: 16px;
     color: var(--text-ink);
@@ -1648,7 +1648,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
     align-items: center;
     margin-bottom: 10px;
     gap: 12px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
 }
 
 .comp-detail-body {
