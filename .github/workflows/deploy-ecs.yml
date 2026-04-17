@@ -31,7 +31,9 @@ jobs:
                   mkdir -p ~/.ssh
                   echo "${{ secrets.ECS_SSH_KEY }}" > ~/.ssh/id_ed25519
                   chmod 600 ~/.ssh/id_ed25519
-                  ssh-keyscan -H -p ${{ secrets.ECS_PORT || 22 }} ${{ secrets.ECS_HOST }} >> ~/.ssh/known_hosts
+                  # 用固定 host key 替代 ssh-keyscan，防止 MITM
+                  echo "${{ secrets.ECS_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+                  chmod 644 ~/.ssh/known_hosts
 
             - name: Deploy via rsync
               run: |
