@@ -39,10 +39,3 @@ jobs:
                     -e "ssh -i ~/.ssh/id_ed25519 -p ${{ secrets.ECS_PORT || 22 }}" \
                     dist/ \
                     ${{ secrets.ECS_USER }}@${{ secrets.ECS_HOST }}:${{ secrets.ECS_TARGET }}
-
-            - name: Reload nginx (optional)
-              if: ${{ secrets.ECS_RELOAD_NGINX == 'true' }}
-              run: |
-                  ssh -i ~/.ssh/id_ed25519 -p ${{ secrets.ECS_PORT || 22 }} \
-                    ${{ secrets.ECS_USER }}@${{ secrets.ECS_HOST }} \
-                    "sudo nginx -s reload"
