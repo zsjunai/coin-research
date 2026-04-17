@@ -1,10 +1,12 @@
 import type { CompanyDetail, CompanySummary } from '@/types/company'
 import { circle } from './circle'
+import { coinbase } from './coinbase'
 import { nebius } from './nebius'
 
 export const companyRegistry: Record<string, CompanyDetail> = {
     nebius,
     circle,
+    coinbase,
 }
 
 export const companies: CompanySummary[] = [
@@ -44,6 +46,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~15%' },
         ],
         tags: ['Stablecoin', 'Fintech', 'Crypto Infra'],
+        date: '2026-04-17',
+    },
+    {
+        id: 'coinbase',
+        ticker: 'NASDAQ:COIN',
+        name: 'Coinbase Global',
+        market: 'US',
+        currency: 'USD',
+        desc: '美国加密行业龙头：OCC 国家信托牌照 + 标普 500 成员 + Deribit 并购 + Base L2，合规身位无对手。',
+        price: '$167.85',
+        marketCap: '~$43B',
+        verdict: 'neutral',
+        verdictText: '持有 / 逐步加仓',
+        metrics: [
+            { label: '5Y 期望', value: '1.83x' },
+            { label: '10Y 期望', value: '4.76x' },
+            { label: 'P(10x · 10Y)', value: '~18%' },
+        ],
+        tags: ['Crypto Exchange', 'Fintech', 'L2 / Base'],
         date: '2026-04-17',
     },
 ]
