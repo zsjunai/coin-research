@@ -4,10 +4,13 @@
 >
 > 一套可复用的深度投研框架。每一份报告回答一个问题：**这家公司 10 年后会值多少钱？有多大概率进入 Mag 7？**
 
+🌐 **在线访问**：[coin-research.vercel.app](https://coin-research.vercel.app)
+
 ![Vue](https://img.shields.io/badge/Vue-3.5-42b883?logo=vue.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-6.4-646cff?logo=vite&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?logo=typescript&logoColor=white)
 ![ChartJS](https://img.shields.io/badge/Chart.js-4.5-ff6384?logo=chart.js&logoColor=white)
+[![Deployed on Vercel](https://img.shields.io/badge/Vercel-deployed-000?logo=vercel&logoColor=white)](https://coin-research.vercel.app)
 
 ---
 
