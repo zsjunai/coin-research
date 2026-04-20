@@ -1014,7 +1014,7 @@ export const coinbase: CompanyDetail = {
             ],
             computedSize: '4-7% 组合权重',
             reasoning:
-                '10Y 情景标准差 ~105% 期望值（比 Circle 的 110% 略好，比 Nebius 130% 显著好）。Coinbase 的下行保护（$11B 现金 + 41% S&S）使完整 Kelly 可到 8%，但加密 β 风险 + 组合相关性（与 BTC/Circle/Robinhood 高度正相关）要求取 1/2 Kelly。**分层建仓**：基础 4%（合规护城河）+ Base 发币信号触发 +2%（生态兑现）+ 加密深度牛市 +1%（β 敞口）。',
+                '10Y 情景标准差 ~105% 期望值，波动较大但下行保护较厚（$11B 现金 + 41% S&S 订阅）。完整 Kelly 可到 8%，但加密 β 风险 + 组合相关性（与 BTC/稳定币发行方/零售券商高度正相关）要求取 1/2 Kelly。**分层建仓**：基础 4%（合规护城河）+ Base 发币信号触发 +2%（生态兑现）+ 加密深度牛市 +1%（β 敞口）。',
         },
     },
 
@@ -1102,7 +1102,7 @@ export const coinbase: CompanyDetail = {
 
     downsideMetrics: {
         narrative:
-            '只看期望 16.9% CAGR 是 research theater。基于 4 档情景，Coinbase 10Y **情景标准差约 $214B**（~105% 期望值）。**5Y 内亏损 30%+ 的概率约 32%**——加密熊市叠加监管逆转时，40-60% 回撤不是小概率事件。但对比 Circle (35%) 和 Nebius (25%)，Coinbase 的下行保护因 $11B 现金 + 41% S&S 订阅已结构性改善。',
+            '只看期望 16.9% CAGR 是 research theater。基于 4 档情景，Coinbase 10Y **情景标准差约 $214B**（~105% 期望值）。**5Y 内亏损 30%+ 的概率约 32%**——加密熊市叠加监管逆转时，40-60% 回撤不是小概率事件。但 $11B 现金 + 41% S&S 订阅结构性降低了深度回撤的概率。',
         scenarioStdDev: 214,
         sharpeLike: 0.76,
         probLoss30Pct5Y: 32,

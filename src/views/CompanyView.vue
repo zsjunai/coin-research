@@ -25,6 +25,11 @@ const facts = computed(() => {
     return Object.entries(data.value.keyFacts).map(([k, v]) => ({ k, v }))
 })
 
+const selfTicker = computed(() => {
+    if (!data.value) return ''
+    return data.value.ticker.split(':')[1] || data.value.ticker
+})
+
 const gapLabel: Record<GapStatus, string> = {
     red: '结构性差距',
     yellow: '偏弱',
@@ -71,8 +76,8 @@ const threatLabel: Record<ThreatLevel, string> = {
 
 const competitorTypeLabel: Record<CompetitorType, string> = {
     neocloud: 'Neocloud',
-    hyperscaler: '超大规模云',
-    specialist: '专家型',
+    hyperscaler: '大型巨头',
+    specialist: '专业型',
 }
 
 const competitorTypeClass: Record<CompetitorType, string> = {
@@ -364,7 +369,7 @@ const historicalValConfig = computed<ChartConfiguration>(() => {
                     fill: true,
                 },
                 {
-                    label: '行业中位 (参考 CoreWeave 历史均值)',
+                    label: '行业参考均值',
                     data: h.map(() => 35),
                     borderColor: '#94a3b8',
                     backgroundColor: 'transparent',
@@ -482,7 +487,7 @@ const tamConfig = computed<ChartConfiguration>(() => {
             labels: t.map((x) => x.year),
             datasets: [
                 {
-                    label: 'AI 基建总 TAM ($B)',
+                    label: '行业总 TAM ($B)',
                     data: t.map((x) => x.totalTam),
                     backgroundColor: 'rgba(100, 116, 139, 0.35)',
                     borderColor: '#64748b',
@@ -491,7 +496,7 @@ const tamConfig = computed<ChartConfiguration>(() => {
                     order: 3,
                 },
                 {
-                    label: 'Neocloud 子赛道 ($B)',
+                    label: '子赛道 TAM ($B)',
                     data: t.map((x) => x.neocloudTam),
                     backgroundColor: 'rgba(124, 58, 237, 0.75)',
                     borderColor: '#7c3aed',
@@ -500,7 +505,7 @@ const tamConfig = computed<ChartConfiguration>(() => {
                     order: 2,
                 },
                 {
-                    label: 'Nebius 营收 ($B)',
+                    label: d.name + ' 营收 ($B)',
                     data: t.map((x) => x.selfRevenue),
                     backgroundColor: 'rgba(67, 56, 202, 0.95)',
                     borderColor: '#4338ca',
@@ -556,7 +561,7 @@ const shareConfig = computed<ChartConfiguration>(() => {
             labels: t.map((x) => x.year),
             datasets: [
                 {
-                    label: 'Nebius 在 Neocloud 的市占 (%)',
+                    label: d.name + ' 在子赛道的市占 (%)',
                     data: t.map((x) => Number(((x.selfRevenue / x.neocloudTam) * 100).toFixed(1))),
                     borderColor: '#4338ca',
                     backgroundColor: 'rgba(67, 56, 202, 0.15)',
@@ -567,7 +572,7 @@ const shareConfig = computed<ChartConfiguration>(() => {
                     fill: true,
                 },
                 {
-                    label: '10x 回报所需市占（15%）',
+                    label: '10x 回报所需市占门槛',
                     data: t.map(() => 15),
                     borderColor: '#dc2626',
                     backgroundColor: 'rgba(220, 38, 38, 0.05)',
@@ -614,7 +619,7 @@ const radarConfig = computed<ChartConfiguration>(() => {
             labels: r.dimensions.map((x) => x.dim),
             datasets: [
                 {
-                    label: 'Nebius',
+                    label: d.name,
                     data: r.dimensions.map((x) => x.self),
                     borderColor: '#4338ca',
                     backgroundColor: 'rgba(67, 56, 202, 0.25)',
@@ -798,7 +803,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <div class="tag">// A1 · COMPANY OVERVIEW</div>
                     <h2>公司全景</h2>
                 </div>
-                <p>从 Yandex 遗产到西方 Neocloud 龙头的重组路径。</p>
+                <p>公司沿革 · 商业模式 · 营收构成。</p>
             </div>
             <div class="grid-2">
                 <div class="card">
@@ -980,7 +985,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         </tbody>
                     </table>
                     <div class="hint-box">
-                        这是 Neocloud 行业最厚的收入可见性，也是最高的客户集中度 —— 硬币的两面。
+                        长期合同带来收入可见性，但同时意味着客户集中度风险——硬币的两面。
                     </div>
                 </div>
             </div>
@@ -1122,7 +1127,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <div class="tag">// B4 · CASH FLOW</div>
                     <h2>现金流三张表 · 烧钱与回血节奏</h2>
                 </div>
-                <p>利润能造假，现金流不能。Nebius 2025-2027 深度烧钱 → 2029-2030 回血。</p>
+                <p>利润能造假，现金流不能。用时间线看烧钱与回血的真实节奏。</p>
             </div>
 
             <div class="card" style="margin-bottom: 20px">
@@ -1400,16 +1405,16 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         <ChartView :config="tamConfig" />
                     </div>
                     <div class="hint-box" style="margin-top: 12px">
-                        对数坐标下能同时看清 **$90B Nebius 营收** 和 **$4T 总 TAM**。三条柱的比例反映赛道集中度 —— Neocloud 占总 AI 基建从 4%（2024）涨到 ~15%（2030），结构性红利。
+                        对数坐标下能同时看清公司营收与赛道总 TAM 的数量级差异。三条柱的比例反映公司在子赛道、以及子赛道在行业中的占比演进。
                     </div>
                 </div>
                 <div class="card">
-                    <h3>Nebius 在 Neocloud 的市占率轨迹</h3>
+                    <h3>{{ data.name }} 在子赛道的市占率轨迹</h3>
                     <div class="chart-container tall">
                         <ChartView :config="shareConfig" />
                     </div>
                     <div class="hint-box" style="margin-top: 12px">
-                        红色虚线 = 要实现 **10 倍回报**对应的 Neocloud 市占（15%）。Nebius 2026 跳到 ~10%，2028-2030 能否守住 10-15% 决定是否真的 10-bagger。
+                        红色虚线 = 实现 <strong>10 倍回报</strong>所需的子赛道市占门槛。实线轨迹能否穿越该门槛，决定"真 10-bagger"还是"估值陷阱"。
                     </div>
                 </div>
             </div>
@@ -1420,11 +1425,11 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <thead>
                         <tr>
                             <th>年份</th>
-                            <th style="text-align: left">AI 基建总 TAM</th>
-                            <th style="text-align: left">Neocloud 子赛道</th>
-                            <th style="text-align: left">Neocloud 占总 TAM</th>
-                            <th style="text-align: left">Nebius 营收</th>
-                            <th>Nebius / Neocloud 市占</th>
+                            <th style="text-align: left">行业总 TAM</th>
+                            <th style="text-align: left">子赛道 TAM</th>
+                            <th style="text-align: left">子赛道 / 行业</th>
+                            <th style="text-align: left">{{ data.name }} 营收</th>
+                            <th>子赛道市占</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1461,7 +1466,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <div class="tag">// F2 · COMPETITIVE LANDSCAPE</div>
                     <h2>竞争格局总览</h2>
                 </div>
-                <p>三层市场：超大规模云 · Neocloud · 垂直专家。</p>
+                <p>对手全景对照：主要竞争者的收入、规模、威胁等级与差异化。</p>
             </div>
 
             <div class="grid-2" style="grid-template-columns: 1fr 1.2fr; margin-bottom: 20px">
@@ -1470,16 +1475,16 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7">{{ data.competitiveLandscape.summary }}</p>
 
                     <h4 style="font-family: 'Space Grotesk Variable', sans-serif; font-size: 15px; margin-top: 20px; margin-bottom: 12px; color: var(--text-ink)">
-                        {{ data.name.split(' ')[0] }} 的"形状"
+                        雷达图读法
                     </h4>
                     <ul class="list-plain" style="gap: 6px">
                         <li style="padding: 8px 12px; font-size: 13px">
-                            <strong style="color: var(--accent-green)">✓ 尖刺 (结构性优势)：</strong>
-                            英伟达绑定、欧洲/主权定位、资产负债表、增速
+                            <strong style="color: var(--accent-green)">✓ 尖刺：</strong>
+                            在该维度上明显强于对手（结构性优势）
                         </li>
                         <li style="padding: 8px 12px; font-size: 13px; border-left-color: var(--accent-red)">
-                            <strong style="color: var(--accent-red)">✗ 凹陷 (结构性短板)：</strong>
-                            收入规模、盈利能力、客户集中度
+                            <strong style="color: var(--accent-red)">✗ 凹陷：</strong>
+                            在该维度上被对手压制（结构性短板）
                         </li>
                     </ul>
                 </div>
@@ -1510,7 +1515,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                                 <th style="text-align: left">EBITDA %</th>
                                 <th style="text-align: left">市值</th>
                                 <th style="text-align: left">英伟达绑定</th>
-                                <th>对 NBIS 威胁</th>
+                                <th>对 {{ selfTicker }} 威胁</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1558,12 +1563,12 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
             <div class="grid-2" style="margin-bottom: 20px">
                 <div class="card">
-                    <h3>2026E Neocloud + AI 云市场份额（估算）</h3>
+                    <h3>2026E 市场份额（估算）</h3>
                     <div class="chart-container tall">
                         <ChartView :config="marketShareConfig" />
                     </div>
                     <div class="hint-box" style="margin-top: 12px">
-                        Nebius 约占 ~2%，与 Lambda/Crusoe 同属第二梯队。CoreWeave 7%、甲骨文 8% 是 Neocloud/新云第一梯队。要做到 10x ($400B+)，市占至少需爬到 10-15%。
+                        图中展示 2026 年赛道份额结构。公司要做到 10x 回报，需要其市占沿虚线门槛攀升（具体门槛参见上一节"市占率轨迹"图）。
                     </div>
                 </div>
                 <div class="card">
@@ -1572,7 +1577,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         <thead>
                             <tr>
                                 <th>维度</th>
-                                <th style="text-align: left">Nebius</th>
+                                <th style="text-align: left">{{ data.name }}</th>
                                 <th style="text-align: left">行业均值</th>
                                 <th style="text-align: left">领先方</th>
                                 <th>评分</th>
@@ -1623,21 +1628,21 @@ const analystConfig = computed<ChartConfiguration>(() => {
             </div>
         </section>
 
-        <!-- ============= F2b. vs CoreWeave 深度对照 ============= -->
+        <!-- ============= F2b. vs 头号对手 深度对照 ============= -->
         <section class="section" id="f2b">
             <div class="section-head">
                 <div class="title-group">
-                    <div class="tag">// F2b · DEEP DIVE: vs COREWEAVE</div>
+                    <div class="tag">// F2b · DEEP DIVE</div>
                     <h2>vs {{ data.peerName }} · 头号对手深度对照</h2>
                 </div>
-                <p>CoreWeave 是唯一规模可比、商业模式几乎一致的对手。</p>
+                <p>{{ data.peerName }} 是规模可比、商业模式接近的头号对手。</p>
             </div>
             <div class="card">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>指标</th>
-                            <th style="text-align: left">Nebius</th>
+                            <th style="text-align: left">{{ data.name }}</th>
                             <th style="text-align: left">{{ data.peerName }}</th>
                             <th>领先方</th>
                         </tr>
@@ -1649,7 +1654,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                             <td style="text-align: left">{{ r.cwv }}</td>
                             <td>
                                 <span class="badge" :class="r.winner === 'nbis' ? 'cyan' : 'purple'">
-                                    {{ r.winner === 'nbis' ? 'NBIS' : 'CWV' }}
+                                    {{ r.winner === 'nbis' ? selfTicker : '对手' }}
                                 </span>
                             </td>
                         </tr>
@@ -1673,7 +1678,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         <tr>
                             <th>维度</th>
                             <th style="text-align: left">十倍股该有的表现</th>
-                            <th style="text-align: left">Nebius 现状</th>
+                            <th style="text-align: left">{{ data.name }} 现状</th>
                             <th>差距</th>
                         </tr>
                     </thead>
@@ -1716,8 +1721,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <ChartView :config="horizonCompareConfig" />
                 </div>
                 <div class="hint-box" style="margin-top: 12px">
-                    对数坐标 —— 读法：红色虚线是当前 $40B，各情景 5Y（绿）和 10Y（蓝）达到的位置。
-                    10Y 与 5Y 的差值体现"后半程能否继续放大"。乐观情景 10Y / 5Y 比值最大（$1.2T / $360B ≈ 3.3x），说明这档是真正的"后半段加速"。
+                    对数坐标 —— 读法：红色虚线是当前市值，各情景 5Y（绿）和 10Y（蓝）达到的位置。10Y 与 5Y 的差值体现"后半程能否继续放大"——比值最大的情景就是真正的"后半段加速"。
                 </div>
             </div>
         </section>
@@ -1859,7 +1863,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         <thead>
                             <tr>
                                 <th>指标</th>
-                                <th style="text-align: left">Nebius</th>
+                                <th style="text-align: left">{{ data.name }}</th>
                                 <th style="text-align: left">对标</th>
                                 <th>判定</th>
                             </tr>
@@ -1991,7 +1995,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <div class="tag">// SUBSIDIARY OPTIONALITY</div>
                     <h2>子公司期权价值</h2>
                 </div>
-                <p>非核心资产合计 ~$5B，悲观情景下提供下行垫。</p>
+                <p>非核心资产组合，悲观情景下提供下行保护。</p>
             </div>
             <div class="grid-4">
                 <div v-for="s in data.subsidiaries" :key="s.name" class="sub-card">
@@ -2018,7 +2022,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <div class="tag">// ANALYST TARGETS</div>
                     <h2>华尔街目标价</h2>
                 </div>
-                <p>当前股价 $166.77 已接近共识 $163，风险收益比不再对称。</p>
+                <p>主要机构目标价分布 · 与当前股价的距离反映预期上行空间。</p>
             </div>
             <div class="card">
                 <div class="chart-container">
@@ -2110,7 +2114,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <div class="tag">// H2 · PORTFOLIO CORRELATION</div>
                     <h2>组合相关性 · 对冲建议</h2>
                 </div>
-                <p>Nebius 与组合内其他资产的 beta / correlation。单股分析不够，还得放到组合视角。</p>
+                <p>{{ data.name }} 与组合内其他资产的 beta / correlation。单股分析不够，还得放到组合视角。</p>
             </div>
             <div class="card">
                 <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.correlation.narrative.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
@@ -2118,7 +2122,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <thead>
                         <tr>
                             <th>资产</th>
-                            <th style="text-align: left">Beta (vs NBIS)</th>
+                            <th style="text-align: left">Beta (vs {{ selfTicker }})</th>
                             <th style="text-align: left">相关系数</th>
                             <th style="text-align: left">对冲价值</th>
                             <th>备注</th>
