@@ -51,7 +51,7 @@ const roadmap = [
             <p class="hero-subtitle">
                 每份报告回答同一个问题 —— 这家公司 5 年与 10 年后分别值多少钱？有多大概率翻 10 倍？
                 <br />
-                15 个模块 · 7 步方法论 · 5Y 与 10Y 双时间轴 · 显式概率权重。
+                25+ 模块 · 7 步方法论 · 5Y 与 10Y 双时间轴 · 显式概率权重 · Kelly 仓位推导。
             </p>
             <div class="hero-stats">
                 <div class="stat-mini">
@@ -60,7 +60,7 @@ const roadmap = [
                 </div>
                 <div class="stat-mini">
                     <div class="label">分析模块</div>
-                    <div class="value purple">15</div>
+                    <div class="value purple">25+</div>
                 </div>
                 <div class="stat-mini">
                     <div class="label">时间轴</div>
