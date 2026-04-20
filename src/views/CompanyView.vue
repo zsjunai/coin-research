@@ -1019,7 +1019,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
             <div class="card" style="margin-bottom: 20px">
                 <h3>核心叙事</h3>
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.profitability.narrative.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.profitability.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
             </div>
 
             <div class="card" style="margin-bottom: 20px">
@@ -1132,7 +1132,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
             <div class="card" style="margin-bottom: 20px">
                 <h3>核心叙事</h3>
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.cashFlow.narrative.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.cashFlow.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
             </div>
 
             <div class="card" style="margin-bottom: 20px">
@@ -1387,7 +1387,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
             <div class="card" style="margin-bottom: 20px">
                 <h3>核心叙事</h3>
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.competitiveLandscape.tam.narrative.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.competitiveLandscape.tam.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
             </div>
 
             <div class="grid-4" style="margin-bottom: 20px">
@@ -1821,7 +1821,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <p>期望值告诉你"平均能赢多少"，下行告诉你"最坏能输多少"。两个都看才算完整。</p>
             </div>
             <div class="card">
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.downsideMetrics.narrative.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style=&quot;color:var(--accent-red)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.downsideMetrics.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-red)&quot;>$1</strong>')"></p>
                 <div class="grid-4" style="margin-top: 20px">
                     <div class="bench-cell">
                         <div class="el">情景标准差</div>
@@ -1925,7 +1925,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <p>当前估值在自己历史中是什么位置？贵还是便宜？</p>
             </div>
             <div class="card">
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.historicalValuation.narrative.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.historicalValuation.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
                 <div class="chart-container tall" style="margin-top: 16px">
                     <ChartView :config="historicalValConfig" />
                 </div>
@@ -1984,7 +1984,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <div class="chart-container tall" style="margin-top: 16px; height: 420px">
                     <ChartView :config="sensitivityConfig" />
                 </div>
-                <div class="hint-box" style="margin-top: 16px; border-left-color: var(--accent-primary)" v-html="data.sensitivity.takeaway.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></div>
+                <div class="hint-box" style="margin-top: 16px; border-left-color: var(--accent-primary)" v-html="data.sensitivity.takeaway.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></div>
             </div>
         </section>
 
@@ -2117,7 +2117,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <p>{{ data.name }} 与组合内其他资产的 beta / correlation。单股分析不够，还得放到组合视角。</p>
             </div>
             <div class="card">
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.correlation.narrative.replace(/\\*\\*(.+?)\\*\\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.correlation.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
                 <table class="table" style="margin-top: 20px">
                     <thead>
                         <tr>
