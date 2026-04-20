@@ -30,6 +30,11 @@ const selfTicker = computed(() => {
     return data.value.ticker.split(':')[1] || data.value.ticker
 })
 
+function mdBold(s: string | undefined, color = 'var(--accent-primary)'): string {
+    if (!s) return ''
+    return s.replace(/\*\*(.+?)\*\*/g, `<strong style="color:${color}">$1</strong>`)
+}
+
 const gapLabel: Record<GapStatus, string> = {
     red: '结构性差距',
     yellow: '偏弱',
@@ -818,7 +823,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         </tbody>
                     </table>
                     <h3 style="margin-top: 28px">商业模式</h3>
-                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7" v-html="data.overview.businessModel.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7" v-html="mdBold(data.overview.businessModel)"></p>
                 </div>
                 <div class="card">
                     <h3>营收构成（估算）</h3>
@@ -1017,7 +1022,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
             <div class="card" style="margin-bottom: 20px">
                 <h3>核心叙事</h3>
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.profitability.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.profitability.narrative)"></p>
             </div>
 
             <div class="card" style="margin-bottom: 20px">
@@ -1108,7 +1113,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 </div>
                 <div class="card">
                     <h3>自由现金流路径</h3>
-                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7">{{ data.profitability.fcfPath }}</p>
+                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7" v-html="mdBold(data.profitability.fcfPath)"></p>
 
                     <h4 style="font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif; font-size: 15px; margin-top: 20px; margin-bottom: 12px; color: var(--accent-red)">盈利兑现关键风险</h4>
                     <ul class="list-plain red">
@@ -1130,7 +1135,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
             <div class="card" style="margin-bottom: 20px">
                 <h3>核心叙事</h3>
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.cashFlow.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.cashFlow.narrative)"></p>
             </div>
 
             <div class="card" style="margin-bottom: 20px">
@@ -1250,7 +1255,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 </div>
                 <div class="hint-box" style="margin-top: 20px; border-left-color: var(--accent-red); border-left-width: 3px">
                     <strong style="color: var(--accent-red); font-family: 'Space Grotesk Variable', sans-serif">退出触发器：</strong>
-                    {{ data.bearPlaybook.exitTrigger }}
+                    <span v-html="mdBold(data.bearPlaybook.exitTrigger, 'var(--accent-red)')"></span>
                 </div>
             </div>
         </section>
@@ -1385,7 +1390,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
             <div class="card" style="margin-bottom: 20px">
                 <h3>核心叙事</h3>
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.competitiveLandscape.tam.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.competitiveLandscape.tam.narrative)"></p>
             </div>
 
             <div class="grid-4" style="margin-bottom: 20px">
@@ -1470,7 +1475,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
             <div class="grid-2" style="grid-template-columns: 1fr 1.2fr; margin-bottom: 20px">
                 <div class="card">
                     <h3>行业格局判断</h3>
-                    <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7">{{ data.competitiveLandscape.summary }}</p>
+                    <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.competitiveLandscape.summary)"></p>
 
                     <h4 style="font-family: 'Space Grotesk Variable', sans-serif; font-size: 15px; margin-top: 20px; margin-bottom: 12px; color: var(--text-ink)">
                         雷达图读法
@@ -1622,7 +1627,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
 
             <div class="card">
                 <h3>结构性趋势 · 2026-2029</h3>
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.8">{{ data.competitiveLandscape.structuralTrend }}</p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.8" v-html="mdBold(data.competitiveLandscape.structuralTrend)"></p>
             </div>
         </section>
 
@@ -1819,7 +1824,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <p>期望值告诉你"平均能赢多少"，下行告诉你"最坏能输多少"。两个都看才算完整。</p>
             </div>
             <div class="card">
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.downsideMetrics.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-red)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.downsideMetrics.narrative, 'var(--accent-red)')"></p>
                 <div class="grid-4" style="margin-top: 20px">
                     <div class="bench-cell">
                         <div class="el">情景标准差</div>
@@ -1923,7 +1928,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <p>当前估值在自己历史中是什么位置？贵还是便宜？</p>
             </div>
             <div class="card">
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.historicalValuation.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.historicalValuation.narrative)"></p>
                 <div class="chart-container tall" style="margin-top: 16px">
                     <ChartView :config="historicalValConfig" />
                 </div>
@@ -1978,11 +1983,11 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <p>哪个变量对 10Y 期望市值影响最大？排序后盯住最敏感的 3 个。</p>
             </div>
             <div class="card">
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7">{{ data.sensitivity.narrative }}</p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.sensitivity.narrative)"></p>
                 <div class="chart-container tall" style="margin-top: 16px; height: 420px">
                     <ChartView :config="sensitivityConfig" />
                 </div>
-                <div class="hint-box" style="margin-top: 16px; border-left-color: var(--accent-primary)" v-html="data.sensitivity.takeaway.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></div>
+                <div class="hint-box" style="margin-top: 16px; border-left-color: var(--accent-primary)" v-html="mdBold(data.sensitivity.takeaway)"></div>
             </div>
         </section>
 
@@ -2049,7 +2054,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     </div>
                 </div>
 
-                <p class="rec-thesis">{{ data.recommendation.thesis }}</p>
+                <p class="rec-thesis" v-html="mdBold(data.recommendation.thesis)"></p>
 
                 <div class="rec-grid">
                     <div class="rec-cell">
@@ -2094,7 +2099,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 </div>
                 <div style="padding: 16px; background: var(--bg-elevated); border-radius: 8px; border-left: 3px solid var(--accent-primary); font-size: 14px; line-height: 1.7; color: var(--text-secondary)">
                     <strong style="color: var(--accent-primary); font-family: 'Space Grotesk Variable', sans-serif">推导：</strong>
-                    {{ data.recommendation.sizingFormula.reasoning }}
+                    <span v-html="mdBold(data.recommendation.sizingFormula.reasoning)"></span>
                 </div>
                 <div style="text-align: center; margin-top: 20px">
                     <div style="font-family: 'JetBrains Mono Variable', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.15em">FINAL POSITION SIZE</div>
@@ -2115,7 +2120,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <p>{{ data.name }} 与组合内其他资产的 beta / correlation。单股分析不够，还得放到组合视角。</p>
             </div>
             <div class="card">
-                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="data.correlation.narrative.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.correlation.narrative)"></p>
                 <table class="table" style="margin-top: 20px">
                     <thead>
                         <tr>
@@ -2144,7 +2149,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 </table>
                 <div class="hint-box" style="margin-top: 20px; border-left-color: var(--accent-green); border-left-width: 3px">
                     <strong style="color: var(--accent-green); font-family: 'Space Grotesk Variable', sans-serif">建议对冲：</strong>
-                    {{ data.correlation.suggestedHedge }}
+                    <span v-html="mdBold(data.correlation.suggestedHedge, 'var(--accent-green)')"></span>
                 </div>
             </div>
         </section>
