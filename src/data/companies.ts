@@ -2,11 +2,13 @@ import type { CompanyDetail, CompanySummary } from '@/types/company'
 import { circle } from './circle'
 import { coinbase } from './coinbase'
 import { nebius } from './nebius'
+import { robinhood } from './robinhood'
 
 export const companyRegistry: Record<string, CompanyDetail> = {
     nebius,
     circle,
     coinbase,
+    robinhood,
 }
 
 export const companies: CompanySummary[] = [
@@ -66,6 +68,25 @@ export const companies: CompanySummary[] = [
         ],
         tags: ['Crypto Exchange', 'Fintech', 'L2 / Base'],
         date: '2026-04-17',
+    },
+    {
+        id: 'robinhood',
+        ticker: 'NASDAQ:HOOD',
+        name: 'Robinhood Markets',
+        market: 'US',
+        currency: 'USD',
+        desc: '千禧一代零售券商龙头：Super App 战略（股票 + 期权 + 加密 + 代币化 + Banking + 预测市场），ARPU 两年翻倍至 $191。',
+        price: '$90.75',
+        marketCap: '~$80B',
+        verdict: 'neutral',
+        verdictText: '持有 / 回调加仓',
+        metrics: [
+            { label: '5Y 期望', value: '1.37x' },
+            { label: '10Y 期望', value: '3.10x' },
+            { label: 'P(10x · 10Y)', value: '~15%' },
+        ],
+        tags: ['Retail Broker', 'Fintech', 'Super App'],
+        date: '2026-04-20',
     },
 ]
 
