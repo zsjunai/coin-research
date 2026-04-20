@@ -2,6 +2,7 @@ import type { CompanyDetail, CompanySummary } from '@/types/company'
 import { circle } from './circle'
 import { coinbase } from './coinbase'
 import { nebius } from './nebius'
+import { popmart } from './popmart'
 import { robinhood } from './robinhood'
 
 export const companyRegistry: Record<string, CompanyDetail> = {
@@ -9,6 +10,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     circle,
     coinbase,
     robinhood,
+    popmart,
 }
 
 export const companies: CompanySummary[] = [
@@ -86,6 +88,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~15%' },
         ],
         tags: ['Retail Broker', 'Fintech', 'Super App'],
+        date: '2026-04-20',
+    },
+    {
+        id: 'popmart',
+        ticker: 'HK:09992',
+        name: '泡泡玛特 Pop Mart',
+        market: 'HK',
+        currency: 'HKD',
+        desc: '中国潮玩龙头：LABUBU 全球爆红（THE MONSTERS 系列 +365% / 占 38% 营收），海外占比 44% · 经调整净利率 35%。迪士尼路径 vs 单爆款周期性的二元选择。',
+        price: 'HK$151.50',
+        marketCap: '~HK$198B',
+        verdict: 'neutral',
+        verdictText: '持有 / 回调加仓',
+        metrics: [
+            { label: '5Y 期望', value: '1.50x' },
+            { label: '10Y 期望', value: '3.56x' },
+            { label: 'P(10x · 10Y)', value: '~15%' },
+        ],
+        tags: ['消费 IP', '潮玩', '全球化'],
         date: '2026-04-20',
     },
 ]
