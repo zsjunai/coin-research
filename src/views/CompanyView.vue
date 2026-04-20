@@ -818,9 +818,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         </tbody>
                     </table>
                     <h3 style="margin-top: 28px">商业模式</h3>
-                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7">
-                        {{ data.overview.businessModel }}
-                    </p>
+                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7" v-html="data.overview.businessModel.replace(/\*\*(.+?)\*\*/g, '<strong style=&quot;color:var(--accent-primary)&quot;>$1</strong>')"></p>
                 </div>
                 <div class="card">
                     <h3>营收构成（估算）</h3>
