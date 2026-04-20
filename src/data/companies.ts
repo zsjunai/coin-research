@@ -1,4 +1,5 @@
 import type { CompanyDetail, CompanySummary } from '@/types/company'
+import { beigene } from './beigene'
 import { circle } from './circle'
 import { coinbase } from './coinbase'
 import { nebius } from './nebius'
@@ -11,6 +12,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     coinbase,
     robinhood,
     popmart,
+    beigene,
 }
 
 export const companies: CompanySummary[] = [
@@ -107,6 +109,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~15%' },
         ],
         tags: ['消费 IP', '潮玩', '全球化'],
+        date: '2026-04-20',
+    },
+    {
+        id: 'beigene',
+        ticker: 'HK:06160',
+        name: '百济神州 / BeOne Medicines',
+        market: 'HK',
+        currency: 'HKD',
+        desc: '中国走出来的全球肿瘤龙头：Brukinsa (泽布替尼) $3.9B 全球 BTK 第一超越艾伯维；2025 首次全年 GAAP 盈利 $287M；三地上市 + 瑞士迁册。',
+        price: 'HK$178.90',
+        marketCap: '~HK$182B',
+        verdict: 'neutral',
+        verdictText: '持有 / 分批建仓',
+        metrics: [
+            { label: '5Y 期望', value: '1.56x' },
+            { label: '10Y 期望', value: '3.09x' },
+            { label: 'P(10x · 10Y)', value: '~12%' },
+        ],
+        tags: ['创新药', 'Biotech', '肿瘤'],
         date: '2026-04-20',
     },
 ]
