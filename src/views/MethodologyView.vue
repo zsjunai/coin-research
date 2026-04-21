@@ -285,6 +285,9 @@ const benchmarks = [
         <div class="footer">
             <div class="mono-line">METHODOLOGY v2.0 · 10-BAGGER HUNTING · LAST UPDATED 2026-04-21</div>
             <div style="margin-top: 8px">本方法论将随着覆盖公司增多持续迭代。</div>
+            <div style="margin-top: 8px">
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" style="color: var(--text-muted); text-decoration: none; font-size: 12px">浙ICP备18033627号-1</a>
+            </div>
         </div>
     </div>
 </template>

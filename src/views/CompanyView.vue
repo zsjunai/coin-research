@@ -2467,6 +2467,9 @@ const analystConfig = computed<ChartConfiguration>(() => {
         <div class="footer">
             <div class="mono-line">DATA ANCHORED AT {{ data.date }} · COIN.RESEARCH</div>
             <div style="margin-top: 8px">本分析基于公开信息整理，不构成投资建议。投资有风险，入市需谨慎。</div>
+            <div style="margin-top: 8px">
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" style="color: var(--text-muted); text-decoration: none; font-size: 12px">浙ICP备18033627号-1</a>
+            </div>
         </div>
     </div>
 </template>
