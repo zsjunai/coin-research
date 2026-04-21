@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, watchEffect } from 'vue'
+import { computed } from 'vue'
+import { useHead } from '@unhead/vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { getCompany } from '@/data/companies'
 import type {
@@ -24,69 +25,13 @@ const data = computed(() => {
     return getCompany(id)
 })
 
-function upsertMeta(key: string, value: string, byProperty = false) {
-    const attr = byProperty ? 'property' : 'name'
-    let el = document.head.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null
-    if (!el) {
-        el = document.createElement('meta')
-        el.setAttribute(attr, key)
-        document.head.appendChild(el)
-    }
-    el.setAttribute('content', value)
-}
-
-function upsertLink(rel: string, href: string) {
-    let el = document.head.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null
-    if (!el) {
-        el = document.createElement('link')
-        el.setAttribute('rel', rel)
-        document.head.appendChild(el)
-    }
-    el.setAttribute('href', href)
-}
-
-const JSON_LD_ID = 'coin-company-jsonld'
-
-function upsertJsonLd(json: object) {
-    let el = document.getElementById(JSON_LD_ID) as HTMLScriptElement | null
-    if (!el) {
-        el = document.createElement('script')
-        el.id = JSON_LD_ID
-        el.setAttribute('type', 'application/ld+json')
-        document.head.appendChild(el)
-    }
-    el.textContent = JSON.stringify(json)
-}
-
-watchEffect(() => {
+useHead(() => {
     const d = data.value
-    if (!d) return
-
+    if (!d) return {}
     const url = `https://coin.puliot.com/company/${d.id}`
     const title = `${d.name} (${d.ticker}) — 10 倍股深度投研 · Coin.research`
     const desc = `${d.tagline} 5Y 期望 ${d.weightedExpectation.y5.multiplier}x · 10Y 期望 ${d.weightedExpectation.y10.multiplier}x · 锚定日期 ${d.date}。`
-
-    document.title = title
-    upsertMeta('description', desc)
-    upsertMeta('keywords', [d.name, d.ticker, '10 倍股', '投研', '价值投资'].join(', '))
-    upsertLink('canonical', url)
-
-    // Open Graph
-    upsertMeta('og:type', 'article', true)
-    upsertMeta('og:title', title, true)
-    upsertMeta('og:description', desc, true)
-    upsertMeta('og:url', url, true)
-    upsertMeta('og:image', 'https://coin.puliot.com/og-cover.svg', true)
-    upsertMeta('og:locale', 'zh_CN', true)
-
-    // Twitter
-    upsertMeta('twitter:card', 'summary_large_image')
-    upsertMeta('twitter:title', title)
-    upsertMeta('twitter:description', desc)
-    upsertMeta('twitter:image', 'https://coin.puliot.com/og-cover.svg')
-
-    // JSON-LD · Article + FinancialProduct
-    upsertJsonLd({
+    const jsonLd = {
         '@context': 'https://schema.org',
         '@graph': [
             {
@@ -104,11 +49,7 @@ watchEffect(() => {
                     logo: { '@type': 'ImageObject', url: 'https://coin.puliot.com/favicon.svg' },
                 },
                 image: 'https://coin.puliot.com/og-cover.svg',
-                about: {
-                    '@type': 'Corporation',
-                    name: d.name,
-                    tickerSymbol: d.ticker,
-                },
+                about: { '@type': 'Corporation', name: d.name, tickerSymbol: d.ticker },
             },
             {
                 '@type': 'FinancialProduct',
@@ -119,7 +60,31 @@ watchEffect(() => {
                 provider: { '@type': 'Organization', name: 'Coin.research' },
             },
         ],
-    })
+    }
+    return {
+        title,
+        meta: [
+            { name: 'description', content: desc },
+            { name: 'keywords', content: [d.name, d.ticker, '10 倍股', '投研', '价值投资'].join(', ') },
+            { property: 'og:type', content: 'article' },
+            { property: 'og:title', content: title },
+            { property: 'og:description', content: desc },
+            { property: 'og:url', content: url },
+            { property: 'og:image', content: 'https://coin.puliot.com/og-cover.svg' },
+            { property: 'og:locale', content: 'zh_CN' },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:title', content: title },
+            { name: 'twitter:description', content: desc },
+            { name: 'twitter:image', content: 'https://coin.puliot.com/og-cover.svg' },
+        ],
+        link: [{ rel: 'canonical', href: url }],
+        script: [
+            {
+                type: 'application/ld+json',
+                innerHTML: JSON.stringify(jsonLd),
+            },
+        ],
+    }
 })
 
 const facts = computed(() => {

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 10000",
-    "build": "vue-tsc -b && vite build",
+    "build": "vue-tsc -b && vite-ssg build",
     "preview": "vite preview --port 10000"
   },
   "dependencies": {
@@ -18,9 +18,11 @@
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
+    "@unhead/vue": "^2.1.13",
     "@vitejs/plugin-vue": "^5.2.1",
     "typescript": "~5.7.3",
     "vite": "^6.0.5",
+    "vite-ssg": "^28.3.0",
     "vue-tsc": "^2.2.0"
   }
 }

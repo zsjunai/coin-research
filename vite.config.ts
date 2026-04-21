@@ -20,9 +20,9 @@ export default defineConfig({
     build: {
         rollupOptions: {
             output: {
-                manualChunks: {
-                    vue: ['vue', 'vue-router'],
-                    chart: ['chart.js'],
+                manualChunks(id) {
+                    if (id.includes('node_modules/chart.js')) return 'chart'
+                    if (id.includes('node_modules/vue-router')) return 'vue-router'
                 },
             },
         },
