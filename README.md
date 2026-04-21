@@ -34,6 +34,8 @@
 | [CRCL](./src/data/circle.ts) | Circle Internet Group | 🇺🇸 NYSE | HOLD · 回调加仓 | 1.65x | 4.1x | ~15% |
 | [COIN](./src/data/coinbase.ts) | Coinbase Global | 🇺🇸 NASDAQ | HOLD · 逐步加仓 | 1.83x | 4.76x | ~18% |
 | [HOOD](./src/data/robinhood.ts) | Robinhood Markets | 🇺🇸 NASDAQ | HOLD · 回调加仓 | 1.37x | 3.10x | ~15% |
+| [09992](./src/data/popmart.ts) | 泡泡玛特 Pop Mart | 🇭🇰 HKEX | HOLD · 回调加仓 | 1.50x | 3.56x | ~15% |
+| [06160](./src/data/beigene.ts) | 百济神州 / BeOne Medicines | 🇭🇰 HKEX | HOLD · 分批建仓 | 1.56x | 3.09x | ~12% |
 
 路线图（即将覆盖）：CoreWeave · Palantir · 特斯拉 · 台积电 · SpaceX · 宁德时代 · 中芯国际 · 比亚迪 · 腾讯控股 · 小鹏汽车 · 贵州茅台 · 甲骨文。
 
@@ -83,7 +85,11 @@ TypeScript 严格模式会校验所有必填字段，任何遗漏都在编译阶
 | 双时间轴并列（5Y 和 10Y 一起给） | 只看 10Y 终局（忽视 5Y 节奏） |
 | 量化下行风险（σ / P(亏 30%+) / 最大回撤） | 只报期望不报方差 |
 | 敏感度排序（最敏感 3 个变量） | 忽略组合视角（缺相关性与对冲建议） |
-| 仓位用公式推（Kelly / Vol-targeting） | 拍脑袋给仓位 |
+| 仓位用公式推（Kelly / Vol-targeting） | 只看团队履历不看资本配置 |
+| 评估管理层花钱能力（ROIIC / 回购 / 股息 / M&A） | 默认 "vs 现金"（应 vs 被动 ETF） |
+| 对比共识与公司指引 gap | 不留可验证假设 |
+| 锁定可验证假设（Track Record） | |
+| 对照被动组合定仓位（超额 CAGR > 5% 才值单选） | |
 
 ## 技术栈
 
@@ -109,7 +115,9 @@ src/
 │   ├── nebius.ts                 # Nebius (AI Neocloud)
 │   ├── circle.ts                 # Circle (USDC)
 │   ├── coinbase.ts               # Coinbase
-│   └── robinhood.ts              # Robinhood
+│   ├── robinhood.ts              # Robinhood
+│   ├── popmart.ts                # 泡泡玛特
+│   └── beigene.ts                # 百济神州 / BeOne
 ├── components/
 │   ├── NavBar.vue
 │   ├── LogoMark.vue
@@ -119,15 +127,10 @@ src/
 │   └── TocSidebar.vue            # 浮动 TOC + 滚动高亮
 ├── views/
 │   ├── HomeView.vue              # 公司列表 + 方法论 + 路线图
-│   ├── CompanyView.vue           # 详情页（25+ 模块）
+│   ├── CompanyView.vue           # 详情页（29+ 模块）
 │   └── MethodologyView.vue       # 方法论详解
 └── styles/main.css
 ```
-
-## 相关资源
-
-- 分析方法论以 Claude Code 可复用技能的形式独立维护：[claude-skill-10x-analysis](https://github.com/zsjunai/claude-skill-10x-analysis)（私有）
-- 生产部署流水线：`.github/workflows/deploy-ecs.yml`
 
 ## License
 
