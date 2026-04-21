@@ -1221,6 +1221,25 @@ export const spacex: CompanyDetail = {
             '**超额 8.8pp CAGR 显著 justify 3-5% 仓位**。SpaceX 作为"**不可替代的太空 + 通信基础设施**"，比 QQQ 超额 5pp · 对应 10Y 1.7x 额外回报。但**未上市阶段无法持有**，IPO 后入场时机决定实际收益——$2T 买入 10Y 回报约 +100% (CAGR 7%) · $1.2T 买入 10Y +300% (CAGR 15%)。**入场价决定一切**。',
     },
 
+    dataSources: {
+        narrative: '本报告数据锚定 2026-04-21 (IPO pending 前)。SpaceX 未上市，数据主要来自 Sacra equity research、Quilty Space forecast、主流财经媒体、Musk 公开言论。情景概率、10Y 期望、SOTP 估值均为本分析的主观推演，不构成第三方意见。',
+        accessedAt: '2026-04-21',
+        sources: [
+            { label: 'Sacra SpaceX Equity Research', url: 'https://sacra.com/c/spacex/', category: 'research', note: '未上市股权研究 · 单位经济推算' },
+            { label: 'Quilty Space Starlink Forecast', url: 'https://www.advanced-television.com/2025/09/11/forecast-starlinks-revenues-at-15-9bn-in-2026/', category: 'research', note: '卫星互联网专业研究' },
+            { label: 'SpaceX IPO Confidential Filing (CNBC)', url: 'https://edition.cnn.com/2026/04/01/business/spacex-ipo', category: 'secondary', publishedAt: '2026-04-01' },
+            { label: '$1.75-2T IPO 估值 (Techi)', url: 'https://www.techi.com/spacex-ipo/', category: 'secondary' },
+            { label: 'xAI 合并 $1.25T (Wikipedia)', url: 'https://en.wikipedia.org/wiki/SpaceX', category: 'data', publishedAt: '2026-02' },
+            { label: 'SpaceX 2025 $15.5B Revenue (Aerotime)', url: 'https://www.aerotime.aero/articles/spacex-earn-15-5b-2025-surpassing-nasa-elon-musk', category: 'secondary', note: 'Musk 推文引用' },
+            { label: '2025-12 $800B 二级估值 (TimeTrex)', url: 'https://www.timetrex.com/blog/spacex-2026-ipo', category: 'secondary' },
+            { label: 'Starlink 10M 用户里程碑', url: 'https://www.tesery.com/blogs/news/starlink-surpasses-9-million-active-customers-weeks-after-hitting-8-million-milestone', category: 'secondary', publishedAt: '2026-02' },
+            { label: 'Morgan Stanley 太空经济 TAM', url: 'https://www.morganstanley.com/ideas/investing-in-space', category: 'research' },
+            { label: 'Morningstar SpaceX 估值分析', url: 'https://www.morningstar.com/stocks/does-spacexs-sky-high-valuation-make-sense', category: 'research' },
+            { label: 'NASA CRS / Commercial Crew 合同', url: 'https://www.nasa.gov/humans-in-space/commercial-space/', category: 'primary' },
+            { label: 'FAA Starbase 发射许可', url: 'https://www.faa.gov/space', category: 'primary', publishedAt: '2025-05' },
+        ],
+    },
+
     trackRecord: {
         narrative:
             '本分析锚定 2026-04-21（IPO pending 前）。以下 7 条是未来 12-18 个月的可验证命题，涵盖 IPO 定价、Starship 进展、Starlink 扩张、Kuiper 竞争等关键变量。',

@@ -1176,6 +1176,22 @@ export const circle: CompanyDetail = {
         hitRate: 'N/A (全部 pending · 首次建立 track record)',
     },
 
+    dataSources: {
+        narrative: '本报告数据锚定 2026-04-17。核心数据来自 Circle 年报、SEC S-1 / 10-Q 披露、GENIUS Act 官方文本、主流财经媒体。情景概率与 10Y 期望市值为本分析主观推演。',
+        accessedAt: '2026-04-17',
+        sources: [
+            { label: 'Circle Q4/FY2025 Financial Results', url: 'https://www.businesswire.com/news/home/20260225882643/en/', category: 'primary', publishedAt: '2026-02-25', note: '$2.7B 营收 · USDC $75.3B 流通' },
+            { label: 'Circle Q3 2025 Results', url: 'https://www.circle.com/pressroom/circle-reports-third-quarter-2025-results', category: 'primary', publishedAt: '2025-11' },
+            { label: 'GENIUS Act Law Summary (SSGA)', url: 'https://www.ssga.com/us/en/intermediary/insights/genius-act-explained-what-it-means-for-crypto-and-digital-assets', category: 'secondary', publishedAt: '2025-07' },
+            { label: 'Coinbase USDC 50% Residual 分成协议 (Decrypt)', url: 'https://decrypt.co/312757/coinbase-circles-residual-usdc-reserve-revenue-filing', category: 'secondary' },
+            { label: 'Arc L1 Launch Whitepaper', url: 'https://www.circle.com/blog/introducing-arc-an-open-layer-1-blockchain-purpose-built-for-stablecoin-finance', category: 'primary', publishedAt: '2025-08' },
+            { label: 'CPN Managed Payments Launch', url: 'https://www.businesswire.com/news/home/20260408279998/en/', category: 'primary', publishedAt: '2026-04-08' },
+            { label: 'Morgan Stanley CRCL $80 Coverage', url: 'https://www.nasdaq.com/articles/morgan-stanley-initiates-coverage-circle-internet-group-crcl-equal-weight-recommendation', category: 'research', publishedAt: '2026-02' },
+            { label: 'Stablecoin Market $320B (Bitcoin News)', url: 'https://news.bitcoin.com/stablecoin-market-crosses-320b-as-tether-usdt-dominance-falls-2-5-in-2026/', category: 'data' },
+            { label: 'Yahoo Finance CRCL', url: 'https://finance.yahoo.com/quote/CRCL/', category: 'data' },
+        ],
+    },
+
     correlation: {
         narrative:
             'Circle 不是独立资产，它的涨跌 **70% 由利率 + 加密情绪驱动**。如果你已持有 Coinbase / 比特币 / 以太坊 / Visa，加 Circle 的**边际多元化有限**。真正的 hedge 应该是**利率上行受益资产 + 去中心化金融资产**。',

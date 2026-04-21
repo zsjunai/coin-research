@@ -1234,6 +1234,23 @@ export const beigene: CompanyDetail = {
         hitRate: 'N/A (全部 pending)',
     },
 
+    dataSources: {
+        narrative: '本报告数据锚定 2026-04-20。核心数据来自 BeOne Medicines 季报、NASDAQ / 港交所 / 科创板披露、FDA 批准文件、主流财经媒体。情景概率与 10Y 期望为本分析主观推演。',
+        accessedAt: '2026-04-20',
+        sources: [
+            { label: 'BeOne Medicines Q4/FY2025 Results', url: 'https://ir.beonemedicines.com/news/beone-medicines-announces-fourth-quarter-and-full-year-2025-financial-results-highlighting-global-success-of/dd3a3850-aeb0-4cd6-a3ef-5f0bd45d1340', category: 'primary', publishedAt: '2026-02-26', note: '$5.34B 营收 +40% · 首次 GAAP 盈利' },
+            { label: 'Q1 2025 首次季度盈利 (Yicai)', url: 'https://www.yicaiglobal.com/news/chinese-drugmaker-beigene-turns-its-first-quarterly-profit-thanks-to-global-sales-surge', category: 'secondary' },
+            { label: '百济神州 Q3 前三季度财报', url: 'https://news.yaozh.com/archive/46266.html', category: 'primary' },
+            { label: 'Brukinsa 超越伊布替尼（新浪财经）', url: 'https://finance.sina.com.cn/roll/2025-11-07/doc-infwqkxt2483777.shtml', category: 'secondary' },
+            { label: 'BeiGene 更名 BeOne Medicines', url: 'https://ir.beonemedicines.com/news/beigene-announces-fourth-quarter-and-full-year-2024-financial-results-and-business-updates/ae4b526f-e135-4ce7-84fe-e9a8ba557406', category: 'primary', publishedAt: '2025-01' },
+            { label: '分析师目标价 (StockAnalysis)', url: 'https://stockanalysis.com/stocks/onc/forecast/', category: 'research' },
+            { label: 'Morgan Stanley / Goldman / UBS 目标价', url: 'https://www.tipranks.com/stocks/onc/forecast', category: 'research' },
+            { label: 'BRUKINSA 全球销售数据', url: 'https://beonemedicines.com/wp-content/uploads/2025/05/FINAL-BRUKINSA-US-Fact-Sheet.pdf', category: 'primary' },
+            { label: 'BIOSECURE Act 立法追踪', url: 'https://www.congress.gov', category: 'primary' },
+            { label: 'Yahoo Finance 6160.HK', url: 'https://finance.yahoo.com/quote/6160.HK/', category: 'data' },
+        ],
+    },
+
     correlation: {
         narrative:
             '百济神州是**中国创新药 + 全球 biotech + 港股通综合敞口**：涨跌 40% 由 biotech 板块情绪驱动、30% 由中美关系决定、30% 由公司自身管线读出驱动。如果组合中已持有 Regeneron / Vertex / Gilead · 港股科技股 · A 股医药 ETF，加百济的**边际多元化中等**。真正的 hedge 是**反周期 + 非 biotech 资产**。',

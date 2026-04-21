@@ -1176,6 +1176,22 @@ export const nebius: CompanyDetail = {
         hitRate: 'N/A (全部 pending · 首次建立 track record)',
     },
 
+    dataSources: {
+        narrative: '本报告数据锚定 2026-04-17。以下为核心数据点的可追溯来源。情景概率、10Y 期望、SOTP 估值均为本分析的主观推演，不构成第三方意见。',
+        accessedAt: '2026-04-17',
+        sources: [
+            { label: 'Nebius Q4 2025 财报', url: 'https://group.nebius.com/investors', category: 'primary', publishedAt: '2026-02', note: '营收 $530M / ARR $1.2B / 2026 指引' },
+            { label: 'SEC 6-K 微软合同披露', url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001810019&type=6-K', category: 'primary', publishedAt: '2025-09' },
+            { label: 'Meta 合同 CNBC 报道', url: 'https://www.cnbc.com', category: 'secondary', publishedAt: '2026-03-16' },
+            { label: 'Goldman Sachs 目标价 $205', url: 'https://seekingalpha.com/symbol/NBIS', category: 'research', publishedAt: '2026-03' },
+            { label: 'CoreWeave 2025 年报（对比）', url: 'https://investors.coreweave.com', category: 'primary' },
+            { label: '英伟达 8.3% 入股公告', url: 'https://nvidianews.nvidia.com', category: 'primary', publishedAt: '2026-03-11' },
+            { label: 'Avride Uber 领投 $15B 估值', url: 'https://www.uber.com/newsroom/', category: 'secondary', publishedAt: '2025' },
+            { label: 'IDC AI 基建 TAM 预测', url: 'https://www.idc.com', category: 'research' },
+            { label: 'Yahoo Finance NBIS 历史价', url: 'https://finance.yahoo.com/quote/NBIS/', category: 'data' },
+        ],
+    },
+
     correlation: {
         narrative:
             'Nebius 不是独立资产，它的涨跌 70-80% 由 AI 基建情绪驱动。如果你已持有英伟达 / 微软 / CoreWeave，加 Nebius 的**边际多元化几乎为零**。真正的 hedge 应该是**反相关或低相关**的资产。',

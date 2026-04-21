@@ -1225,6 +1225,23 @@ export const coinbase: CompanyDetail = {
         hitRate: 'N/A (全部 pending)',
     },
 
+    dataSources: {
+        narrative: '本报告数据锚定 2026-04-17。核心数据来自 Coinbase 季报、SEC 10-K / 10-Q、Base / Deribit 官方披露、主流财经媒体。情景概率与 10Y 期望为本分析主观推演。',
+        accessedAt: '2026-04-17',
+        sources: [
+            { label: 'Coinbase Q4/FY2025 Results', url: 'https://investor.coinbase.com/news/news-details/2026/Coinbase-Delivers-on-Q4-Financial-Outlook-Doubles-Total-Trading-Volume-and-Crypto-Trading-Volume-Market-Share-in-2025/default.aspx', category: 'primary', publishedAt: '2026-02-12', note: '$7.18B 营收 · S&S 占 41%' },
+            { label: 'Coinbase Q3 2025 Earnings', url: 'https://investor.coinbase.com/financials/quarterly-results/default.aspx', category: 'primary' },
+            { label: 'Deribit $2.9B Acquisition (The Block)', url: 'https://www.theblock.co/post/366957/coinbase-completes-2-9-billion-cash-and-stock-acquisition-of-deribit', category: 'secondary', publishedAt: '2025-05' },
+            { label: 'Base L2 $5B TVL (CoinReporter)', url: 'https://www.coinreporter.io/2026/04/base-layer-2-surpasses-5-billion-tvl-in-first-week-after-op-stack-v2-integration/', category: 'secondary', publishedAt: '2026-04' },
+            { label: 'USDC Reserve Revenue Split Filing', url: 'https://decrypt.co/312757/coinbase-circles-residual-usdc-reserve-revenue-filing', category: 'primary' },
+            { label: 'S&P Global: Subscription Revenue Shift', url: 'https://www.spglobal.com/market-intelligence/en/news-insights/research/2025/11/coinbases-revenue-mix-increasingly-driven-by-subscriptions', category: 'research' },
+            { label: 'Bernstein $330 Target', url: 'https://stockanalysis.com/stocks/coin/forecast/', category: 'research' },
+            { label: 'Goldman $225 / Barclays $140 Targets', url: 'https://www.americanbankingnews.com/2026/04/11/the-goldman-sachs-group-cuts-coinbase-global-nasdaqcoin-price-target-to-225-00.html', category: 'research' },
+            { label: 'OCC 条件批准信托牌照 2026-04-02', url: 'https://www.occ.gov', category: 'primary' },
+            { label: 'Yahoo Finance COIN', url: 'https://finance.yahoo.com/quote/COIN/', category: 'data' },
+        ],
+    },
+
     correlation: {
         narrative:
             'Coinbase 是**加密行业最大的"纯 β 敞口"**：涨跌 70-80% 由 BTC + 加密情绪驱动。如果组合中已持有 BTC / ETH / Circle / Robinhood，加 Coinbase 的**边际多元化极低**。真正的 hedge 是**反周期 + 非加密资产**。',

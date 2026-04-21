@@ -1216,6 +1216,22 @@ export const robinhood: CompanyDetail = {
         hitRate: 'N/A (全部 pending)',
     },
 
+    dataSources: {
+        narrative: '本报告数据锚定 2026-04-20。核心数据来自 Robinhood 季报、SEC 10-K / 10-Q、Bitstamp 并购公告、主流财经媒体。情景概率与 10Y 期望为本分析主观推演。',
+        accessedAt: '2026-04-20',
+        sources: [
+            { label: 'Robinhood Q4/FY2025 Results', url: 'https://investors.robinhood.com/news-releases/news-release-details/robinhood-reports-fourth-quarter-and-full-year-2025-results', category: 'primary', publishedAt: '2026-02-10', note: 'ARPU $191 +16% · Gold 4.2M' },
+            { label: 'Robinhood Q3 2025 Results', url: 'https://investors.robinhood.com/news-releases/news-release-details/robinhood-reports-third-quarter-2025-results', category: 'primary', publishedAt: '2025-11' },
+            { label: 'Bitstamp $200M 收购完成', url: 'https://www.theblock.co/post/356701/robinhood-bitstamp-acquisition', category: 'secondary', publishedAt: '2025-06' },
+            { label: '代币化股票 + Arbitrum L2 (CoinDesk)', url: 'https://www.coindesk.com/business/2025/06/30/robinhood-pushes-deeper-into-crypto-with-own-blockchain-tokenized-stock-launch', category: 'secondary' },
+            { label: 'Q3 2025 交易营收 +129% 分析', url: 'https://insights4vc.substack.com/p/q3-2025-results-robinhood-vs-coinbase', category: 'research' },
+            { label: 'Robinhood Banking + Platinum Card', url: 'https://www.crowdfundinsider.com/2026/03/268874-robinhood-markets-now-offers-banking-services-gold-card-to-streamline-spending-trading-investing/', category: 'secondary', publishedAt: '2026-03' },
+            { label: 'Bernstein $130 / Goldman $91 / Barclays $89 Targets', url: 'https://public.com/stocks/hood/forecast-price-target', category: 'research' },
+            { label: 'Yahoo Finance HOOD', url: 'https://finance.yahoo.com/quote/HOOD/', category: 'data' },
+            { label: 'SEC PFOF 监管 Rule 605/606', url: 'https://www.sec.gov/files/dera_wp_payment-order-flow-2501.pdf', category: 'primary' },
+        ],
+    },
+
     correlation: {
         narrative:
             'Robinhood 是**零售金融 + 加密 + 美股的复合敞口**：涨跌约 50% 由美股驱动、30% 由加密驱动、20% 由 fintech 叙事驱动。如果组合中已持有 BTC / Coinbase / Circle / Visa，加 Robinhood 的**边际多元化有限**。真正的 hedge 是**反周期 + 非交易相关资产**。',

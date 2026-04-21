@@ -87,6 +87,12 @@ const groups: TocGroup[] = [
             { id: 'h3', label: 'Track Record 机制' },
         ],
     },
+    {
+        title: '参考',
+        items: [
+            { id: 'sources', label: '数据来源 · 可追溯链接' },
+        ],
+    },
 ]
 
 const STORAGE_KEY = 'coin-toc-open'

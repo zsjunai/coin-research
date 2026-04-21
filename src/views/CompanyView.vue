@@ -11,6 +11,7 @@ import type {
     CompetitorType,
     GapRisk,
     AssumptionVerdict,
+    SourceCategory,
 } from '@/types/company'
 import PriceCard from '@/components/PriceCard.vue'
 import ScenarioRow from '@/components/ScenarioRow.vue'
@@ -165,6 +166,22 @@ const gradeClass: Record<'A' | 'B' | 'C' | 'D', string> = {
     B: 'cyan',
     C: 'yellow',
     D: 'red',
+}
+
+const sourceCategoryLabel: Record<SourceCategory, string> = {
+    primary: '① 一手',
+    secondary: '② 媒体',
+    research: '③ 研究',
+    data: '④ 数据',
+    other: '其他',
+}
+
+const sourceCategoryClass: Record<SourceCategory, string> = {
+    primary: 'green',
+    secondary: 'cyan',
+    research: 'purple',
+    data: 'yellow',
+    other: 'muted',
 }
 
 const threatClass: Record<ThreatLevel, string> = {
@@ -2457,6 +2474,59 @@ const analystConfig = computed<ChartConfiguration>(() => {
             </div>
         </section>
 
+        <!-- ============= 数据来源 ============= -->
+        <section class="section" id="sources">
+            <div class="section-head">
+                <div class="title-group">
+                    <div class="tag">// DATA SOURCES</div>
+                    <h2>数据来源 · 可追溯链接</h2>
+                </div>
+                <p>每份报告的可验证依据。主观推演（情景概率 / 10Y 期望 / SOTP）不在此列。</p>
+            </div>
+            <div class="card" style="margin-bottom: 20px">
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7">{{ data.dataSources.narrative }}</p>
+                <div class="hint-box" style="margin-top: 12px">
+                    <strong>访问日期：</strong>{{ data.dataSources.accessedAt }} · 共 {{ data.dataSources.sources.length }} 条来源
+                </div>
+            </div>
+            <div class="card">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>类型</th>
+                            <th style="text-align: left">来源</th>
+                            <th style="text-align: left">说明</th>
+                            <th style="text-align: right">发布日期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(s, i) in data.dataSources.sources" :key="i">
+                            <td>
+                                <span class="verdict-circle" :class="sourceCategoryClass[s.category]">
+                                    {{ sourceCategoryLabel[s.category] }}
+                                </span>
+                            </td>
+                            <td style="text-align: left">
+                                <a :href="s.url" target="_blank" rel="noopener nofollow" class="source-link">
+                                    {{ s.label }}
+                                </a>
+                            </td>
+                            <td style="text-align: left; color: var(--text-secondary); font-size: 12.5px">{{ s.note ?? '—' }}</td>
+                            <td style="text-align: right">
+                                <span class="mono" style="font-size: 11.5px; color: var(--text-muted)">{{ s.publishedAt ?? '—' }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="hint-box" style="margin-top: 16px; border-left-color: var(--text-muted)">
+                    <strong>类型说明</strong> · ① <strong>一手</strong>：公司财报 / 官方公告 / SEC / 港交所 ·
+                    ② <strong>媒体</strong>：Bloomberg / Reuters / CNBC / 财新 ·
+                    ③ <strong>研究</strong>：卖方研报 / Sacra / 独立分析机构 ·
+                    ④ <strong>数据</strong>：Yahoo Finance / 公开数据库
+                </div>
+            </div>
+        </section>
+
         <!-- ============= 总结 quote ============= -->
         <section class="section" style="padding-top: 20px">
             <div class="quote-block">
@@ -3094,5 +3164,27 @@ const analystConfig = computed<ChartConfiguration>(() => {
 .verdict-circle.muted {
     color: var(--text-muted);
     background: var(--bg-elevated);
+}
+
+.verdict-circle.purple {
+    color: var(--accent-secondary, #7c3aed);
+    background: rgba(124, 58, 237, 0.08);
+}
+
+.verdict-circle.cyan {
+    color: var(--accent-primary);
+    background: rgba(67, 56, 202, 0.08);
+}
+
+.source-link {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+}
+
+.source-link:hover {
+    color: var(--accent-secondary, #7c3aed);
+    text-decoration: underline;
 }
 </style>

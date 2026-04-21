@@ -1195,6 +1195,23 @@ export const popmart: CompanyDetail = {
         hitRate: 'N/A (全部 pending)',
     },
 
+    dataSources: {
+        narrative: '本报告数据锚定 2026-04-20。核心数据来自泡泡玛特 2025 年报、港交所披露、主流财经媒体。情景概率与 10Y 期望为本分析主观推演。',
+        accessedAt: '2026-04-20',
+        sources: [
+            { label: '泡泡玛特 2025 年报 · RMB 371.2 亿 +185%', url: 'https://en.gmw.cn/2026-03/27/content_38675346.htm', category: 'primary', publishedAt: '2026-03-25' },
+            { label: '分地区营收明细（21 经济网）', url: 'https://www.21jingji.com/article/20260325/herald/6229eb4dbcb491339ed0ed85aa06f33d.html', category: 'secondary' },
+            { label: '业绩后股价 -22% 分析（CNBC）', url: 'https://www.cnbc.com/2026/03/25/pop-mart-labubu-sluggish-crybaby-monster-family-sales-.html', category: 'secondary', publishedAt: '2026-03-25' },
+            { label: 'LABUBU 2025 销量破 1 亿（Visual Capitalist）', url: 'https://www.visualcapitalist.com/visualized-pop-parts-labubu-surge/', category: 'secondary' },
+            { label: 'Sony LABUBU 电影合作', url: 'https://finance.biggo.com/news/aQRRJ50BrdTHlKtCekuo', category: 'secondary' },
+            { label: '泡泡玛特 2025 半年报', url: 'https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0819/2025081900627_c.pdf', category: 'primary', publishedAt: '2025-08' },
+            { label: '分析师目标价（TipRanks）', url: 'https://www.tipranks.com/stocks/hk:9992/forecast', category: 'research' },
+            { label: '华尔街见闻业绩解读', url: 'https://wallstreetcn.com/articles/3768334', category: 'secondary' },
+            { label: 'Yahoo Finance 9992.HK', url: 'https://finance.yahoo.com/quote/9992.HK/', category: 'data' },
+            { label: 'Pop Mart 官方投资者关系', url: 'https://www.popmart.com/us/investor-relations', category: 'primary' },
+        ],
+    },
+
     correlation: {
         narrative:
             '泡泡玛特是**中国消费 + 全球 IP β 的复合敞口**：涨跌 50% 由中国消费决定、30% 由全球 Z 世代情绪决定、20% 由 LABUBU 故事本身。如果组合中已持有名创优品 / 腾讯 / 中国消费白马，加泡泡玛特的**边际多元化有限**。真正的 hedge 是**反周期 + 非中国资产**。',

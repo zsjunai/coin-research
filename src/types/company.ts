@@ -537,6 +537,24 @@ export interface TrackRecord {
     hitRate?: string
 }
 
+/* ================= NEW: Data Sources (可追溯链接) ================= */
+
+export type SourceCategory = 'primary' | 'secondary' | 'research' | 'data' | 'other'
+
+export interface DataSource {
+    label: string
+    url: string
+    category: SourceCategory
+    publishedAt?: string
+    note?: string
+}
+
+export interface DataSources {
+    narrative: string
+    accessedAt: string
+    sources: DataSource[]
+}
+
 /* ================= MASTER ================= */
 
 export interface CompanyDetail {
@@ -588,4 +606,5 @@ export interface CompanyDetail {
     gapAnalysis: GapAnalysis
     benchmarkComparison: BenchmarkComparison
     trackRecord: TrackRecord
+    dataSources: DataSources
 }
