@@ -2460,7 +2460,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
         <!-- ============= 总结 quote ============= -->
         <section class="section">
             <div class="quote-block">
-                <blockquote v-html="data.finalQuote"></blockquote>
+                <blockquote v-html="mdBold(data.finalQuote)"></blockquote>
             </div>
         </section>
 

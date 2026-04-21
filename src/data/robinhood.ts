@@ -171,7 +171,7 @@ export const robinhood: CompanyDetail = {
     ],
 
     finalQuote:
-        'Robinhood 从一个"颠覆传统券商的 App"进化到"千禧一代金融 Super App"，是这个 fintech 周期最惊人的**第二次跃迁**。<strong>上行取决于能否把 27M 用户 × $191 ARPU 拉到 60M × $400 —— 那是 $800B 市值的路径</strong>；<strong>下行取决于 PFOF 监管 + 加密周期 + Gold 订阅饱和</strong>。当前 $90 处于"乐观故事被部分定价、但不至于疯狂"的位置。合理仓位：零售金融 Super App 敞口的核心持仓。',
+        'Robinhood 从一个"颠覆传统券商的 App"进化到"千禧一代金融 Super App"，是这个 fintech 周期最惊人的<strong>第二次跃迁</strong>。<strong>上行取决于能否把 27M 用户 × $191 ARPU 拉到 60M × $400 —— 那是 $800B 市值的路径</strong>；<strong>下行取决于 PFOF 监管 + 加密周期 + Gold 订阅饱和</strong>。当前 $90 处于"乐观故事被部分定价、但不至于疯狂"的位置。合理仓位：零售金融 Super App 敞口的核心持仓。',
 
     revenueChart: {
         labels: ['2022 Revenue', '2023 Revenue', '2024 Revenue', '2025 Revenue', '2026E Revenue'],
