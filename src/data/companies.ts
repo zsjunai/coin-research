@@ -5,6 +5,7 @@ import { coinbase } from './coinbase'
 import { nebius } from './nebius'
 import { popmart } from './popmart'
 import { robinhood } from './robinhood'
+import { spacex } from './spacex'
 
 export const companyRegistry: Record<string, CompanyDetail> = {
     nebius,
@@ -13,6 +14,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     robinhood,
     popmart,
     beigene,
+    spacex,
 }
 
 export const companies: CompanySummary[] = [
@@ -129,6 +131,25 @@ export const companies: CompanySummary[] = [
         ],
         tags: ['创新药', 'Biotech', '肿瘤'],
         date: '2026-04-20',
+    },
+    {
+        id: 'spacex',
+        ticker: 'PRIVATE:SPX',
+        name: 'SpaceX',
+        market: 'PRIVATE',
+        currency: 'USD',
+        desc: '未上市 · 2025-12 二级估值 $800B · 2026-04 confidential IPO filed 目标 $1.75-2T。Starlink 2026E $18.7B + Starship + xAI 合并后 $1T 综合体。',
+        price: '$800B (二级)',
+        marketCap: '~$800B – 2T',
+        verdict: 'neutral',
+        verdictText: '关注 / IPO 后择机',
+        metrics: [
+            { label: '5Y 期望', value: '2.13x' },
+            { label: '10Y 期望', value: '4.63x' },
+            { label: 'P(10x · 10Y)', value: '~12%' },
+        ],
+        tags: ['太空', '卫星互联网', 'Pre-IPO'],
+        date: '2026-04-21',
     },
 ]
 
