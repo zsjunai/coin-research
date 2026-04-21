@@ -4,6 +4,11 @@ import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
     plugins: [vue()],
+    // @ts-expect-error vite-ssg extends config
+    ssgOptions: {
+        dirStyle: 'nested',
+        formatting: 'minify',
+    },
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),

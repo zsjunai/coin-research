@@ -10,7 +10,7 @@ import '@fontsource-variable/jetbrains-mono'
 
 import './styles/main.css'
 
-export const createApp = ViteSSG(App, { routes, scrollBehavior })
+export const createApp = ViteSSG(App, { routes, scrollBehavior }, () => {})
 
 // 预渲染路径列表：vite-ssg 读取此 named export 生成静态 HTML
 export async function includedRoutes(): Promise<string[]> {
