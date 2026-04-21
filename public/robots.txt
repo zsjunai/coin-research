@@ -41,5 +41,32 @@ Allow: /
 User-agent: Baiduspider
 Allow: /
 
+User-agent: Baiduspider-render
+Allow: /
+
+User-agent: Baiduspider-mobile
+Allow: /
+
+User-agent: Baiduspider-image
+Allow: /
+
+User-agent: Baiduspider-news
+Allow: /
+
+User-agent: Baiduspider-video
+Allow: /
+
+User-agent: Baiduspider-favo
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
 # Sitemap
 Sitemap: https://coin.puliot.com/sitemap.xml
