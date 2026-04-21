@@ -1,13 +1,20 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { companies } from '@/data/companies'
-import type { Market } from '@/types/company'
+import type { Market, Verdict } from '@/types/company'
 
 const marketLabel: Record<Market, string> = {
     US: '🇺🇸 美股',
     A: '🇨🇳 A 股',
     HK: '🇭🇰 港股',
     PRIVATE: '⚫ 未上市',
+}
+
+const verdictOrder: Record<Verdict, number> = {
+    bullish: 0,
+    neutral: 1,
+    bearish: 2,
 }
 
 const steps = [
@@ -34,56 +41,198 @@ const roadmap = [
     { name: '贵州茅台', ticker: 'SH:600519', sector: '消费白马', market: '🇨🇳' },
     { name: '甲骨文', ticker: 'ORCL', sector: '企业云', market: '🇺🇸' },
 ]
+
+// ========= 状态 =========
+const search = ref('')
+const activeMarkets = ref<Set<Market>>(new Set())
+const activeTags = ref<Set<string>>(new Set())
+type SortKey = 'y10' | 'y5' | 'p10x' | 'default'
+const sortBy = ref<SortKey>('default')
+const viewMode = ref<'grid' | 'table'>('grid')
+
+// ========= 所有 tag 聚合 =========
+const allTags = computed(() => {
+    const set = new Set<string>()
+    for (const c of companies) c.tags.forEach((t) => set.add(t))
+    return Array.from(set)
+})
+
+// ========= 辅助：从 metric value "3.9x" / "~18%" 里抽数字 =========
+function extractNumber(s: string | undefined): number {
+    if (!s) return 0
+    const m = s.match(/-?\d+(\.\d+)?/)
+    return m ? Number(m[0]) : 0
+}
+
+function metricByLabel(c: (typeof companies)[number], kw: string): number {
+    const m = c.metrics.find((x) => x.label.includes(kw))
+    return m ? extractNumber(m.value) : 0
+}
+
+// ========= 过滤 + 排序 =========
+const filtered = computed(() => {
+    const q = search.value.trim().toLowerCase()
+    let list = companies.filter((c) => {
+        if (q) {
+            const hit =
+                c.name.toLowerCase().includes(q) ||
+                c.ticker.toLowerCase().includes(q) ||
+                c.desc.toLowerCase().includes(q)
+            if (!hit) return false
+        }
+        if (activeMarkets.value.size > 0 && !activeMarkets.value.has(c.market)) return false
+        if (activeTags.value.size > 0) {
+            const hasTag = c.tags.some((t) => activeTags.value.has(t))
+            if (!hasTag) return false
+        }
+        return true
+    })
+
+    const key = sortBy.value
+    if (key === 'y10') list = [...list].sort((a, b) => metricByLabel(b, '10Y') - metricByLabel(a, '10Y'))
+    else if (key === 'y5') list = [...list].sort((a, b) => metricByLabel(b, '5Y') - metricByLabel(a, '5Y'))
+    else if (key === 'p10x') list = [...list].sort((a, b) => metricByLabel(b, 'P(10x') - metricByLabel(a, 'P(10x'))
+    else list = [...list].sort((a, b) => verdictOrder[a.verdict] - verdictOrder[b.verdict])
+
+    return list
+})
+
+function toggleMarket(m: Market) {
+    if (activeMarkets.value.has(m)) activeMarkets.value.delete(m)
+    else activeMarkets.value.add(m)
+    activeMarkets.value = new Set(activeMarkets.value)
+}
+
+function toggleTag(t: string) {
+    if (activeTags.value.has(t)) activeTags.value.delete(t)
+    else activeTags.value.add(t)
+    activeTags.value = new Set(activeTags.value)
+}
+
+function resetFilters() {
+    search.value = ''
+    activeMarkets.value = new Set()
+    activeTags.value = new Set()
+    sortBy.value = 'default'
+}
+
+const hasFilter = computed(
+    () => search.value.length > 0 || activeMarkets.value.size > 0 || activeTags.value.size > 0 || sortBy.value !== 'default',
+)
 </script>
 
 <template>
     <div class="container">
-        <!-- ========= HERO ========= -->
-        <section class="hero">
+        <!-- ========= HERO 极简 ========= -->
+        <section class="hero-compact">
             <div class="hero-eyebrow">
                 <span class="dot"></span>
                 <span class="mono">10-BAGGER HUNT · FACT-ANCHORED</span>
             </div>
-            <h1>
-                下一个 10 倍股，<br />
-                不是猜出来的，是 <span class="gradient-text">拆出来的</span>
+            <h1 class="hero-h1">
+                下一个 10 倍股，不是猜出来的，是 <span class="gradient-text">拆出来的</span>
             </h1>
-            <p class="hero-subtitle">
-                每份报告回答同一个问题 —— 这家公司 5 年与 10 年后分别值多少钱？有多大概率翻 10 倍？
-                <br />
-                25+ 模块 · 7 步方法论 · 5Y 与 10Y 双时间轴 · 显式概率权重 · Kelly 仓位推导。
-            </p>
-            <div class="hero-stats">
-                <div class="stat-mini">
-                    <div class="label">已覆盖公司</div>
-                    <div class="value cyan">{{ companies.length }}</div>
-                </div>
-                <div class="stat-mini">
-                    <div class="label">分析模块</div>
-                    <div class="value purple">25+</div>
-                </div>
-                <div class="stat-mini">
-                    <div class="label">时间轴</div>
-                    <div class="value green">5Y · 10Y</div>
-                </div>
-                <div class="stat-mini">
-                    <div class="label">最新更新</div>
-                    <div class="value mono" style="font-size: 17px">2026-04</div>
-                </div>
+            <div class="hero-line">
+                <span><strong>{{ companies.length }}</strong> 家已覆盖</span>
+                <span class="sep">·</span>
+                <span><strong>25+</strong> 模块</span>
+                <span class="sep">·</span>
+                <span><strong>5Y × 10Y</strong> 双时间轴</span>
+                <span class="sep">·</span>
+                <span>Kelly 仓位推导</span>
             </div>
         </section>
 
-        <!-- ========= 覆盖公司 ========= -->
+        <!-- ========= 覆盖公司（主角）========= -->
         <section class="section">
-            <div class="section-head">
+            <div class="section-head section-head-tight">
                 <div class="title-group">
                     <div class="tag">// COMPANY UNIVERSE</div>
-                    <h2>覆盖公司</h2>
+                    <h2>
+                        覆盖公司
+                        <span class="count-pill">
+                            {{ filtered.length }} / {{ companies.length }}
+                        </span>
+                    </h2>
                 </div>
-                <p>点击卡片进入完整报告。所有结论、数据、情景都在详情页。</p>
+                <p>筛选、排序或切换视图，快速定位你关心的公司。</p>
             </div>
-            <div class="company-grid">
-                <RouterLink v-for="c in companies" :key="c.id" :to="`/company/${c.id}`" class="company-card">
+
+            <!-- 工具栏 -->
+            <div class="toolbar">
+                <div class="toolbar-row">
+                    <label class="search-box">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input v-model="search" type="text" placeholder="搜索公司名 / ticker / 关键词…" />
+                        <button v-if="search" class="clear-btn" @click="search = ''" title="清除">×</button>
+                    </label>
+
+                    <div class="segmented">
+                        <button
+                            v-for="k in (['default', 'y5', 'y10', 'p10x'] as const)"
+                            :key="k"
+                            class="seg-btn"
+                            :class="{ active: sortBy === k }"
+                            @click="sortBy = k"
+                        >
+                            {{ k === 'default' ? '默认' : k === 'y5' ? '按 5Y' : k === 'y10' ? '按 10Y' : '按 P(10x)' }}
+                        </button>
+                    </div>
+
+                    <div class="segmented">
+                        <button class="seg-btn" :class="{ active: viewMode === 'grid' }" @click="viewMode = 'grid'" title="卡片">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                            卡片
+                        </button>
+                        <button class="seg-btn" :class="{ active: viewMode === 'table' }" @click="viewMode = 'table'" title="对比">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                            对比
+                        </button>
+                    </div>
+                </div>
+
+                <div class="toolbar-row">
+                    <div class="chip-group">
+                        <span class="chip-label">市场</span>
+                        <button
+                            v-for="m in (['US', 'HK', 'A', 'PRIVATE'] as Market[])"
+                            :key="m"
+                            class="chip"
+                            :class="{ active: activeMarkets.has(m) }"
+                            @click="toggleMarket(m)"
+                        >
+                            {{ marketLabel[m] }}
+                        </button>
+                    </div>
+                    <div class="chip-group">
+                        <span class="chip-label">赛道</span>
+                        <button
+                            v-for="t in allTags"
+                            :key="t"
+                            class="chip tag-chip"
+                            :class="{ active: activeTags.has(t) }"
+                            @click="toggleTag(t)"
+                        >
+                            {{ t }}
+                        </button>
+                    </div>
+                    <button v-if="hasFilter" class="reset-btn" @click="resetFilters">清除筛选</button>
+                </div>
+            </div>
+
+            <!-- 空状态 -->
+            <div v-if="filtered.length === 0" class="empty-state">
+                <div class="empty-icon">∅</div>
+                <div class="empty-title">没有匹配的公司</div>
+                <div class="empty-desc">调整搜索词、市场或赛道筛选 · 或 <button class="inline-btn" @click="resetFilters">清除全部</button></div>
+            </div>
+
+            <!-- 卡片视图 -->
+            <div v-else-if="viewMode === 'grid'" class="company-grid">
+                <RouterLink v-for="c in filtered" :key="c.id" :to="`/company/${c.id}`" class="company-card">
                     <span class="verdict" :class="c.verdict">{{ c.verdictText }}</span>
                     <div class="row">
                         <div>
@@ -101,7 +250,58 @@ const roadmap = [
                             <div class="mvalue">{{ m.value }}</div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <span class="price">{{ c.price }}</span>
+                        <span class="mcap">市值 {{ c.marketCap }}</span>
+                    </div>
                 </RouterLink>
+            </div>
+
+            <!-- 对比表视图 -->
+            <div v-else class="compare-wrap">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>公司</th>
+                            <th>市场</th>
+                            <th style="text-align: right">股价</th>
+                            <th style="text-align: right">市值</th>
+                            <th style="text-align: right">5Y 期望</th>
+                            <th style="text-align: right">10Y 期望</th>
+                            <th style="text-align: right">P(10x · 10Y)</th>
+                            <th>评级</th>
+                            <th>赛道</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="c in filtered" :key="c.id" class="compare-row" @click="$router.push(`/company/${c.id}`)">
+                            <td>
+                                <div class="cell-company">
+                                    <strong>{{ c.name }}</strong>
+                                    <span class="cell-ticker">{{ c.ticker }}</span>
+                                </div>
+                            </td>
+                            <td>{{ marketLabel[c.market] }}</td>
+                            <td style="text-align: right">{{ c.price }}</td>
+                            <td style="text-align: right">{{ c.marketCap }}</td>
+                            <td style="text-align: right; color: var(--accent-primary); font-weight: 600">
+                                {{ c.metrics.find((m) => m.label.includes('5Y'))?.value ?? '—' }}
+                            </td>
+                            <td style="text-align: right; color: var(--accent-primary); font-weight: 600">
+                                {{ c.metrics.find((m) => m.label.includes('10Y'))?.value ?? '—' }}
+                            </td>
+                            <td style="text-align: right">
+                                {{ c.metrics.find((m) => m.label.includes('P(10x'))?.value ?? '—' }}
+                            </td>
+                            <td>
+                                <span class="verdict-badge" :class="c.verdict">{{ c.verdictText }}</span>
+                            </td>
+                            <td>
+                                <span v-for="t in c.tags" :key="t" class="tag-mini">{{ t }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -112,7 +312,7 @@ const roadmap = [
                     <div class="tag">// ROADMAP</div>
                     <h2>即将覆盖</h2>
                 </div>
-                <p>跨行业 + 跨市场（美股 🇺🇸 · A 股 🇨🇳 · 港股 🇭🇰）。共同点：在 5-10 年尺度上有 10 倍空间的候选。</p>
+                <p>跨行业 + 跨市场。共同点：在 5-10 年尺度上有 10 倍空间的候选。</p>
             </div>
             <div class="roadmap-grid">
                 <div v-for="r in roadmap" :key="r.ticker + r.name" class="roadmap-card">
@@ -159,7 +359,288 @@ const roadmap = [
 </template>
 
 <style scoped>
-/* ========= Company card market badge ========= */
+/* ========= Hero 紧凑版 ========= */
+.hero-compact {
+    padding: 40px 0 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+}
+
+.hero-h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin: 10px 0 14px;
+    color: var(--text-ink);
+}
+
+.hero-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.hero-line strong {
+    color: var(--text-ink);
+    font-family: 'Space Grotesk Variable', sans-serif;
+    font-weight: 700;
+}
+
+.hero-line .sep {
+    color: var(--border-strong);
+}
+
+/* ========= Section Head 紧凑 ========= */
+.section-head-tight {
+    margin-bottom: 16px;
+}
+
+.count-pill {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-primary);
+    background: rgba(67, 56, 202, 0.08);
+    border-radius: 100px;
+    vertical-align: middle;
+    letter-spacing: 0;
+}
+
+/* ========= Toolbar ========= */
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 20px;
+}
+
+.toolbar-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1 1 280px;
+    min-width: 240px;
+    padding: 8px 12px;
+    background: var(--bg-base);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-muted);
+    transition: border-color 0.15s;
+}
+
+.search-box:focus-within {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-ink);
+    min-width: 0;
+}
+
+.clear-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.clear-btn:hover {
+    color: var(--accent-red);
+}
+
+/* ========= Segmented ========= */
+.segmented {
+    display: inline-flex;
+    background: var(--bg-base);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2px;
+    gap: 2px;
+}
+
+.seg-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+.seg-btn:hover {
+    color: var(--text-ink);
+}
+
+.seg-btn.active {
+    background: var(--bg-surface);
+    color: var(--accent-primary);
+    box-shadow: var(--shadow-xs);
+    font-weight: 600;
+}
+
+/* ========= Chips ========= */
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.chip-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono Variable', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-right: 4px;
+}
+
+.chip {
+    padding: 4px 11px;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    background: var(--bg-base);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.chip:hover {
+    border-color: var(--border-strong);
+    color: var(--text-ink);
+}
+
+.chip.active {
+    color: white;
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.chip.tag-chip.active {
+    background: var(--accent-purple, #7c3aed);
+    border-color: var(--accent-purple, #7c3aed);
+}
+
+.reset-btn {
+    margin-left: auto;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--accent-red);
+    background: transparent;
+    border: 1px dashed var(--accent-red);
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.reset-btn:hover {
+    background: rgba(220, 38, 38, 0.05);
+}
+
+/* ========= Empty State ========= */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--bg-surface);
+    border: 1px dashed var(--border-strong);
+    border-radius: 14px;
+}
+
+.empty-icon {
+    font-size: 40px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.empty-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-ink);
+    margin-bottom: 6px;
+}
+
+.empty-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.inline-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent-primary);
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-decoration: underline;
+}
+
+/* ========= Company Card 增强 ========= */
+.company-card {
+    position: relative;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 12px;
+}
+
+.card-footer .price {
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-weight: 600;
+    color: var(--text-ink);
+}
+
+.card-footer .mcap {
+    color: var(--text-muted);
+}
+
+/* ========= Ticker Row ========= */
 .ticker-row {
     display: flex;
     align-items: center;
@@ -175,6 +656,106 @@ const roadmap = [
     background: var(--bg-elevated);
     border-radius: 100px;
     font-weight: 500;
+    white-space: nowrap;
+}
+
+/* ========= Compare Table ========= */
+.compare-wrap {
+    overflow-x: auto;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+}
+
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    min-width: 880px;
+}
+
+.compare-table thead {
+    background: var(--bg-elevated);
+}
+
+.compare-table th {
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+}
+
+.compare-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.compare-row {
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.compare-row:hover {
+    background: rgba(67, 56, 202, 0.04);
+}
+
+.cell-company {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cell-company strong {
+    color: var(--text-ink);
+    font-size: 14px;
+}
+
+.cell-ticker {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono Variable', monospace;
+}
+
+.verdict-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.verdict-badge.bullish {
+    color: #059669;
+    background: rgba(5, 150, 105, 0.1);
+}
+
+.verdict-badge.neutral {
+    color: var(--accent-primary);
+    background: rgba(67, 56, 202, 0.08);
+}
+
+.verdict-badge.bearish {
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.08);
+}
+
+.tag-mini {
+    display: inline-block;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    padding: 1px 7px;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    background: var(--bg-elevated);
+    border-radius: 100px;
     white-space: nowrap;
 }
 
@@ -300,5 +881,30 @@ const roadmap = [
     color: var(--text-secondary);
     font-size: 13px;
     line-height: 1.55;
+}
+
+/* ========= 响应式 ========= */
+@media (max-width: 640px) {
+    .hero-compact {
+        padding: 24px 0 20px;
+    }
+
+    .hero-line {
+        font-size: 13px;
+    }
+
+    .toolbar-row {
+        gap: 8px;
+    }
+
+    .segmented {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+    .seg-btn {
+        flex: 1;
+        justify-content: center;
+    }
 }
 </style>
