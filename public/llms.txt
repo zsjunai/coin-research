@@ -1,0 +1,38 @@
+# Coin.research
+
+> 独立 10 倍股深度投研平台。每份报告回答同一个问题——这家公司 5 年和 10 年后分别值多少钱？有多大概率翻 10 倍？
+
+Coin.research 是一套机构级投研框架的公开实现，覆盖美股 / A 股 / 港股。每家公司报告包含 29+ 模块：情景分析、加权期望、下行风险量化、敏感度 Tornado、共识 vs 指引 Gap、对照组策略、Kelly 仓位推导、Track Record 可验证假设等。
+
+核心方法论：8 步流程 + 13+11 硬规则 + 6 量化公式。所有数据严格锚定具体日期，显式标注卖方共识、管理层指引与本分析假设之间的差异。
+
+## 已覆盖公司
+
+- [Nebius Group (NASDAQ:NBIS)](https://coin.puliot.com/company/nebius): AI Neocloud · 英伟达战略伙伴 · 合同积压 $46B
+- [Circle Internet (NYSE:CRCL)](https://coin.puliot.com/company/circle): 稳定币 USDC 发行方 · GENIUS Act 受益者
+- [Coinbase Global (NASDAQ:COIN)](https://coin.puliot.com/company/coinbase): 美国加密行业龙头 · OCC 信托牌照 · 标普 500
+- [Robinhood Markets (NASDAQ:HOOD)](https://coin.puliot.com/company/robinhood): 千禧一代零售券商 · Super App 战略 · ARPU 两年翻倍
+- [泡泡玛特 Pop Mart (HK:09992)](https://coin.puliot.com/company/popmart): 中国潮玩龙头 · LABUBU 全球爆红 · 海外占比 44%
+- [百济神州 BeOne Medicines (HK:06160)](https://coin.puliot.com/company/beigene): 全球肿瘤 biotech · Brukinsa 全球 BTK 第一 · 2025 首次盈利
+
+## 方法论
+
+- [8 步分析流程](https://coin.puliot.com/methodology): 事实锚定 → 十倍基因体检 → 合同积压 → 竞品对照 → 双时间轴情景 → 加权期望 → 观察指标 → Track Record 锁定
+
+## 核心原则
+
+- 所有结论标注数据锚定日期（anchor date）
+- 看多论点必须伴随等量看空论点
+- 情景概率显式化（加总 100%）
+- 下行风险量化（情景标准差 / P(5Y 亏 30%+) / 最大回撤）
+- 仓位用 Kelly 公式推导，不拍脑袋
+- 与被动组合（SPY / 60-40）对照超额 CAGR，判定是否值得单选
+
+## 使用说明
+
+本站分析均为基于公开信息的独立研究，不构成投资建议。投资有风险，入市需谨慎。引用时请注明数据锚定日期（detail 页面顶部可见）。
+
+## 联系
+
+- 在线访问：https://coin.puliot.com
+- 源码（MIT）：https://github.com/zsjunai/coin-research

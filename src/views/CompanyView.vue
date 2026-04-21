@@ -24,8 +24,102 @@ const data = computed(() => {
     return getCompany(id)
 })
 
+function upsertMeta(key: string, value: string, byProperty = false) {
+    const attr = byProperty ? 'property' : 'name'
+    let el = document.head.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null
+    if (!el) {
+        el = document.createElement('meta')
+        el.setAttribute(attr, key)
+        document.head.appendChild(el)
+    }
+    el.setAttribute('content', value)
+}
+
+function upsertLink(rel: string, href: string) {
+    let el = document.head.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null
+    if (!el) {
+        el = document.createElement('link')
+        el.setAttribute('rel', rel)
+        document.head.appendChild(el)
+    }
+    el.setAttribute('href', href)
+}
+
+const JSON_LD_ID = 'coin-company-jsonld'
+
+function upsertJsonLd(json: object) {
+    let el = document.getElementById(JSON_LD_ID) as HTMLScriptElement | null
+    if (!el) {
+        el = document.createElement('script')
+        el.id = JSON_LD_ID
+        el.setAttribute('type', 'application/ld+json')
+        document.head.appendChild(el)
+    }
+    el.textContent = JSON.stringify(json)
+}
+
 watchEffect(() => {
-    if (data.value) document.title = `${data.value.name} · Coin Research`
+    const d = data.value
+    if (!d) return
+
+    const url = `https://coin.puliot.com/company/${d.id}`
+    const title = `${d.name} (${d.ticker}) — 10 倍股深度投研 · Coin.research`
+    const desc = `${d.tagline} 5Y 期望 ${d.weightedExpectation.y5.multiplier}x · 10Y 期望 ${d.weightedExpectation.y10.multiplier}x · 锚定日期 ${d.date}。`
+
+    document.title = title
+    upsertMeta('description', desc)
+    upsertMeta('keywords', [d.name, d.ticker, '10 倍股', '投研', '价值投资'].join(', '))
+    upsertLink('canonical', url)
+
+    // Open Graph
+    upsertMeta('og:type', 'article', true)
+    upsertMeta('og:title', title, true)
+    upsertMeta('og:description', desc, true)
+    upsertMeta('og:url', url, true)
+    upsertMeta('og:image', 'https://coin.puliot.com/og-cover.svg', true)
+    upsertMeta('og:locale', 'zh_CN', true)
+
+    // Twitter
+    upsertMeta('twitter:card', 'summary_large_image')
+    upsertMeta('twitter:title', title)
+    upsertMeta('twitter:description', desc)
+    upsertMeta('twitter:image', 'https://coin.puliot.com/og-cover.svg')
+
+    // JSON-LD · Article + FinancialProduct
+    upsertJsonLd({
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'Article',
+                headline: title,
+                description: desc,
+                datePublished: d.date,
+                dateModified: d.date,
+                inLanguage: 'zh-CN',
+                url,
+                author: { '@type': 'Organization', name: 'Coin.research', url: 'https://coin.puliot.com/' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'Coin.research',
+                    logo: { '@type': 'ImageObject', url: 'https://coin.puliot.com/favicon.svg' },
+                },
+                image: 'https://coin.puliot.com/og-cover.svg',
+                about: {
+                    '@type': 'Corporation',
+                    name: d.name,
+                    tickerSymbol: d.ticker,
+                },
+            },
+            {
+                '@type': 'FinancialProduct',
+                name: `${d.name} ${d.ticker}`,
+                category: '股票分析 · 投研报告',
+                description: d.tagline,
+                url,
+                provider: { '@type': 'Organization', name: 'Coin.research' },
+            },
+        ],
+    })
 })
 
 const facts = computed(() => {

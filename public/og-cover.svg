@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#faf8f2"/>
+            <stop offset="100%" stop-color="#f2eee4"/>
+        </linearGradient>
+        <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#4338ca"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+        </linearGradient>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(67,56,202,0.06)" stroke-width="1"/>
+        </pattern>
+    </defs>
+
+    <rect width="1200" height="630" fill="url(#bg)"/>
+    <rect width="1200" height="630" fill="url(#grid)"/>
+
+    <!-- Decorative shapes -->
+    <circle cx="1050" cy="140" r="60" fill="rgba(67,56,202,0.08)"/>
+    <circle cx="1100" cy="480" r="90" fill="rgba(124,58,237,0.06)"/>
+
+    <!-- Brand -->
+    <g transform="translate(80, 80)">
+        <rect width="52" height="52" rx="12" fill="url(#accent)"/>
+        <text x="26" y="36" font-family="Georgia, serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">C</text>
+        <text x="70" y="34" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#0a0a0a">Coin</text>
+        <text x="130" y="34" font-family="Georgia, serif" font-size="26" fill="#64748b">.research</text>
+    </g>
+
+    <!-- Eyebrow -->
+    <text x="80" y="200" font-family="monospace" font-size="16" fill="#64748b" letter-spacing="2">
+        · 10-BAGGER HUNT · FACT-ANCHORED
+    </text>
+
+    <!-- Main headline -->
+    <text x="80" y="280" font-family="system-ui, -apple-system, 'PingFang SC', sans-serif" font-size="68" font-weight="700" fill="#0a0a0a" letter-spacing="-2">
+        下一个 10 倍股，
+    </text>
+    <text x="80" y="360" font-family="system-ui, -apple-system, 'PingFang SC', sans-serif" font-size="68" font-weight="700" fill="#0a0a0a" letter-spacing="-2">
+        不是猜出来的，是
+    </text>
+    <text x="640" y="360" font-family="system-ui, -apple-system, 'PingFang SC', sans-serif" font-size="68" font-weight="700" fill="url(#accent)" letter-spacing="-2">
+        拆出来的
+    </text>
+
+    <!-- Stats -->
+    <g transform="translate(80, 440)">
+        <rect x="0" y="0" width="1040" height="1" fill="#d4d4d4"/>
+
+        <g transform="translate(0, 40)">
+            <text font-family="system-ui" font-size="42" font-weight="700" fill="#4338ca">29+</text>
+            <text y="56" font-family="monospace" font-size="13" fill="#64748b" letter-spacing="1">分析模块</text>
+        </g>
+        <g transform="translate(220, 40)">
+            <text font-family="system-ui" font-size="42" font-weight="700" fill="#7c3aed">8 步</text>
+            <text y="56" font-family="monospace" font-size="13" fill="#64748b" letter-spacing="1">方法论流程</text>
+        </g>
+        <g transform="translate(420, 40)">
+            <text font-family="system-ui" font-size="42" font-weight="700" fill="#059669">5Y × 10Y</text>
+            <text y="56" font-family="monospace" font-size="13" fill="#64748b" letter-spacing="1">双时间轴</text>
+        </g>
+        <g transform="translate(700, 40)">
+            <text font-family="system-ui" font-size="42" font-weight="700" fill="#0a0a0a">Kelly</text>
+            <text y="56" font-family="monospace" font-size="13" fill="#64748b" letter-spacing="1">仓位推导</text>
+        </g>
+    </g>
+
+    <!-- Footer URL -->
+    <text x="80" y="590" font-family="monospace" font-size="14" fill="#64748b" letter-spacing="2">
+        coin.puliot.com
+    </text>
+    <text x="1120" y="590" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="end" letter-spacing="1">
+        v0.6 · beta · 2026
+    </text>
+</svg>
