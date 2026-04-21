@@ -28,7 +28,7 @@ const data = computed(() => {
 useHead(() => {
     const d = data.value
     if (!d) return {}
-    const url = `https://coin.puliot.com/company/${d.id}`
+    const url = `https://coin.puliot.com/company/${d.id}/`
     const title = `${d.name} (${d.ticker}) — 10 倍股深度投研 · Coin.research`
     const desc = `${d.tagline} 5Y 期望 ${d.weightedExpectation.y5.multiplier}x · 10Y 期望 ${d.weightedExpectation.y10.multiplier}x · 锚定日期 ${d.date}。`
     const jsonLd = {
