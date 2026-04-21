@@ -1155,6 +1155,67 @@ export const robinhood: CompanyDetail = {
             '任一步骤在时间表前 1 个季度提前发生 → **减仓 50%**。连续 2 条发生 → **清仓观望**。特别关注：PFOF 监管动向 + BTC 趋势两项"先行指标"。',
     },
 
+    capitalAllocation: {
+        narrative:
+            'Robinhood 2023-2025 完成"从烧钱到盈利"的转型，现在进入"资本回报股东"阶段——$1B 股票回购已执行。Bitstamp $200M 并购是精彩的"国际合规牌照 + 机构客户基础"打包购买。管理层（Tenev）从"激进增长"转向"成熟配置者"的身份切换。',
+        scores: [
+            { dimension: 'ROIIC', label: '增量资本回报率', score: 3, detail: '2024 净利率 48% · 2025 ~40%，ARPU +82% 说明增量客户获取效率高', evidence: '2024-2025 财报' },
+            { dimension: 'Buyback', label: '回购节奏', score: 5, detail: '2023 起 $1B 回购已执行大部分；2025 宣布新一轮；属机构类 fintech 中最积极', evidence: '2024 年报 · Q4 2025' },
+            { dimension: 'Dividend', label: '股息政策', score: 1, detail: '无股息（合理 · 还需保留现金）', evidence: '公司指引' },
+            { dimension: 'M&A', label: '并购命中率', score: 4, detail: 'Bitstamp $200M 以低价买到 50+ 全球加密牌照 + 机构客户基础，是 2024-2025 最精明并购之一', evidence: '2025-06 并购完成' },
+        ],
+        overallGrade: 'B',
+        historicalROIIC: '~18-22% (核心业务稳态)',
+    },
+
+    gapAnalysis: {
+        narrative:
+            'Robinhood 2026 最大 gap 是"管理层已经暗示增速放缓"vs 共识仍乐观。Q4 2025 业绩管理层给出保守 2026 展望，卖方尚未完全下调预期——这是"gap 触发爆雷"的典型位置。',
+        rows: [
+            { metric: '2026 营收增速', guidance: '<+25% (管理层保守)', consensus: '+30%', selfAssumption: '+25%', gap: '-5pp 保守', risk: 'high', note: '管理层已预警' },
+            { metric: '2026 Q1 EPS', guidance: '$0.40', consensus: '$0.43', selfAssumption: '$0.40', gap: '-7%', risk: 'medium' },
+            { metric: 'Gold 订阅 2026 末', guidance: '未指引', consensus: '5.5M', selfAssumption: '5.2M', gap: '小幅保守', risk: 'low' },
+            { metric: '加密营收占交易营收', guidance: '未指引', consensus: '30%', selfAssumption: '28%', gap: '基本一致', risk: 'medium', note: 'BTC 2026 Q4 走势决定' },
+            { metric: 'Bitstamp 整合贡献', guidance: '2026 H2 完成', consensus: '$200M 新营收', selfAssumption: '$150M (保守)', gap: '-25%', risk: 'medium', note: '整合可能延期' },
+        ],
+        takeaway:
+            '**最关键 Gap：管理层 +25% vs 共识 +30%**。5pp gap + 管理层先发指引说明卖方将会被迫下修，未来 2-3 份季报可能触发 -15% 的估值压缩。做多需耐心等待共识下修后入场。',
+    },
+
+    benchmarkComparison: {
+        narrative:
+            'Robinhood 10Y 期望 CAGR 12% vs 被动 60/40 组合 7.8%——超额仅 4.2pp，**处于"边缘 justify 3-5% 仓位"区间**。相对 QQQ（12%）没有超额——如果持有 QQQ 5%，Robinhood 的边际多元化价值有限。',
+        alternatives: [
+            { name: 'SPY (S&P 500)', ticker: 'SPY', expectedReturn5Y: 9, expectedReturn10Y: 10, note: '美国宽基' },
+            { name: 'QQQ (纳斯达克 100)', ticker: 'QQQ', expectedReturn5Y: 10, expectedReturn10Y: 12, note: '科技权重 · 与 HOOD 接近' },
+            { name: '60/40', expectedReturn5Y: 7, expectedReturn10Y: 8, note: '经典稳健' },
+            { name: '10Y 国债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险' },
+            { name: 'SCHW (Schwab)', ticker: 'SCHW', expectedReturn5Y: 7, expectedReturn10Y: 8, note: '传统券商对照' },
+            { name: 'XLF (金融 ETF)', ticker: 'XLF', expectedReturn5Y: 8, expectedReturn10Y: 9, note: 'Fintech 对照' },
+        ],
+        selfReturn5Y: 6.6,
+        selfReturn10Y: 12,
+        excessReturn5Y: -1.4,
+        excessReturn10Y: 4.2,
+        justifiesPosition: 'marginal',
+        takeaway:
+            '**超额 4.2pp 处于"边缘 justify"** · 10Y 与 QQQ 持平说明 Robinhood 作为"超额 α 来源"吸引力一般。更好的使用方式：作为 QQQ + BTC 的补充，享受 Super App 故事 + 订阅化转型带来的潜在估值重估（若成功，10Y 可升至 17%）。如无特别看法，直接买 QQQ 更简单。',
+    },
+
+    trackRecord: {
+        narrative:
+            '本分析锚定 2026-04-20。以下 6 条可验证命题，2027 Q2 回看。',
+        assumptions: [
+            { assumption: '2026 营收增速 ≥+20%', setAt: '2026-04-20', targetDate: '2027-02-28', targetValue: '≥+20%', verdict: 'pending', note: '管理层下限' },
+            { assumption: 'Gold 订阅 2026 末 ≥5M', setAt: '2026-04-20', targetDate: '2027-02-28', targetValue: '≥5M', verdict: 'pending' },
+            { assumption: 'SEC 2026 年内未限制 PFOF', setAt: '2026-04-20', targetDate: '2026-12-31', targetValue: 'PFOF 合规', verdict: 'pending', note: '最大单点风险' },
+            { assumption: 'Bitstamp 2026 H2 整合完成', setAt: '2026-04-20', targetDate: '2026-12-31', targetValue: 'integration done', verdict: 'pending' },
+            { assumption: 'BTC 2026 末 ≥$70K (加密 β 上行)', setAt: '2026-04-20', targetDate: '2026-12-31', targetValue: 'BTC ≥$70K', verdict: 'pending' },
+            { assumption: '2026 ARPU ≥$210', setAt: '2026-04-20', targetDate: '2027-02-28', targetValue: '≥$210', verdict: 'pending' },
+        ],
+        hitRate: 'N/A (全部 pending)',
+    },
+
     correlation: {
         narrative:
             'Robinhood 是**零售金融 + 加密 + 美股的复合敞口**：涨跌约 50% 由美股驱动、30% 由加密驱动、20% 由 fintech 叙事驱动。如果组合中已持有 BTC / Coinbase / Circle / Visa，加 Robinhood 的**边际多元化有限**。真正的 hedge 是**反周期 + 非交易相关资产**。',

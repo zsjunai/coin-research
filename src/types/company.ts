@@ -459,6 +459,84 @@ export interface Recommendation {
     sizingFormula: PositionSizingFormula
 }
 
+/* ================= NEW: Capital Allocation ================= */
+
+export interface CapitalAllocationScore {
+    dimension: 'ROIIC' | 'Buyback' | 'Dividend' | 'M&A'
+    label: string
+    score: number // 1-5
+    detail: string
+    evidence?: string
+}
+
+export interface CapitalAllocation {
+    narrative: string
+    scores: CapitalAllocationScore[]
+    overallGrade: 'A' | 'B' | 'C' | 'D'
+    historicalROIIC: string
+}
+
+/* ================= NEW: Gap Analysis (Consensus vs Guidance) ================= */
+
+export type GapRisk = 'high' | 'medium' | 'low'
+
+export interface GapRow {
+    metric: string
+    guidance: string
+    consensus: string
+    selfAssumption: string
+    gap: string
+    risk: GapRisk
+    note?: string
+}
+
+export interface GapAnalysis {
+    narrative: string
+    rows: GapRow[]
+    takeaway: string
+}
+
+/* ================= NEW: Benchmark Comparison (Opportunity Cost) ================= */
+
+export interface BenchmarkAsset {
+    name: string
+    ticker?: string
+    expectedReturn5Y: number
+    expectedReturn10Y: number
+    note: string
+}
+
+export interface BenchmarkComparison {
+    narrative: string
+    alternatives: BenchmarkAsset[]
+    selfReturn5Y: number
+    selfReturn10Y: number
+    excessReturn5Y: number
+    excessReturn10Y: number
+    justifiesPosition: 'yes' | 'no' | 'marginal'
+    takeaway: string
+}
+
+/* ================= NEW: Track Record (Forward Assumptions) ================= */
+
+export type AssumptionVerdict = 'hit' | 'miss' | 'pending' | 'partial'
+
+export interface TrackRecordAssumption {
+    assumption: string
+    setAt: string
+    targetDate: string
+    targetValue: string
+    actualValue?: string
+    verdict: AssumptionVerdict
+    note?: string
+}
+
+export interface TrackRecord {
+    narrative: string
+    assumptions: TrackRecordAssumption[]
+    hitRate?: string
+}
+
 /* ================= MASTER ================= */
 
 export interface CompanyDetail {
@@ -506,4 +584,8 @@ export interface CompanyDetail {
     sensitivity: SensitivityAnalysis
     bearPlaybook: BearPlaybook
     correlation: PortfolioCorrelation
+    capitalAllocation: CapitalAllocation
+    gapAnalysis: GapAnalysis
+    benchmarkComparison: BenchmarkComparison
+    trackRecord: TrackRecord
 }

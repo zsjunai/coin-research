@@ -1134,6 +1134,67 @@ export const popmart: CompanyDetail = {
             '任一步骤在时间表前 1 个季度提前发生 → **减仓 50%**。连续 2 条发生 → **清仓观望**。特别关注：LABUBU 季度销量 + 社交热度两项"先行指标"。',
     },
 
+    capitalAllocation: {
+        narrative:
+            '泡泡玛特的资本配置是已覆盖 6 家中**最好的之一**：轻资产 + 高毛利 + 2.5% 股息 + 高 ROIIC。王宁长期主义 + 不做无聊并购，把现金还给股东（派息）或再投入 IP 孵化。这是"消费品现金奶牛"的经典资本配置模板。',
+        scores: [
+            { dimension: 'ROIIC', label: '增量资本回报率', score: 5, detail: '消费品轻资产模型 · 毛利 66% · 净利率 35% · ROIIC 估算 30%+', evidence: '2025 年报' },
+            { dimension: 'Buyback', label: '回购节奏', score: 3, detail: '业绩会表达过回购意愿但尚未大规模执行；港股流动性约束', evidence: '2025 Q4 业绩会' },
+            { dimension: 'Dividend', label: '股息政策', score: 4, detail: '2.5% 股息率 · 港股消费股中位偏上 · 可预期稳步提升', evidence: '2025 年分红公告' },
+            { dimension: 'M&A', label: '并购命中率', score: 3, detail: '历史上极少并购；主要靠内生 IP 孵化（MOLLY/LABUBU/SKULLPANDA）。未来 Sony 合作算弱并购', evidence: '公司历史' },
+        ],
+        overallGrade: 'A',
+        historicalROIIC: '~25-35% (消费品稳态 · 业内最高)',
+    },
+
+    gapAnalysis: {
+        narrative:
+            '泡泡玛特 2026 是"管理层主动降预期"经典案例。2025 +185% 不可能复制，管理层给出 +20% 保守指引，卖方共识仍维持 +30%。gap 5-10pp 是业绩后股价 -22% 的直接原因。真实增速落在 +25% 附近概率最高。',
+        rows: [
+            { metric: '2026 营收增速', guidance: '+20% (保守)', consensus: '+30%', selfAssumption: '+25%', gap: '-5-10pp', risk: 'high', note: '已兑现为 -22% 股价' },
+            { metric: '2026 LABUBU 销量', guidance: '未指引', consensus: '1.2-1.5 亿只', selfAssumption: '1 亿只 (保守)', gap: '-20%', risk: 'high', note: '单品依赖' },
+            { metric: '2026 海外占比', guidance: '">50%"', consensus: '52%', selfAssumption: '55%', gap: '+3pp 乐观', risk: 'medium' },
+            { metric: '2026 经调整净利率', guidance: '">35%"', consensus: '36%', selfAssumption: '36%', gap: '基本一致', risk: 'low' },
+            { metric: 'CRYBABY / SKULLPANDA 破 50 亿', guidance: '未指引', consensus: '~40% 概率', selfAssumption: '50%', gap: '乐观 10pp', risk: 'medium' },
+        ],
+        takeaway:
+            '**最关键 Gap：2026 增速 +20% vs +30%**。这是"管理层先发保守 + 卖方滞后下修"的经典套利机会。若 Q1-Q2 2026 真实增速 ≥+25%，共识会反而上修，可能触发 +15% 反弹；若 <+20%，卖方进一步下修触发 -20% 二次回调。',
+    },
+
+    benchmarkComparison: {
+        narrative:
+            '泡泡玛特 10Y 期望 CAGR 13.5% vs 被动 60/40 组合 7.8%——超额 5.7pp，**justify 4-6% 仓位**。相对港股恒生指数（CAGR ~7%）超额 6.5pp，作为港股核心持仓值得。',
+        alternatives: [
+            { name: 'SPY (S&P 500)', ticker: 'SPY', expectedReturn5Y: 9, expectedReturn10Y: 10, note: '美国宽基' },
+            { name: '恒生指数 (HSI)', expectedReturn5Y: 6, expectedReturn10Y: 7, note: '港股宽基' },
+            { name: '60/40', expectedReturn5Y: 7, expectedReturn10Y: 8, note: '经典稳健' },
+            { name: '10Y 国债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险' },
+            { name: 'KWEB (中概科技 ETF)', expectedReturn5Y: 8, expectedReturn10Y: 10, note: '中国科技对照' },
+            { name: '迪士尼 (DIS)', ticker: 'DIS', expectedReturn5Y: 7, expectedReturn10Y: 8, note: '全球 IP 生态对照' },
+        ],
+        selfReturn5Y: 8.4,
+        selfReturn10Y: 13.5,
+        excessReturn5Y: 1.4,
+        excessReturn10Y: 5.7,
+        justifiesPosition: 'yes',
+        takeaway:
+            '**超额 5.7pp justify 4-6% 仓位**。相对恒生指数和中概股都有清晰超额。特别适合"港股敞口 + 消费 IP"双重需求——如果你已持 KWEB 或腾讯 3-5%，泡泡玛特的边际多元化依然有（IP 消费 vs 平台互联网，不同驱动因子）。',
+    },
+
+    trackRecord: {
+        narrative:
+            '本分析锚定 2026-04-20。以下 6 条可验证命题，特别关注 LABUBU 季度销量趋势。',
+        assumptions: [
+            { assumption: '2026 营收增速 ≥+20% (管理层指引下限)', setAt: '2026-04-20', targetDate: '2027-03-31', targetValue: '≥+20%', verdict: 'pending' },
+            { assumption: 'LABUBU 2026 销量 ≥8000 万', setAt: '2026-04-20', targetDate: '2027-03-31', targetValue: '≥8000 万', verdict: 'pending', note: '2025 过 1 亿，允许回落' },
+            { assumption: '2026 海外营收占比 ≥50%', setAt: '2026-04-20', targetDate: '2027-03-31', targetValue: '≥50%', verdict: 'pending' },
+            { assumption: 'Sony LABUBU 电影 2027 年内上映', setAt: '2026-04-20', targetDate: '2027-12-31', targetValue: 'released', verdict: 'pending', note: 'IP 影视化关键验证' },
+            { assumption: 'CRYBABY 或 SKULLPANDA 2026 年破 50 亿', setAt: '2026-04-20', targetDate: '2027-03-31', targetValue: '≥50 亿', verdict: 'pending', note: '第二梯队 IP 突破' },
+            { assumption: '经调整净利率 2026 保持 ≥33%', setAt: '2026-04-20', targetDate: '2027-03-31', targetValue: '≥33%', verdict: 'pending' },
+        ],
+        hitRate: 'N/A (全部 pending)',
+    },
+
     correlation: {
         narrative:
             '泡泡玛特是**中国消费 + 全球 IP β 的复合敞口**：涨跌 50% 由中国消费决定、30% 由全球 Z 世代情绪决定、20% 由 LABUBU 故事本身。如果组合中已持有名创优品 / 腾讯 / 中国消费白马，加泡泡玛特的**边际多元化有限**。真正的 hedge 是**反周期 + 非中国资产**。',

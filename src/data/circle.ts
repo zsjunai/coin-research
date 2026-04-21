@@ -1116,6 +1116,66 @@ export const circle: CompanyDetail = {
             '任一步骤在时间表前 1 个季度提前发生 → **减仓 50%**。连续 2 条发生 → **清仓观望**。特别关注：Coinbase 续约条款 + Arc 主网 TVL 两项"先行指标"。',
     },
 
+    capitalAllocation: {
+        narrative:
+            'Circle 的资本配置画像偏"被动储备管理 + 被动派息"——核心资产是 USDC 储备（$64.2B Circle Reserve Fund 外包给 BlackRock），真正可配置的增量资本很少。Arc + CPN 新业务是主要资本投向但 ROIIC 尚未验证。',
+        scores: [
+            { dimension: 'ROIIC', label: '增量资本回报率', score: 2, detail: '储备利息并非真正 ROIIC；Arc / CPN 增量投入的回报要 2027+ 才能评估', evidence: 'Q4 2025 年报' },
+            { dimension: 'Buyback', label: '回购节奏', score: 2, detail: 'IPO 后 2025-2026 未有大规模回购；优先融资扩张', evidence: '2025 DEF 14A' },
+            { dimension: 'Dividend', label: '股息政策', score: 1, detail: '无股息', evidence: '公司披露' },
+            { dimension: 'M&A', label: '并购命中率', score: 3, detail: '2018 收购 Centre Consortium 完整 USDC 权益成功；Bitstamp 级并购尚未出现', evidence: '2018 CC 收购历史' },
+        ],
+        overallGrade: 'C',
+        historicalROIIC: 'N/A (储备业务结构性地难以测算 ROIIC)',
+    },
+
+    gapAnalysis: {
+        narrative:
+            'Circle 2026 的关键 gap 不在营收而在"美联储利率假设"。卖方共识假设利率维持 4%+，管理层指引偏保守，但本分析假设 2026 H2 降息至 3-3.5%——这是最容易"爆雷"的变量。',
+        rows: [
+            { metric: '2026 营收', guidance: '$3.8-4.2B', consensus: '$3.9B', selfAssumption: '$4.0B', gap: '基本一致', risk: 'low' },
+            { metric: '2026 Reserve Income', guidance: '未直接指引', consensus: '$3.2B (假设利率 4%)', selfAssumption: '$3.0B (假设降至 3.5%)', gap: '-6% vs 共识', risk: 'medium', note: '取决于美联储' },
+            { metric: '2026 Coinbase 分成占比', guidance: '未披露', consensus: '维持 ~56%', selfAssumption: '略降至 50-55%', gap: '-5pp 乐观', risk: 'high', note: '2026 Q3 续约是关键' },
+            { metric: 'USDC 2026 末流通', guidance: '未指引', consensus: '$95-110B', selfAssumption: '$100B', gap: '中值', risk: 'medium' },
+            { metric: '2026 Adj. EBITDA margin', guidance: '未指引', consensus: '20-25%', selfAssumption: '~20%', gap: '-3pp 保守', risk: 'medium' },
+        ],
+        takeaway:
+            '**最关键 Gap：Coinbase 2026 分成续约条款**。若续约时 Coinbase 要求提高分成（例如 on-platform 100/0 改为 80/20），Circle 净利率会立即压缩 5-8pp。这是不可量化但可监测的风险，Q3 2026 谈判消息是先行指标。',
+    },
+
+    benchmarkComparison: {
+        narrative:
+            'Circle 10Y 期望 CAGR 15.1% vs 被动 60/40 组合 7.8%——超额 7.3pp，**marginal justify 3-5% 仓位**。但这 7pp 超额高度依赖"利率维持 + Coinbase 续约不恶化"两个假设——任一崩坏，超额会直接腰斩。',
+        alternatives: [
+            { name: 'SPY (S&P 500)', ticker: 'SPY', expectedReturn5Y: 9, expectedReturn10Y: 10, note: '美国宽基' },
+            { name: 'QQQ (纳斯达克 100)', ticker: 'QQQ', expectedReturn5Y: 10, expectedReturn10Y: 12, note: '科技权重' },
+            { name: '60/40 (SPY + TLT)', expectedReturn5Y: 7, expectedReturn10Y: 8, note: '经典稳健' },
+            { name: '10Y 美债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险' },
+            { name: 'XLF (金融 ETF)', ticker: 'XLF', expectedReturn5Y: 8, expectedReturn10Y: 9, note: 'Fintech 对照' },
+        ],
+        selfReturn5Y: 10.5,
+        selfReturn10Y: 15.1,
+        excessReturn5Y: 3.5,
+        excessReturn10Y: 7.3,
+        justifiesPosition: 'marginal',
+        takeaway:
+            '**超额 7pp 处于"边缘 justify"区间**。建议 3% 起步，只有 Arc 主网成功 + Coinbase 续约不恶化两个先行信号确认后再加到 5%。如果你已持 Coinbase 5%，不再需要 Circle（两者 PnL 耦合 0.85）。',
+    },
+
+    trackRecord: {
+        narrative:
+            '本分析锚定 2026-04-17。以下 6 条是未来 12-18 个月的可验证命题，2027 Q1 回看建立第一轮 hit rate。',
+        assumptions: [
+            { assumption: '2026 Q4 USDC 流通 ≥ $95B', setAt: '2026-04-17', targetDate: '2027-01-31', targetValue: '≥ $95B', verdict: 'pending' },
+            { assumption: 'Coinbase 2026 续约 Circle 分成 ≥45%', setAt: '2026-04-17', targetDate: '2026-10-31', targetValue: 'Circle ≥ 45%', verdict: 'pending', note: '结构性核心' },
+            { assumption: 'Arc L1 2026 年内主网上线', setAt: '2026-04-17', targetDate: '2026-12-31', targetValue: 'mainnet live', verdict: 'pending' },
+            { assumption: '美联储 2026 终端利率维持 ≥3%', setAt: '2026-04-17', targetDate: '2026-12-31', targetValue: 'FedFunds ≥3%', verdict: 'pending' },
+            { assumption: '2026 Adj. EBITDA margin ≥18%', setAt: '2026-04-17', targetDate: '2027-03-31', targetValue: '≥18%', verdict: 'pending' },
+            { assumption: 'GENIUS Act 2026 内无不利修订', setAt: '2026-04-17', targetDate: '2026-12-31', targetValue: '无修订', verdict: 'pending' },
+        ],
+        hitRate: 'N/A (全部 pending · 首次建立 track record)',
+    },
+
     correlation: {
         narrative:
             'Circle 不是独立资产，它的涨跌 **70% 由利率 + 加密情绪驱动**。如果你已持有 Coinbase / 比特币 / 以太坊 / Visa，加 Circle 的**边际多元化有限**。真正的 hedge 应该是**利率上行受益资产 + 去中心化金融资产**。',

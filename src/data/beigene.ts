@@ -1173,6 +1173,67 @@ export const beigene: CompanyDetail = {
             '任一步骤在时间表前 1 个季度提前发生 → **减仓 50%**。连续 2 条发生 → **清仓观望**。特别关注：Brukinsa 美国季度市占 + BGB-16673 三期入组进度 + BIOSECURE 立法进程三项"先行指标"。',
     },
 
+    capitalAllocation: {
+        narrative:
+            '百济神州 2015-2024 累计研发投入 $10B+，2025 首次盈利——典型"高 R&D × 延迟盈利"biotech 资本配置模型。研发 / 营收 42% 是行业最高之一，短期拖累 ROIIC 但构建长期管线深度。2025 启动小规模回购是"从烧钱到回报"的信号。',
+        scores: [
+            { dimension: 'ROIIC', label: '增量资本回报率', score: 2, detail: '2015-2024 研发投入累计 $10B 仅产出 Brukinsa + Tislelizumab 两个商业化分子 · ROIIC 估算 5-8% · 低于成熟 biotech', evidence: '历年研发投入 + 产品销售' },
+            { dimension: 'Buyback', label: '回购节奏', score: 2, detail: '2025 首次启动小规模回购；处于早期阶段', evidence: '2025 财报' },
+            { dimension: 'Dividend', label: '股息政策', score: 1, detail: '无股息 · biotech 合理（仍需保留现金做研发）', evidence: '公司指引' },
+            { dimension: 'M&A', label: '并购命中率', score: 3, detail: 'Amgen 2019 战略合作（分销产品）执行良好；无大规模并购', evidence: 'Amgen 合作历史' },
+        ],
+        overallGrade: 'C',
+        historicalROIIC: '~5-10% (高研发支出拖累)',
+    },
+
+    gapAnalysis: {
+        narrative:
+            '百济 2026 核心 gap 是"Brukinsa 峰值销售"分歧。卖方共识假设 Brukinsa +35% 增速可持续到 $6.5B，但本分析考虑 Lilly Pirtobrutinib 竞争加剧，2026 增速降至 +25-30%。另一 gap 是 BIOSECURE Act 立法进展。',
+        rows: [
+            { metric: '2026 Brukinsa 销售', guidance: '未直接指引', consensus: '$5.3-5.8B (+35%)', selfAssumption: '$5.0B (+28%)', gap: '-8% vs 共识', risk: 'high', note: 'Lilly 竞争' },
+            { metric: '2026 总营收', guidance: '未指引', consensus: '$7.2B', selfAssumption: '$6.8B', gap: '-6%', risk: 'medium' },
+            { metric: '2026 GAAP 净利率', guidance: '持续提升', consensus: '12%', selfAssumption: '10-12%', gap: '基本一致', risk: 'low' },
+            { metric: 'BGB-16673 三期读出', guidance: '2027-2028', consensus: '50% 成功概率', selfAssumption: '45%', gap: '保守 5pp', risk: 'high', note: '二元事件' },
+            { metric: 'BIOSECURE Act 影响', guidance: '"有限影响"', consensus: '20% 概率通过严厉条款', selfAssumption: '15%', gap: '保守 5pp', risk: 'medium' },
+        ],
+        takeaway:
+            '**最关键 Gap：Brukinsa 峰值销售 $6B 共识 vs $5B 本分析**。$1B 差异对应 20% 市值（$5B × 8x P/E × 0.5 净利率）。关注 Lilly Pirtobrutinib 2026-2027 市占数据是先行指标——若 Lilly 抢到 >15% 市占，共识会下修。',
+    },
+
+    benchmarkComparison: {
+        narrative:
+            '百济 10Y 期望 CAGR 12% vs 被动 60/40 组合 7.8%——超额 4.2pp，**边缘 justify 3-5% 仓位**。但百济的独特性在于 "BGB-16673 三期二元事件" 提供 +40% 上行期权——这个期权不是 60/40 能获取的，值得支付 marginal 超额。',
+        alternatives: [
+            { name: 'SPY (S&P 500)', ticker: 'SPY', expectedReturn5Y: 9, expectedReturn10Y: 10, note: '美国宽基' },
+            { name: 'XBI (Biotech ETF)', ticker: 'XBI', expectedReturn5Y: 8, expectedReturn10Y: 10, note: 'Biotech 被动组合' },
+            { name: '60/40', expectedReturn5Y: 7, expectedReturn10Y: 8, note: '经典稳健' },
+            { name: '10Y 国债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险' },
+            { name: 'IBB (Biotech 大盘 ETF)', ticker: 'IBB', expectedReturn5Y: 7, expectedReturn10Y: 9, note: '更成熟 biotech' },
+            { name: 'Regeneron (REGN)', ticker: 'REGN', expectedReturn5Y: 9, expectedReturn10Y: 11, note: '已覆盖公司级对照' },
+        ],
+        selfReturn5Y: 9.3,
+        selfReturn10Y: 12,
+        excessReturn5Y: 2.3,
+        excessReturn10Y: 4.2,
+        justifiesPosition: 'marginal',
+        takeaway:
+            '**超额 4.2pp 处于"边缘 justify"** · 10Y 略优于 XBI / IBB · 与 Regeneron 接近。独特价值：①BTK CDAC 期权（BGB-16673 胜出可带 40% 上行）；②中国创新药范本（机构稀缺性溢价）。建议 3-4% 起步，BGB-16673 关键读出前后再决定是否加至 5%。',
+    },
+
+    trackRecord: {
+        narrative:
+            '本分析锚定 2026-04-20。以下 6 条可验证命题，特别关注 Brukinsa 季度市占 + BIOSECURE 立法进程。',
+        assumptions: [
+            { assumption: '2026 Brukinsa 全球销售 ≥$5B', setAt: '2026-04-20', targetDate: '2027-03-31', targetValue: '≥$5B', verdict: 'pending', note: '核心变量' },
+            { assumption: 'Brukinsa 美国 BTK 市占 2026 末 ≥50%', setAt: '2026-04-20', targetDate: '2027-02-28', targetValue: '≥50%', verdict: 'pending' },
+            { assumption: 'BGB-16673 三期入组 2026 完成', setAt: '2026-04-20', targetDate: '2026-12-31', targetValue: 'fully enrolled', verdict: 'pending' },
+            { assumption: 'Sonrotoclax 2027 FDA 加速批准', setAt: '2026-04-20', targetDate: '2027-12-31', targetValue: 'approved', verdict: 'pending' },
+            { assumption: 'BIOSECURE Act 2026 未通过严厉条款', setAt: '2026-04-20', targetDate: '2026-12-31', targetValue: 'no harsh version', verdict: 'pending' },
+            { assumption: '2026 GAAP 净利 ≥$600M (持续盈利)', setAt: '2026-04-20', targetDate: '2027-03-31', targetValue: '≥$600M', verdict: 'pending' },
+        ],
+        hitRate: 'N/A (全部 pending)',
+    },
+
     correlation: {
         narrative:
             '百济神州是**中国创新药 + 全球 biotech + 港股通综合敞口**：涨跌 40% 由 biotech 板块情绪驱动、30% 由中美关系决定、30% 由公司自身管线读出驱动。如果组合中已持有 Regeneron / Vertex / Gilead · 港股科技股 · A 股医药 ETF，加百济的**边际多元化中等**。真正的 hedge 是**反周期 + 非 biotech 资产**。',

@@ -1116,6 +1116,66 @@ export const nebius: CompanyDetail = {
             '任一步骤在时间表前 1 个季度提前发生 → **减仓 50%**。连续 2 条发生 → **清仓观望**。',
     },
 
+    capitalAllocation: {
+        narrative:
+            'Nebius 是"超资本强度"生意，**资本配置能力直接决定 10Y 终局**。Volozh 在 Yandex 时代资本配置历史是正向的（现金流稳健、股东回报清晰）。但 Nebius 刚从重组起步，2024-2026 属于"极端再投资期"，没有分红、没有回购——这是阶段性特征而非管理层偏好。关键判断：2027-2029 FCF 转正后，Volozh 会选择继续扩张、回购还是分红？Yandex 先例倾向"边扩张边回购"。',
+        scores: [
+            { dimension: 'ROIIC', label: '增量资本回报率', score: 3, detail: '2026 CapEx/Rev ~5-6x 说明 ROIIC 不可能很高（<10%）；但客户预付款覆盖 60% 降低真实增量资本成本', evidence: '2026 指引 CapEx $16-20B · 营收 $3-3.4B' },
+            { dimension: 'Buyback', label: '回购节奏', score: 2, detail: '2024-2026 无回购；处于融资扩张阶段。可转债发行 $4.34B 反而是稀释', evidence: '公司 2026-03 可转债条款' },
+            { dimension: 'Dividend', label: '股息政策', score: 1, detail: '无股息，不太可能 2030 前启动', evidence: '公司指引' },
+            { dimension: 'M&A', label: '并购命中率', score: 4, detail: '历史上 Avride / Toloka / TripleTen 孵化成功 · 子公司期权价值 ~$5B；Yandex 时代并购记录良好', evidence: 'Avride Uber 领投 $15B 估值；Bezos 投 Toloka' },
+        ],
+        overallGrade: 'C',
+        historicalROIIC: '~5-8% (2024-2026 估算 · 扩张期偏低)',
+    },
+
+    gapAnalysis: {
+        narrative:
+            '管理层对 2026 指引相对激进（ARR $7-9B · EBITDA margin 40%），但卖方共识显著更低。真正的风险是"管理层承诺 vs 卖方共识"gap 太大——任一季度低于管理层指引下限，就会触发股价 -15-20%。',
+        rows: [
+            { metric: '2026 ARR Exit', guidance: '$7-9B', consensus: '$6.5-7.5B', selfAssumption: '$6.8B', gap: '+15% (管理层 vs 共识)', risk: 'high', note: '管理层更乐观' },
+            { metric: '2026 Adj EBITDA margin', guidance: '40%', consensus: '32-35%', selfAssumption: '35%', gap: '+5-8pp (高)', risk: 'high', note: '可能是最大爆雷点' },
+            { metric: '2026 CapEx', guidance: '$16-20B', consensus: '$15-18B', selfAssumption: '$17B', gap: '基本一致', risk: 'low' },
+            { metric: '2027 Meta 合同收入确认', guidance: '起步', consensus: '$2-3B', selfAssumption: '$1.5B (保守)', gap: '-1B 保守', risk: 'medium', note: '我比共识保守' },
+            { metric: '2030 营收', guidance: '未指引', consensus: '$25-35B', selfAssumption: '$30B', gap: '中值', risk: 'medium' },
+        ],
+        takeaway:
+            '**最关键 Gap：2026 EBITDA margin 40% vs 卖方 32-35%**。这 5-8pp 的差距决定 Nebius 是"40% margin SaaS-like"还是"AI 时代的 OCI（25% margin）"。Q2-Q3 2026 真实交付数据会揭晓答案，做好 ±20% 股价波动准备。',
+    },
+
+    benchmarkComparison: {
+        narrative:
+            '任何单股决策都必须与"被动持有指数 + 国债"对照。若单股 10Y 超额回报 <5%，直接买 ETF 更省心。Nebius 10Y 期望 CAGR 24% vs 被动 60/40 组合 7.8%——超额 16pp，**显著 justify 3-5% 仓位**。但这个超额高度依赖"中性情景兑现"（55% 概率），情景概率错 10% 就会让超额 CAGR 从 16pp 跌到 10pp。',
+        alternatives: [
+            { name: 'SPY (S&P 500)', ticker: 'SPY', expectedReturn5Y: 9, expectedReturn10Y: 10, note: '美国宽基 · 历史长期回报' },
+            { name: 'QQQ (纳斯达克 100)', ticker: 'QQQ', expectedReturn5Y: 10, expectedReturn10Y: 12, note: '科技权重 · 高波动' },
+            { name: '60/40 (SPY + TLT)', expectedReturn5Y: 7, expectedReturn10Y: 8, note: '经典稳健组合' },
+            { name: '10Y 美债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险利率基准' },
+            { name: '纯 AI 组合 (NVDA+MSFT+GOOG)', expectedReturn5Y: 14, expectedReturn10Y: 15, note: 'AI 行业暴露对照' },
+        ],
+        selfReturn5Y: 31,
+        selfReturn10Y: 24,
+        excessReturn5Y: 23,
+        excessReturn10Y: 16,
+        justifiesPosition: 'yes',
+        takeaway:
+            '**超额 16pp CAGR 足以 justify 3-5% 单股仓位**，但如果你已持有 NVDA+MSFT+GOOG 组合（CAGR ~15%），Nebius 的边际超额只有 9pp——仍然有吸引力，但要控制在 3% 以内避免 AI 敞口过度集中。',
+    },
+
+    trackRecord: {
+        narrative:
+            '本分析锚定 2026-04-17，以下 6 条假设是未来 12-24 个月的可验证命题。每季度回看，连续 2 条 miss → 重新评估整个框架。',
+        assumptions: [
+            { assumption: '2026 Q2 Adj EBITDA margin ≥ 30%', setAt: '2026-04-17', targetDate: '2026-08-31', targetValue: '≥ 30%', verdict: 'pending', note: '指引 40% 的第一次真实检验' },
+            { assumption: '2026 末 ARR ≥ $7B', setAt: '2026-04-17', targetDate: '2027-02-28', targetValue: '≥ $7B', verdict: 'pending', note: '指引下限' },
+            { assumption: 'Meta 合同 2027 Q1 开始收入确认', setAt: '2026-04-17', targetDate: '2027-05-15', targetValue: '≥ $0.5B Q1 贡献', verdict: 'pending', note: '合同兑现关键节点' },
+            { assumption: 'Volozh 2026 年底前不离任 CEO', setAt: '2026-04-17', targetDate: '2026-12-31', targetValue: '仍任 CEO', verdict: 'pending', note: '创始人风险' },
+            { assumption: '2026 年末连接电力 ≥ 800MW', setAt: '2026-04-17', targetDate: '2027-02-28', targetValue: '≥ 800MW', verdict: 'pending', note: '产能兑现' },
+            { assumption: '2027 H1 出现至少 1 个新 $1B+ 客户', setAt: '2026-04-17', targetDate: '2027-06-30', targetValue: '1 个新单', verdict: 'pending', note: '客户多元化' },
+        ],
+        hitRate: 'N/A (全部 pending · 首次建立 track record)',
+    },
+
     correlation: {
         narrative:
             'Nebius 不是独立资产，它的涨跌 70-80% 由 AI 基建情绪驱动。如果你已持有英伟达 / 微软 / CoreWeave，加 Nebius 的**边际多元化几乎为零**。真正的 hedge 应该是**反相关或低相关**的资产。',

@@ -2,7 +2,15 @@
 import { computed, watchEffect } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { getCompany } from '@/data/companies'
-import type { GapStatus, RiskLevel, CatalystImpact, ThreatLevel, CompetitorType } from '@/types/company'
+import type {
+    GapStatus,
+    RiskLevel,
+    CatalystImpact,
+    ThreatLevel,
+    CompetitorType,
+    GapRisk,
+    AssumptionVerdict,
+} from '@/types/company'
 import PriceCard from '@/components/PriceCard.vue'
 import ScenarioRow from '@/components/ScenarioRow.vue'
 import ChartView from '@/components/ChartView.vue'
@@ -65,6 +73,39 @@ const impactLabel: Record<CatalystImpact, string> = {
     positive: '↑ 正面',
     negative: '↓ 负面',
     mixed: '↔ 中性',
+}
+
+const gapRiskClass: Record<GapRisk, string> = {
+    high: 'red',
+    medium: 'yellow',
+    low: 'green',
+}
+
+const gapRiskLabel: Record<GapRisk, string> = {
+    high: '高',
+    medium: '中',
+    low: '低',
+}
+
+const verdictCircleClass: Record<AssumptionVerdict, string> = {
+    hit: 'green',
+    miss: 'red',
+    partial: 'yellow',
+    pending: 'muted',
+}
+
+const verdictCircleLabel: Record<AssumptionVerdict, string> = {
+    hit: '✓ 命中',
+    miss: '✗ 未中',
+    partial: '≈ 部分',
+    pending: '○ 未到期',
+}
+
+const gradeClass: Record<'A' | 'B' | 'C' | 'D', string> = {
+    A: 'green',
+    B: 'cyan',
+    C: 'yellow',
+    D: 'red',
 }
 
 const threatClass: Record<ThreatLevel, string> = {
@@ -940,6 +981,46 @@ const analystConfig = computed<ChartConfiguration>(() => {
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <!-- ============= A3. 管理层资本配置评分 ============= -->
+        <section class="section" id="a3">
+            <div class="section-head">
+                <div class="title-group">
+                    <div class="tag">// A3 · CAPITAL ALLOCATION</div>
+                    <h2>管理层资本配置评分</h2>
+                </div>
+                <p>好管理层 ≠ 好资本配置。用 ROIIC / 回购 / 股息 / M&A 四项打分，看他们是怎么花钱的。</p>
+            </div>
+            <div class="card" style="margin-bottom: 20px">
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.capitalAllocation.narrative)"></p>
+            </div>
+            <div class="capital-grid">
+                <div v-for="s in data.capitalAllocation.scores" :key="s.dimension" class="capital-card">
+                    <div class="capital-head">
+                        <div>
+                            <div class="capital-dim">{{ s.dimension }}</div>
+                            <div class="capital-label">{{ s.label }}</div>
+                        </div>
+                        <div class="capital-score">
+                            <span v-for="n in 5" :key="n" :class="n <= s.score ? 'on' : ''">●</span>
+                        </div>
+                    </div>
+                    <div class="capital-detail">{{ s.detail }}</div>
+                    <div v-if="s.evidence" class="capital-evidence">
+                        <strong>证据：</strong>{{ s.evidence }}
+                    </div>
+                </div>
+            </div>
+            <div class="grade-banner">
+                <div>
+                    <div class="grade-label">综合资本配置等级</div>
+                    <div class="grade-roiic">历史 ROIIC：{{ data.capitalAllocation.historicalROIIC }}</div>
+                </div>
+                <div class="grade-value" :class="gradeClass[data.capitalAllocation.overallGrade]">
+                    {{ data.capitalAllocation.overallGrade }}
+                </div>
             </div>
         </section>
 
@@ -1991,6 +2072,117 @@ const analystConfig = computed<ChartConfiguration>(() => {
             </div>
         </section>
 
+        <!-- ============= G6. Gap 分析 ============= -->
+        <section class="section" id="g6">
+            <div class="section-head">
+                <div class="title-group">
+                    <div class="tag">// G6 · CONSENSUS vs GUIDANCE GAP</div>
+                    <h2>共识 vs 指引 Gap</h2>
+                </div>
+                <p>业绩爆雷往往发生在"管理层说 +20% / 市场定价 +40%"的 gap。这里是先行指标清单。</p>
+            </div>
+            <div class="card" style="margin-bottom: 20px">
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.gapAnalysis.narrative)"></p>
+            </div>
+            <div class="card">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>指标</th>
+                            <th style="text-align: left">管理层指引</th>
+                            <th style="text-align: left">卖方共识</th>
+                            <th style="text-align: left">本分析假设</th>
+                            <th style="text-align: left">Gap</th>
+                            <th>风险</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="r in data.gapAnalysis.rows" :key="r.metric">
+                            <td><strong>{{ r.metric }}</strong></td>
+                            <td style="text-align: left; color: var(--text-secondary)">{{ r.guidance }}</td>
+                            <td style="text-align: left; color: var(--text-secondary)">{{ r.consensus }}</td>
+                            <td style="text-align: left; color: var(--accent-primary); font-weight: 600">{{ r.selfAssumption }}</td>
+                            <td style="text-align: left; font-size: 12.5px">{{ r.gap }}</td>
+                            <td>
+                                <span class="badge" :class="gapRiskClass[r.risk]">{{ gapRiskLabel[r.risk] }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="hint-box" style="margin-top: 16px; border-left-color: var(--accent-red)" v-html="mdBold(data.gapAnalysis.takeaway, 'var(--accent-red)')"></div>
+            </div>
+        </section>
+
+        <!-- ============= G7. 对照组（机会成本） ============= -->
+        <section class="section" id="g7">
+            <div class="section-head">
+                <div class="title-group">
+                    <div class="tag">// G7 · BENCHMARK vs PASSIVE</div>
+                    <h2>对照组策略 · 机会成本</h2>
+                </div>
+                <p>相比"SPY + 10Y 国债 60/40"被动组合，这家公司的超额 CAGR 是否 justify 3-5% 单股仓位？</p>
+            </div>
+            <div class="card" style="margin-bottom: 20px">
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7" v-html="mdBold(data.benchmarkComparison.narrative)"></p>
+            </div>
+
+            <div class="card" style="margin-bottom: 20px">
+                <h3>本公司 vs 被动组合</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>资产 / 组合</th>
+                            <th style="text-align: left">Ticker</th>
+                            <th style="text-align: right">5Y 期望 CAGR</th>
+                            <th style="text-align: right">10Y 期望 CAGR</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="self-row">
+                            <td><strong>{{ data.name }}（本分析）</strong></td>
+                            <td style="text-align: left">{{ data.ticker }}</td>
+                            <td style="text-align: right; font-weight: 600; color: var(--accent-primary)">{{ data.benchmarkComparison.selfReturn5Y }}%</td>
+                            <td style="text-align: right; font-weight: 700; color: var(--accent-primary)">{{ data.benchmarkComparison.selfReturn10Y }}%</td>
+                            <td>—</td>
+                        </tr>
+                        <tr v-for="a in data.benchmarkComparison.alternatives" :key="a.name">
+                            <td>{{ a.name }}</td>
+                            <td style="text-align: left; color: var(--text-muted); font-family: 'JetBrains Mono Variable', monospace; font-size: 12px">{{ a.ticker ?? '—' }}</td>
+                            <td style="text-align: right">{{ a.expectedReturn5Y }}%</td>
+                            <td style="text-align: right">{{ a.expectedReturn10Y }}%</td>
+                            <td style="font-size: 12.5px">{{ a.note }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-2">
+                <div class="benchmark-excess" :class="data.benchmarkComparison.justifiesPosition">
+                    <div class="bm-label">5Y 超额 CAGR (vs 60/40)</div>
+                    <div class="bm-value">
+                        {{ data.benchmarkComparison.excessReturn5Y > 0 ? '+' : '' }}{{ data.benchmarkComparison.excessReturn5Y }}pp
+                    </div>
+                </div>
+                <div class="benchmark-excess" :class="data.benchmarkComparison.justifiesPosition">
+                    <div class="bm-label">10Y 超额 CAGR (vs 60/40)</div>
+                    <div class="bm-value">
+                        {{ data.benchmarkComparison.excessReturn10Y > 0 ? '+' : '' }}{{ data.benchmarkComparison.excessReturn10Y }}pp
+                    </div>
+                </div>
+            </div>
+
+            <div class="verdict-banner" :class="data.benchmarkComparison.justifiesPosition">
+                <div class="verdict-tag">Position Verdict</div>
+                <div class="verdict-main">
+                    <span v-if="data.benchmarkComparison.justifiesPosition === 'yes'">✓ 值得单选 · justify 3-5% 仓位</span>
+                    <span v-else-if="data.benchmarkComparison.justifiesPosition === 'marginal'">≈ 边缘 · 仓位 ≤ 3% 起步</span>
+                    <span v-else>✗ 不值得单选 · 直接买 ETF 更省心</span>
+                </div>
+            </div>
+            <div class="hint-box" style="margin-top: 16px; border-left-color: var(--accent-green)" v-html="mdBold(data.benchmarkComparison.takeaway, 'var(--accent-green)')"></div>
+        </section>
+
         <!-- ============= 子公司 ============= -->
         <section class="section" id="subs">
             <div class="section-head">
@@ -2151,6 +2343,58 @@ const analystConfig = computed<ChartConfiguration>(() => {
                     <strong style="color: var(--accent-green); font-family: 'Space Grotesk Variable', sans-serif">建议对冲：</strong>
                     <span v-html="mdBold(data.correlation.suggestedHedge, 'var(--accent-green)')"></span>
                 </div>
+            </div>
+        </section>
+
+        <!-- ============= H3. Track Record 机制 ============= -->
+        <section class="section" id="h3">
+            <div class="section-head">
+                <div class="title-group">
+                    <div class="tag">// H3 · TRACK RECORD</div>
+                    <h2>可验证假设 · Track Record</h2>
+                </div>
+                <p>不留 track record 的预测就是"公关话术"。以下是可在 3/6/12 月后回看的锁定命题。</p>
+            </div>
+            <div class="card" style="margin-bottom: 20px">
+                <p style="color: var(--text-primary); font-size: 15px; line-height: 1.7">{{ data.trackRecord.narrative }}</p>
+                <div v-if="data.trackRecord.hitRate" class="hint-box" style="margin-top: 12px">
+                    <strong>当前命中率：</strong>{{ data.trackRecord.hitRate }}
+                </div>
+            </div>
+            <div class="card">
+                <table class="table track-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left">可验证假设</th>
+                            <th>设定日期</th>
+                            <th>目标日期</th>
+                            <th style="text-align: left">目标值</th>
+                            <th style="text-align: left">实际值</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(a, i) in data.trackRecord.assumptions" :key="i">
+                            <td style="text-align: left">
+                                <strong>{{ a.assumption }}</strong>
+                                <div v-if="a.note" style="font-size: 11.5px; color: var(--text-muted); margin-top: 3px">{{ a.note }}</div>
+                            </td>
+                            <td>
+                                <span class="mono" style="font-size: 11.5px; color: var(--text-muted)">{{ a.setAt }}</span>
+                            </td>
+                            <td>
+                                <span class="mono" style="font-size: 11.5px; color: var(--text-muted)">{{ a.targetDate }}</span>
+                            </td>
+                            <td style="text-align: left; font-weight: 600">{{ a.targetValue }}</td>
+                            <td style="text-align: left; color: var(--text-secondary)">{{ a.actualValue ?? '—' }}</td>
+                            <td>
+                                <span class="verdict-circle" :class="verdictCircleClass[a.verdict]">
+                                    {{ verdictCircleLabel[a.verdict] }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -2539,5 +2783,254 @@ const analystConfig = computed<ChartConfiguration>(() => {
     font-size: 13px;
     color: var(--text-secondary);
     line-height: 1.6;
+}
+
+/* ========= A3 · Capital Allocation ========= */
+.capital-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.capital-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: border-color 0.2s;
+}
+
+.capital-card:hover {
+    border-color: var(--border-strong);
+}
+
+.capital-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.capital-dim {
+    font-family: 'Space Grotesk Variable', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent-primary);
+    letter-spacing: 0.04em;
+}
+
+.capital-label {
+    font-size: 13.5px;
+    color: var(--text-ink);
+    margin-top: 2px;
+}
+
+.capital-score {
+    display: flex;
+    gap: 3px;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--border-strong);
+}
+
+.capital-score .on {
+    color: var(--accent-primary);
+}
+
+.capital-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.capital-evidence {
+    margin-top: 10px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+}
+
+.capital-evidence strong {
+    color: var(--text-secondary);
+}
+
+.grade-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background: var(--gradient-primary);
+    border-radius: 14px;
+    color: white;
+}
+
+.grade-label {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 4px;
+}
+
+.grade-roiic {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.grade-value {
+    font-family: 'Space Grotesk Variable', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+    color: white;
+    padding: 6px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.grade-value.red {
+    background: rgba(220, 38, 38, 0.35);
+}
+
+.grade-value.yellow {
+    background: rgba(234, 179, 8, 0.3);
+}
+
+/* ========= G7 · Benchmark Comparison ========= */
+.self-row {
+    background: rgba(67, 56, 202, 0.05);
+}
+
+.self-row td {
+    border-top: 2px solid var(--accent-primary);
+}
+
+.benchmark-excess {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+}
+
+.benchmark-excess.yes {
+    border-color: rgba(5, 150, 105, 0.4);
+    background: rgba(5, 150, 105, 0.05);
+}
+
+.benchmark-excess.marginal {
+    border-color: rgba(234, 179, 8, 0.4);
+    background: rgba(234, 179, 8, 0.05);
+}
+
+.benchmark-excess.no {
+    border-color: rgba(220, 38, 38, 0.4);
+    background: rgba(220, 38, 38, 0.05);
+}
+
+.bm-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.bm-value {
+    font-family: 'Space Grotesk Variable', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent-primary);
+}
+
+.benchmark-excess.yes .bm-value {
+    color: var(--accent-green);
+}
+
+.benchmark-excess.marginal .bm-value {
+    color: var(--accent-yellow);
+}
+
+.benchmark-excess.no .bm-value {
+    color: var(--accent-red);
+}
+
+.verdict-banner {
+    margin-top: 16px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.verdict-banner.yes {
+    border-color: var(--accent-green);
+    background: rgba(5, 150, 105, 0.05);
+}
+
+.verdict-banner.marginal {
+    border-color: var(--accent-yellow);
+    background: rgba(234, 179, 8, 0.05);
+}
+
+.verdict-banner.no {
+    border-color: var(--accent-red);
+    background: rgba(220, 38, 38, 0.05);
+}
+
+.verdict-tag {
+    font-family: 'JetBrains Mono Variable', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.verdict-main {
+    font-family: 'Space Grotesk Variable', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-ink);
+}
+
+/* ========= H3 · Track Record ========= */
+.track-table .mono {
+    font-family: 'JetBrains Mono Variable', monospace;
+}
+
+.verdict-circle {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.verdict-circle.green {
+    color: var(--accent-green);
+    background: rgba(5, 150, 105, 0.1);
+}
+
+.verdict-circle.red {
+    color: var(--accent-red);
+    background: rgba(220, 38, 38, 0.08);
+}
+
+.verdict-circle.yellow {
+    color: var(--accent-yellow);
+    background: rgba(234, 179, 8, 0.1);
+}
+
+.verdict-circle.muted {
+    color: var(--text-muted);
+    background: var(--bg-elevated);
 }
 </style>

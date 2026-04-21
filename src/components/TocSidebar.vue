@@ -17,6 +17,7 @@ const groups: TocGroup[] = [
         items: [
             { id: 'a1', label: '公司沿革 · 商业模式' },
             { id: 'a2', label: '团队 · 股权 · 关键人' },
+            { id: 'a3', label: '管理层资本配置评分' },
         ],
     },
     {
@@ -67,6 +68,8 @@ const groups: TocGroup[] = [
             { id: 'g3b', label: '历史估值分位' },
             { id: 'g4', label: 'Watchlist' },
             { id: 'g5', label: '敏感度 · Tornado' },
+            { id: 'g6', label: '共识 vs 指引 Gap' },
+            { id: 'g7', label: '对照组 · 机会成本' },
         ],
     },
     {
@@ -81,6 +84,7 @@ const groups: TocGroup[] = [
         items: [
             { id: 'h1', label: '投资建议 · 仓位推导' },
             { id: 'h2', label: '组合相关性 · 对冲' },
+            { id: 'h3', label: 'Track Record 机制' },
         ],
     },
 ]

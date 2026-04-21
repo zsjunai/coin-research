@@ -1164,6 +1164,67 @@ export const coinbase: CompanyDetail = {
             '任一步骤在时间表前 1 个季度提前发生 → **减仓 50%**。连续 2 条发生 → **清仓观望**。特别关注：Circle 续约 + BTC 走势两项"先行指标"。',
     },
 
+    capitalAllocation: {
+        narrative:
+            'Coinbase 的资本配置是已覆盖 6 家公司中**最强的**：2024-2025 连续盈利 + $11B 现金 + $2.9B Deribit 并购优秀执行 + 股票回购已启动 + 41% S&S 订阅化转型。管理层不是"追求规模"而是"追求护城河深化"的经典资本配置者。',
+        scores: [
+            { dimension: 'ROIIC', label: '增量资本回报率', score: 4, detail: '2024 净利率 39% · 2025 虽因 Deribit 一次性摊销下降到 22%，但核心业务 ROIIC 估算 25-30%', evidence: '2024-2025 财报' },
+            { dimension: 'Buyback', label: '回购节奏', score: 4, detail: '2025 启动 $1B 股票回购计划；机构类 fintech 中较积极', evidence: 'Q4 2025 财报' },
+            { dimension: 'Dividend', label: '股息政策', score: 1, detail: '无股息（合理 · 仍在增长期）', evidence: '公司指引' },
+            { dimension: 'M&A', label: '并购命中率', score: 5, detail: 'Deribit $2.9B 收购全球期权龙头 + 2025-10 单月 $266B 成交创纪录，是加密行业近年最漂亮的并购', evidence: 'Deribit 整合进度' },
+        ],
+        overallGrade: 'B',
+        historicalROIIC: '~20-25% (核心业务稳态估算)',
+    },
+
+    gapAnalysis: {
+        narrative:
+            'Coinbase 2026 的关键 gap 是"加密市场情景"的分歧。管理层给出的 Q1 S&S 指引相对保守，卖方共识偏乐观预期 BTC 牛市延续，本分析介于两者之间。真正的爆雷点是 Circle 续约条款。',
+        rows: [
+            { metric: 'Q1 2026 S&S 指引', guidance: '$550-630M', consensus: '$610M', selfAssumption: '$580M (保守)', gap: '-5% vs 共识', risk: 'medium' },
+            { metric: '2026 交易营收', guidance: '未指引', consensus: '$5.5B (假设 BTC 牛)', selfAssumption: '$4.5B (中性 BTC)', gap: '-18% 显著保守', risk: 'high', note: '最大分歧点' },
+            { metric: 'Circle 2026 续约 on-platform 分成', guidance: '未披露', consensus: '维持 100/0', selfAssumption: '改为 80/20 (让步)', gap: '-20% 保守', risk: 'high', note: '年内关键事件' },
+            { metric: '2026 S&S 占比', guidance: '未指引', consensus: '40-42%', selfAssumption: '42%', gap: '中值', risk: 'low' },
+            { metric: 'Base 2026 发币', guidance: '"探索中"', consensus: '50% 概率发币', selfAssumption: '~45%', gap: '基本一致', risk: 'low' },
+        ],
+        takeaway:
+            '**最关键 Gap：2026 交易营收 $5.5B 共识 vs $4.5B 本分析**。$1B 差异 = ±15% 股价。卖方过度定价 BTC 牛市延续，若 2026 H2 加密进入盘整，共识下修会触发 20%+ 股价回调。这是做空 Coinbase 的最佳入场点。',
+    },
+
+    benchmarkComparison: {
+        narrative:
+            'Coinbase 10Y 期望 CAGR 16.9% vs 被动 60/40 组合 7.8%——超额 9.1pp，**显著 justify 4-7% 仓位**。即使考虑加密 β 放大波动，Sharpe 调整后仍是已覆盖 6 家公司中超额/风险比最好的之一。',
+        alternatives: [
+            { name: 'SPY (S&P 500)', ticker: 'SPY', expectedReturn5Y: 9, expectedReturn10Y: 10, note: '美国宽基' },
+            { name: 'QQQ (纳斯达克 100)', ticker: 'QQQ', expectedReturn5Y: 10, expectedReturn10Y: 12, note: '科技权重' },
+            { name: '60/40', expectedReturn5Y: 7, expectedReturn10Y: 8, note: '经典稳健' },
+            { name: '10Y 国债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险' },
+            { name: 'BTC 直接持有', expectedReturn5Y: 15, expectedReturn10Y: 12, note: '加密 β 直接暴露' },
+            { name: 'XLF (金融 ETF)', ticker: 'XLF', expectedReturn5Y: 8, expectedReturn10Y: 9, note: 'Fintech 对照' },
+        ],
+        selfReturn5Y: 12.9,
+        selfReturn10Y: 16.9,
+        excessReturn5Y: 5.9,
+        excessReturn10Y: 9.1,
+        justifiesPosition: 'yes',
+        takeaway:
+            '**超额 9pp 显著 justify 4-7% 仓位**。相对直接持 BTC 的优势：Coinbase 在加密熊市时仍有 S&S 订阅 + USDC 分成垫底（BTC 熊市时 -50%，Coinbase 预计仅 -30%）。相对 XLF 的优势：加密周期上行时弹性 3-5x。',
+    },
+
+    trackRecord: {
+        narrative:
+            '本分析锚定 2026-04-17。以下 6 条假设是未来 12-18 个月可验证命题。Circle 续约 + BTC 趋势两项是核心先行指标。',
+        assumptions: [
+            { assumption: 'Circle 2026 续约 Coinbase 分成 ≥55% (on-platform ≥85/15)', setAt: '2026-04-17', targetDate: '2026-10-31', targetValue: 'Coinbase ≥55%', verdict: 'pending', note: '核心假设' },
+            { assumption: 'Base L2 2026 年内发币', setAt: '2026-04-17', targetDate: '2026-12-31', targetValue: 'token live', verdict: 'pending' },
+            { assumption: 'Deribit 2026 Q3 整合完成', setAt: '2026-04-17', targetDate: '2026-10-31', targetValue: '单平台统一保证金', verdict: 'pending' },
+            { assumption: 'BTC 2026 Q4 不跌破 $60K', setAt: '2026-04-17', targetDate: '2026-12-31', targetValue: 'BTC ≥ $60K', verdict: 'pending' },
+            { assumption: '2026 S&S 占比 ≥42%', setAt: '2026-04-17', targetDate: '2027-02-28', targetValue: '≥42%', verdict: 'pending' },
+            { assumption: 'OCC 国家信托牌照 2026 H2 完全生效', setAt: '2026-04-17', targetDate: '2026-12-31', targetValue: 'full license', verdict: 'pending' },
+        ],
+        hitRate: 'N/A (全部 pending)',
+    },
+
     correlation: {
         narrative:
             'Coinbase 是**加密行业最大的"纯 β 敞口"**：涨跌 70-80% 由 BTC + 加密情绪驱动。如果组合中已持有 BTC / ETH / Circle / Robinhood，加 Coinbase 的**边际多元化极低**。真正的 hedge 是**反周期 + 非加密资产**。',
