@@ -70,6 +70,13 @@ const doItems = [
     { title: '情景概率显式化', body: '不说"可能"，只说"概率约 X%"' },
     { title: '区分事实与推断', body: '哪些是公司披露，哪些是本分析的主观判断' },
     { title: '双时间轴并列', body: '5Y 与 10Y 两个数字一起给，回报节奏 + 终局分开看' },
+    { title: '量化下行风险', body: '情景标准差 + P(亏 30%+) + 最大回撤估计，期望值不够' },
+    { title: '敏感度排序', body: '找出最敏感 3 个变量，每季度跟踪它们而不是股价' },
+    { title: '仓位用公式推', body: 'Kelly / Vol-targeting 任一，输入参数显式列出' },
+    { title: '评估资本配置能力', body: '不止看团队履历，还要看 ROIIC / 回购 / 股息 / M&A 命中率' },
+    { title: '对比共识与指引', body: '管理层 +20% vs 市场 +40% 的 gap = 业绩爆雷先行指标' },
+    { title: '锁定可验证假设', body: '每份报告输出 4-6 条带目标日期的命题，建立 Track Record' },
+    { title: '对照被动组合定仓位', body: '超额 CAGR <5% 就直接买 ETF，不值得单选' },
 ]
 
 const dontItems = [
@@ -79,6 +86,38 @@ const dontItems = [
     { title: '使用 PR 话术', body: '"颠覆性"、"革命性"、"无可替代" 全部禁用' },
     { title: '给单一目标价', body: '必须给情景分布，不是点估计' },
     { title: '只看 10Y 终局', body: '10Y 翻 10 倍，但 5Y 只 1.5x 也是差投资' },
+    { title: '只报期望不报方差', body: '平均赢多少 ≠ 最坏输多少' },
+    { title: '忽略组合视角', body: '单股分析不够，要给相关性 + 对冲建议' },
+    { title: '只看履历不看资本配置', body: '好管理层 ≠ 好资本配置，两件事' },
+    { title: '默认"vs 现金"', body: '真正的机会成本是"vs 被动 ETF"，不是现金' },
+    { title: '不留可验证假设', body: '没有 Track Record 记录的预测，事后无法追责' },
+]
+
+const newModules = [
+    {
+        code: 'A3',
+        title: '管理层资本配置评分',
+        body: 'ROIIC / 回购 / 股息 / M&A 四维 × 1-5 分 + 综合 A-D 等级。好管理层 ≠ 好资本配置，分开评。',
+        cls: 'cyan',
+    },
+    {
+        code: 'G6',
+        title: '共识 vs 指引 Gap',
+        body: '管理层指引 / 卖方共识 / 本分析假设三列对比。gap >15% 时红标——业绩爆雷先行指标。',
+        cls: 'purple',
+    },
+    {
+        code: 'G7',
+        title: '对照组策略',
+        body: 'vs SPY / QQQ / 60-40 / 10Y 国债 对比超额 CAGR。超额 <5% 直接买 ETF，不值得单选。',
+        cls: 'green',
+    },
+    {
+        code: 'H3',
+        title: 'Track Record 机制',
+        body: '每份报告锁定 4-6 条带目标日期的命题。3/6/12 月后回看，建立自我校准数据。',
+        cls: 'yellow',
+    },
 ]
 
 const benchmarks = [
@@ -102,6 +141,8 @@ const benchmarks = [
             </h1>
             <p class="hero-subtitle">
                 一套可复用的选股框架。回答同一个核心问题 —— 这家公司 5 年和 10 年后分别值多少钱？有多大概率翻 10 倍？
+                <br />
+                <span style="font-size: 14px; color: var(--text-muted)">7 步流程 · 29+ 模块 · 13+11 硬规则 · 6 量化公式</span>
             </p>
         </section>
 
@@ -157,10 +198,29 @@ const benchmarks = [
         <section class="section">
             <div class="section-head">
                 <div class="title-group">
-                    <div class="tag">// PHILOSOPHY</div>
-                    <h2>几条硬规则</h2>
+                    <div class="tag">// v2 · DIAGNOSTIC MODULES</div>
+                    <h2>诊断工具集 · v2 升级</h2>
                 </div>
-                <p>做投研最常犯的错，这里直接用规则绕开。</p>
+                <p>除了 7 步流程，v2 新加 4 个诊断模块，专治"research theater"的四种典型盲点。</p>
+            </div>
+            <div class="grid-2" style="gap: 16px">
+                <div v-for="m in newModules" :key="m.code" class="card module-card" :class="'accent-' + m.cls">
+                    <div class="module-head">
+                        <div class="module-code" :class="m.cls">{{ m.code }}</div>
+                        <h3 style="margin: 0">{{ m.title }}</h3>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.7; margin-top: 10px">{{ m.body }}</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <div class="title-group">
+                    <div class="tag">// PHILOSOPHY</div>
+                    <h2>硬规则 · 13 必须 + 11 禁止</h2>
+                </div>
+                <p>做投研最常犯的错，这里直接用规则绕开。v2 新增 4+3 条。</p>
             </div>
             <div class="grid-2">
                 <div class="card accent-cyan">
@@ -216,7 +276,7 @@ const benchmarks = [
         </section>
 
         <div class="footer">
-            <div class="mono-line">METHODOLOGY v0.2 · 10-BAGGER HUNTING · LAST UPDATED 2026-04-17</div>
+            <div class="mono-line">METHODOLOGY v2.0 · 10-BAGGER HUNTING · LAST UPDATED 2026-04-21</div>
             <div style="margin-top: 8px">本方法论将随着覆盖公司增多持续迭代。</div>
         </div>
     </div>
@@ -230,4 +290,29 @@ const benchmarks = [
 .dim-grid strong.red { color: var(--accent-red); }
 :deep(strong.cyan) { color: var(--accent-primary); }
 :deep(strong.purple) { color: var(--accent-secondary); }
+
+/* ========= v2 新模块卡片 ========= */
+.module-card {
+    padding: 20px 22px;
+}
+
+.module-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.module-code {
+    font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+}
+
+.module-code.cyan { color: var(--accent-primary); background: rgba(67, 56, 202, 0.08); }
+.module-code.purple { color: var(--accent-secondary); background: rgba(124, 58, 237, 0.08); }
+.module-code.green { color: var(--accent-green); background: rgba(5, 150, 105, 0.08); }
+.module-code.yellow { color: var(--accent-yellow); background: rgba(234, 179, 8, 0.1); }
 </style>

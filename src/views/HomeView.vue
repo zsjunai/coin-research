@@ -135,11 +135,11 @@ const hasFilter = computed(
             <div class="hero-line">
                 <span><strong>{{ companies.length }}</strong> 家已覆盖</span>
                 <span class="sep">·</span>
-                <span><strong>25+</strong> 模块</span>
+                <span><strong>29+</strong> 模块</span>
                 <span class="sep">·</span>
                 <span><strong>5Y × 10Y</strong> 双时间轴</span>
                 <span class="sep">·</span>
-                <span>Kelly 仓位推导</span>
+                <span>Kelly · 对照组 · Track Record</span>
             </div>
         </section>
 
