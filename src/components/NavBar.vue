@@ -13,7 +13,7 @@ import LogoMark from './LogoMark.vue'
             <div class="nav-links">
                 <RouterLink to="/">首页</RouterLink>
                 <RouterLink to="/methodology">方法论</RouterLink>
-                <span class="nav-badge">v0.1 · alpha</span>
+                <span class="nav-badge">v0.6 · beta</span>
             </div>
         </div>
     </nav>
