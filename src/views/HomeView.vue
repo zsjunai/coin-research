@@ -25,6 +25,7 @@ const steps = [
     { n: '05', t: '双档时间推演', b: '5 年与 10 年两个视角下乐观/中性/悲观情景 + 主观概率' },
     { n: '06', t: '加权期望值', b: '概率 × 市值中值 = 期望终局 → 推出倍数与 CAGR' },
     { n: '07', t: '观察指标清单', b: '5 项季度级指标，动态判定公司走在哪条轨迹上' },
+    { n: '08', t: 'Track Record 锁定', b: '锁定 4-6 条可验证假设 · 3/6/12 月回看 · 建立命中率（v2 ✧）' },
 ]
 
 const roadmap = [
@@ -336,7 +337,7 @@ const hasFilter = computed(
                     <h2>分析方法</h2>
                 </div>
                 <p>
-                    7 步走完，从公开事实推导到 5Y / 10Y 加权期望值。
+                    8 步走完，从公开事实推导到 5Y / 10Y 加权期望值 · 再到可追责的 Track Record。
                     <RouterLink to="/methodology" class="methodology-link">完整方法论 →</RouterLink>
                 </p>
             </div>

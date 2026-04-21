@@ -61,6 +61,13 @@ const bigSteps = [
         body: '输出 5 项<strong class="cyan">季度级跟踪指标</strong>，每个指标给出三种信号值（10x 轨迹 / 基线 / 落后），用于动态判定公司走在哪条轨迹上，并据此调整仓位。',
         example: '典型指标：CapEx/Rev · 客户集中度 · Gross Margin · 开发者规模 · 商业模式层级',
     },
+    {
+        n: '08',
+        title: 'Track Record 锁定',
+        en: 'Forward Assumptions · v2 ✧',
+        body: '写完报告不是结束，而是 <strong class="cyan">校准循环的开始</strong>。每份报告锁定 <strong class="purple">4-6 条带目标日期的可验证命题</strong>，3 / 6 / 12 月后回看，建立分析师自我命中率。连续 3 份 <strong class="red">命中率 &lt; 40%</strong> → 系统性校准问题，暂停新报告。',
+        example: '例：Nebius 2026 Q2 EBITDA margin ≥30% · 设定日期 2026-04-17 · 目标日期 2026-08-31 · 当前 pending',
+    },
 ]
 
 const doItems = [
@@ -137,22 +144,22 @@ const benchmarks = [
             </div>
             <h1>
                 分析方法论<br />
-                <span class="gradient-text">7 步 · 5Y 与 10Y 双时间轴</span>
+                <span class="gradient-text">8 步 · 5Y 与 10Y 双时间轴</span>
             </h1>
             <p class="hero-subtitle">
                 一套可复用的选股框架。回答同一个核心问题 —— 这家公司 5 年和 10 年后分别值多少钱？有多大概率翻 10 倍？
                 <br />
-                <span style="font-size: 14px; color: var(--text-muted)">7 步流程 · 29+ 模块 · 13+11 硬规则 · 6 量化公式</span>
+                <span style="font-size: 14px; color: var(--text-muted)">8 步流程 · 29+ 模块 · 13+11 硬规则 · 6 量化公式</span>
             </p>
         </section>
 
         <section class="section" style="padding-top: 40px">
             <div class="section-head">
                 <div class="title-group">
-                    <div class="tag">// THE 7 STEPS</div>
+                    <div class="tag">// THE 8 STEPS</div>
                     <h2>分析流程</h2>
                 </div>
-                <p>每家公司都走完这 7 步，可对照、可复现、可迭代。</p>
+                <p>每家公司都走完这 8 步，可对照、可复现、可迭代。v2 新增 Step 08 · Track Record 锁定。</p>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 20px">
