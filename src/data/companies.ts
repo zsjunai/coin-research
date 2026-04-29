@@ -6,6 +6,7 @@ import { nebius } from './nebius'
 import { popmart } from './popmart'
 import { robinhood } from './robinhood'
 import { spacex } from './spacex'
+import { wanhua } from './wanhua'
 
 export const companyRegistry: Record<string, CompanyDetail> = {
     nebius,
@@ -15,6 +16,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     popmart,
     beigene,
     spacex,
+    wanhua,
 }
 
 export const companies: CompanySummary[] = [
@@ -150,6 +152,25 @@ export const companies: CompanySummary[] = [
         ],
         tags: ['太空', '卫星互联网', 'Pre-IPO'],
         date: '2026-04-21',
+    },
+    {
+        id: 'wanhua',
+        ticker: 'SH:600309',
+        name: '万华化学 Wanhua Chemical',
+        market: 'A',
+        currency: 'CNY',
+        desc: '全球 MDI 龙头 (产能 380→450 万吨/年 · 全球份额 33.8%)，2025 营收破 2,000 亿，Q1\'26 +25.5% / 归母 +20.6% 见周期拐点；海外占比 47.4% 突破地产 β · 福建二期 2026 Q2 投产。"中国版 BASF" vs 周期质量股的二元命题。',
+        price: '¥89.48',
+        marketCap: '~¥2,801 亿',
+        verdict: 'neutral',
+        verdictText: '持有 / 分批建仓',
+        metrics: [
+            { label: '5Y 期望', value: '1.32x' },
+            { label: '10Y 期望', value: '2.38x' },
+            { label: 'P(10x · 10Y)', value: '~3%' },
+        ],
+        tags: ['化工龙头', 'MDI 全球第一', '周期成长', 'A 股首例'],
+        date: '2026-04-29',
     },
 ]
 
