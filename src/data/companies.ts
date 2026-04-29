@@ -7,6 +7,7 @@ import { popmart } from './popmart'
 import { robinhood } from './robinhood'
 import { spacex } from './spacex'
 import { wanhua } from './wanhua'
+import { weixing } from './weixing'
 
 export const companyRegistry: Record<string, CompanyDetail> = {
     nebius,
@@ -17,6 +18,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     beigene,
     spacex,
     wanhua,
+    weixing,
 }
 
 export const companies: CompanySummary[] = [
@@ -170,6 +172,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~3%' },
         ],
         tags: ['化工龙头', 'MDI 全球第一', '周期成长', 'A 股首例'],
+        date: '2026-04-29',
+    },
+    {
+        id: 'weixing',
+        ticker: 'SZ:002648',
+        name: '卫星化学 Satellite Chemical',
+        market: 'A',
+        currency: 'CNY',
+        desc: '"美国乙烷 + 中国裂解"成本套利模型 + 全球 SAP 龙头 + α-烯烃园 2026 投产。Q1\'26 归母 +34.97% 反转 · 2024 ROE 21.87% 化工 A 股最高之一 · 资产负债率 51.74% 健康。POE 落后万华 18-24 月 + 美国乙烷国别风险是估值最大折价因子。',
+        price: '¥29.00',
+        marketCap: '~¥977 亿',
+        verdict: 'neutral',
+        verdictText: '持有 / 关注',
+        metrics: [
+            { label: '5Y 期望', value: '1.30x' },
+            { label: '10Y 期望', value: '2.15x' },
+            { label: 'P(10x · 10Y)', value: '~3%' },
+        ],
+        tags: ['化工龙头', '气头路线', 'SAP 全球前 5', 'POE 二期'],
         date: '2026-04-29',
     },
 ]
