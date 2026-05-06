@@ -6,6 +6,7 @@ import { nebius } from './nebius'
 import { popmart } from './popmart'
 import { robinhood } from './robinhood'
 import { spacex } from './spacex'
+import { strategy } from './strategy'
 import { wanhua } from './wanhua'
 import { weixing } from './weixing'
 
@@ -19,6 +20,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     spacex,
     wanhua,
     weixing,
+    strategy,
 }
 
 export const companies: CompanySummary[] = [
@@ -192,6 +194,25 @@ export const companies: CompanySummary[] = [
         ],
         tags: ['化工龙头', '气头路线', 'SAP 全球前 5', 'POE 二期'],
         date: '2026-04-29',
+    },
+    {
+        id: 'strategy',
+        ticker: 'NASDAQ:MSTR',
+        name: 'Strategy (MicroStrategy)',
+        market: 'US',
+        currency: 'USD',
+        desc: '全球最大上市公司 BTC 财库（~597K BTC · 占总供应 2.84%）。2025-02 由 MicroStrategy 改名 Strategy，BI 软件已退化为副业，主营是用普通股 ATM + 5 只优先股 + 多档可转债把资本市场工具变成"BTC 复利飞轮"。机会成本是 IBIT，不是现金——加权期望意义上跑输 "60% IBIT + 40% SPY" 被动组合 2.2pp。仅适合赌 mNAV 飞轮上行尾部 + 传统券商账户需 BTC 敞口的人。',
+        price: '~$320',
+        marketCap: '~$92B',
+        verdict: 'neutral',
+        verdictText: 'Speculative Hold / Sized Long',
+        metrics: [
+            { label: '5Y 期望', value: '2.02x' },
+            { label: '10Y 期望', value: '4.33x' },
+            { label: 'P(10x · 10Y)', value: '~15%' },
+        ],
+        tags: ['BTC 财库', '加密杠杆', 'mNAV 飞轮', 'Saylor'],
+        date: '2026-05-06',
     },
 ]
 
