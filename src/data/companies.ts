@@ -1,5 +1,6 @@
 import type { CompanyDetail, CompanySummary } from '@/types/company'
 import { beigene } from './beigene'
+import { bmnr } from './bmnr'
 import { circle } from './circle'
 import { coinbase } from './coinbase'
 import { nebius } from './nebius'
@@ -21,6 +22,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     wanhua,
     weixing,
     strategy,
+    bmnr,
 }
 
 export const companies: CompanySummary[] = [
@@ -212,6 +214,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~15%' },
         ],
         tags: ['BTC 财库', '加密杠杆', 'mNAV 飞轮', 'Saylor'],
+        date: '2026-05-06',
+    },
+    {
+        id: 'bmnr',
+        ticker: 'NYSE:BMNR',
+        name: 'Bitmine Immersion Technologies',
+        market: 'US',
+        currency: 'USD',
+        desc: '全球最大上市公司 ETH 财库（~1.83M ETH · 占总供应 ~1.5%）。2025-06 由原浸没式 BTC 矿企转型，董事长 Tom Lee（Fundstrat 创始人）启动 ETH 财库战略，9 个月内从 0 起步累计 1.83M ETH。结构性差异 vs MSTR：ETH 提供 ~$220M/年 staking 内生收益（BTC 没有），但代价是 9 个月稀释 23 倍 + PIPE 解锁砸盘风险（70% 概率事件）+ Tom Lee 不是 Saylor。当前 mNAV 1.33x 已从 5.5x 高点压缩，进入合理偏便宜区间但还未经历 mNAV<1 测试。',
+        price: '~$45',
+        marketCap: '~$8.5B',
+        verdict: 'neutral',
+        verdictText: 'Speculative Trade / 小仓位投机',
+        metrics: [
+            { label: '5Y 期望', value: '2.16x' },
+            { label: '10Y 期望', value: '5.07x' },
+            { label: 'P(10x · 10Y)', value: '~12%' },
+        ],
+        tags: ['ETH 财库', '加密杠杆', 'staking 内生', 'Tom Lee'],
         date: '2026-05-06',
     },
 ]
