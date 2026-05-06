@@ -3,6 +3,7 @@ import { beigene } from './beigene'
 import { bmnr } from './bmnr'
 import { circle } from './circle'
 import { coinbase } from './coinbase'
+import { longi } from './longi'
 import { nebius } from './nebius'
 import { popmart } from './popmart'
 import { robinhood } from './robinhood'
@@ -27,6 +28,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     bmnr,
     sbet,
     sungrow,
+    longi,
 }
 
 export const companies: CompanySummary[] = [
@@ -275,6 +277,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~10%' },
         ],
         tags: ['新能源', '光伏逆变器全球第一', '储能爆发', 'AI 数据中心', '曹仁贤'],
+        date: '2026-05-06',
+    },
+    {
+        id: 'longi',
+        ticker: 'SH:601012',
+        name: '隆基绿能 LONGi Green Energy',
+        market: 'A',
+        currency: 'CNY',
+        desc: '曾经的全球光伏王者（2021 巅峰市值 ¥4,500 亿）2024 年首次年度亏损 -¥86 亿，股价从 ¥75 跌至 ¥18 = -76%。**典型 deep value 困境反转标的**——PB 1.4x 处于上市以来 <5% 分位，现金 ¥460 亿可撑 3 年亏损，HPBC 2.0 量产是翻身关键。组件 + 硅片全球出货第一身位仍在，但 HPBC vs TOPCon 技术路线之争 + 行业产能严重过剩仍是最大变量。与阳光电源（同赛道 quality compounder）形成最完整对照——同样是 A 股光伏赛道、同样技术派创业家，但一个在储能爆发期、一个在组件最差期。',
+        price: '~¥18',
+        marketCap: '~¥1,360 亿',
+        verdict: 'neutral',
+        verdictText: '困境反转 / 小仓位逆向投机',
+        metrics: [
+            { label: '5Y 期望', value: '1.64x' },
+            { label: '10Y 期望', value: '3.31x' },
+            { label: 'P(10x · 10Y)', value: '~5%' },
+        ],
+        tags: ['光伏', '困境反转', 'HPBC 技术', '组件第一', '李振国'],
         date: '2026-05-06',
     },
 ]
