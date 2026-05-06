@@ -6,6 +6,7 @@ import { coinbase } from './coinbase'
 import { huayou } from './huayou'
 import { longi } from './longi'
 import { nebius } from './nebius'
+import { pltr } from './pltr'
 import { popmart } from './popmart'
 import { robinhood } from './robinhood'
 import { sbet } from './sbet'
@@ -31,6 +32,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     sungrow,
     longi,
     huayou,
+    pltr,
 }
 
 export const companies: CompanySummary[] = [
@@ -279,6 +281,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~10%' },
         ],
         tags: ['新能源', '光伏逆变器全球第一', '储能爆发', 'AI 数据中心', '曹仁贤'],
+        date: '2026-05-06',
+    },
+    {
+        id: 'pltr',
+        ticker: 'NASDAQ:PLTR',
+        name: 'Palantir Technologies',
+        market: 'US',
+        currency: 'USD',
+        desc: '全球唯一把军工/情报级数据平台（Gotham）扩展到商业 AIP 的 software 公司。FY 2025 营收 $4.475B (+56%)，FY 2026 指引 $7.66B (+71%)；Q1\'26 营收 +85% / 美国商业 +133%。$10B 美军 Enterprise + Maven $1.3B + NATO 政府绑定独家身位。**业务质量 A+ 但估值已透支**：PS 46x forward / PE 234x / 市值 $340B。**vs 加权期望被动组合 -2.0pp**——档案库当前覆盖中**唯一加权期望意义上跑输被动组合的标的**。Karp + Thiel 持续抛售 + SBC $1.57B 是真实警讯。仅适合 0.5-1.5% 仓位赌"AI OS 标准化"尾部叙事。',
+        price: '~$140',
+        marketCap: '~$340B',
+        verdict: 'neutral',
+        verdictText: '估值压制 / 极小仓位赌尾部',
+        metrics: [
+            { label: '5Y 期望', value: '0.99x' },
+            { label: '10Y 期望', value: '1.75x' },
+            { label: 'P(10x · 10Y)', value: '~3%' },
+        ],
+        tags: ['AI 平台', '政府软件', 'AIP 商业爆发', '估值透支', 'Karp/Thiel'],
         date: '2026-05-06',
     },
     {
