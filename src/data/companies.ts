@@ -9,6 +9,7 @@ import { robinhood } from './robinhood'
 import { sbet } from './sbet'
 import { spacex } from './spacex'
 import { strategy } from './strategy'
+import { sungrow } from './sungrow'
 import { wanhua } from './wanhua'
 import { weixing } from './weixing'
 
@@ -25,6 +26,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     strategy,
     bmnr,
     sbet,
+    sungrow,
 }
 
 export const companies: CompanySummary[] = [
@@ -254,6 +256,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~10%' },
         ],
         tags: ['ETH 财库', '加密原生', 'Lubin', 'ConsenSys'],
+        date: '2026-05-06',
+    },
+    {
+        id: 'sungrow',
+        ticker: 'SZ:300274',
+        name: '阳光电源 Sungrow Power',
+        market: 'A',
+        currency: 'CNY',
+        desc: '全球光伏逆变器市占第一（连续 9 年 · ~28% 份额）+ 全球储能出货前 3 / 美国市场第 1 + AI 数据中心电力新基建受益方。1997 年由曹仁贤（中科大教授）创立，30 年研发底蕴，海外营收占比 52%。**A 股最优质的能源新基建 quality compounder**——ROE 22% + FCF 转正且持续 + PE 13.5x 历史 5-15 分位。vs 加权期望被动组合 +9.3pp 超额回报，是档案库当前覆盖中最优标的之一。最大单一风险是美国关税（约 20% 营收暴露），但海外多元化（欧洲 25% + 中东/印度/澳洲）提供下行保护。',
+        price: '~¥85',
+        marketCap: '~¥1,750 亿',
+        verdict: 'bullish',
+        verdictText: '持有 / 分批建仓',
+        metrics: [
+            { label: '5Y 期望', value: '2.05x' },
+            { label: '10Y 期望', value: '4.93x' },
+            { label: 'P(10x · 10Y)', value: '~10%' },
+        ],
+        tags: ['新能源', '光伏逆变器全球第一', '储能爆发', 'AI 数据中心', '曹仁贤'],
         date: '2026-05-06',
     },
 ]
