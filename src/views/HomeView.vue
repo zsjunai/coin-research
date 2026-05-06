@@ -3,6 +3,8 @@ import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { companies } from '@/data/companies'
 import type { Market, Verdict } from '@/types/company'
+import ChartView from '@/components/ChartView.vue'
+import type { ChartConfiguration } from 'chart.js'
 
 const marketLabel: Record<Market, string> = {
     US: '🇺🇸 美股',
@@ -29,25 +31,25 @@ const steps = [
 ]
 
 const roadmap = [
-    { name: 'CoreWeave', ticker: 'CRWV', sector: 'AI 基建', market: '🇺🇸' },
-    { name: 'Palantir', ticker: 'PLTR', sector: '企业软件', market: '🇺🇸' },
-    { name: '特斯拉', ticker: 'TSLA', sector: '电动车 · 自驾', market: '🇺🇸' },
-    { name: '台积电', ticker: 'TSM', sector: '半导体', market: '🇺🇸' },
-    { name: 'SpaceX', ticker: '未上市', sector: '航天', market: '⚫' },
-    { name: '宁德时代', ticker: 'SH:300750', sector: '动力电池', market: '🇨🇳' },
-    { name: '中芯国际', ticker: 'SH:688981', sector: '半导体代工', market: '🇨🇳' },
-    { name: '比亚迪', ticker: 'HK:01211', sector: '新能源车', market: '🇭🇰' },
-    { name: '腾讯控股', ticker: 'HK:00700', sector: '互联网平台', market: '🇭🇰' },
-    { name: '小鹏汽车', ticker: 'HK:09868', sector: '电动车', market: '🇭🇰' },
-    { name: '贵州茅台', ticker: 'SH:600519', sector: '消费白马', market: '🇨🇳' },
-    { name: '甲骨文', ticker: 'ORCL', sector: '企业云', market: '🇺🇸' },
+    { name: 'CoreWeave', ticker: 'CRWV', sector: 'AI 基建 · Neocloud 第二极', market: '🇺🇸' },
+    { name: '微软', ticker: 'MSFT', sector: 'Hyperscaler 王 · Azure / Copilot', market: '🇺🇸' },
+    { name: '特斯拉', ticker: 'TSLA', sector: '电动车 · FSD · Optimus', market: '🇺🇸' },
+    { name: '台积电', ticker: 'TSM', sector: '半导体代工 · AI 算力底座', market: '🇺🇸' },
+    { name: '甲骨文', ticker: 'ORCL', sector: '企业云 · OpenAI Stargate 受益方', market: '🇺🇸' },
+    { name: '宁德时代', ticker: 'SH:300750', sector: '动力电池 · LFP 全球王者', market: '🇨🇳' },
+    { name: '中芯国际', ticker: 'SH:688981', sector: '半导体代工 · 国产替代', market: '🇨🇳' },
+    { name: '紫金矿业', ticker: 'SH:601899', sector: '黄金 / 铜 全球资源龙头', market: '🇨🇳' },
+    { name: '贵州茅台', ticker: 'SH:600519', sector: '消费白马 · 现金流之王', market: '🇨🇳' },
+    { name: '比亚迪', ticker: 'HK:01211', sector: '新能源车 · 垂直整合', market: '🇭🇰' },
+    { name: '腾讯控股', ticker: 'HK:00700', sector: '互联网平台 · 视频号 / WeChat AI', market: '🇭🇰' },
+    { name: '美团', ticker: 'HK:03690', sector: '本地生活 · 即时零售', market: '🇭🇰' },
 ]
 
 // ========= 状态 =========
 const search = ref('')
 const activeMarkets = ref<Set<Market>>(new Set())
 const activeTags = ref<Set<string>>(new Set())
-type SortKey = 'y10' | 'y5' | 'p10x' | 'default'
+type SortKey = 'y10' | 'y5' | 'p10x' | 'excess' | 'default'
 const sortBy = ref<SortKey>('default')
 const viewMode = ref<'grid' | 'table'>('grid')
 
@@ -56,6 +58,107 @@ const allTags = computed(() => {
     const set = new Set<string>()
     for (const c of companies) c.tags.forEach((t) => set.add(t))
     return Array.from(set)
+})
+
+// ========= 市场分布 =========
+const marketCounts = computed(() => {
+    const counts: Record<Market, number> = { US: 0, A: 0, HK: 0, PRIVATE: 0 }
+    for (const c of companies) counts[c.market]++
+    return counts
+})
+
+// ========= 最近更新 =========
+const latestDate = computed(() => {
+    return companies.map((c) => c.date).sort().reverse()[0]
+})
+
+// ========= bullish 数量 =========
+const bullishCount = computed(() => companies.filter((c) => c.verdict === 'bullish').length)
+
+// ========= 散点图配置：5Y × 10Y 期望矩阵 =========
+const scatterConfig = computed<ChartConfiguration>(() => {
+    const points = companies.map((c) => ({
+        x: extractNumber(c.metrics.find((m) => m.label.includes('5Y'))?.value),
+        y: extractNumber(c.metrics.find((m) => m.label.includes('10Y'))?.value),
+        excess: extractNumber(c.metrics.find((m) => m.label.includes('被动'))?.value),
+        label: c.name,
+        ticker: c.ticker,
+        verdict: c.verdict,
+    }))
+
+    return {
+        type: 'scatter',
+        data: {
+            datasets: [
+                {
+                    label: '看多 (bullish)',
+                    data: points.filter((p) => p.verdict === 'bullish'),
+                    backgroundColor: 'rgba(5, 150, 105, 0.75)',
+                    borderColor: '#059669',
+                    borderWidth: 2,
+                    pointRadius: 9,
+                    pointHoverRadius: 12,
+                },
+                {
+                    label: '中性 (neutral)',
+                    data: points.filter((p) => p.verdict === 'neutral'),
+                    backgroundColor: 'rgba(67, 56, 202, 0.65)',
+                    borderColor: '#4338ca',
+                    borderWidth: 2,
+                    pointRadius: 8,
+                    pointHoverRadius: 11,
+                },
+                {
+                    label: '看空 / 估值压制 (bearish)',
+                    data: points.filter((p) => p.verdict === 'bearish'),
+                    backgroundColor: 'rgba(220, 38, 38, 0.65)',
+                    borderColor: '#dc2626',
+                    borderWidth: 2,
+                    pointRadius: 8,
+                    pointHoverRadius: 11,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14, font: { size: 12 } } },
+                tooltip: {
+                    callbacks: {
+                        title: (items) => {
+                            const p = items[0].raw as { label: string; ticker: string }
+                            return `${p.label} · ${p.ticker}`
+                        },
+                        label: (ctx) => {
+                            const p = ctx.raw as { x: number; y: number; excess: number }
+                            return [
+                                `5Y 期望：${p.x.toFixed(2)}x`,
+                                `10Y 期望：${p.y.toFixed(2)}x`,
+                                `vs 被动：${p.excess >= 0 ? '+' : ''}${p.excess}pp`,
+                            ]
+                        },
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    type: 'linear',
+                    title: { display: true, text: '5 年期望倍数 (mult)', font: { size: 12, weight: 600 } },
+                    min: 0.5,
+                    max: 4.5,
+                    grid: { color: 'rgba(10, 10, 10, 0.05)' },
+                },
+                y: {
+                    type: 'linear',
+                    title: { display: true, text: '10 年期望倍数 (mult)', font: { size: 12, weight: 600 } },
+                    min: 0,
+                    max: 11,
+                    grid: { color: 'rgba(10, 10, 10, 0.05)' },
+                },
+            },
+        },
+    }
 })
 
 // ========= 辅助：从 metric value "3.9x" / "~18%" 里抽数字 =========
@@ -93,7 +196,12 @@ const filtered = computed(() => {
     if (key === 'y10') list = [...list].sort((a, b) => metricByLabel(b, '10Y') - metricByLabel(a, '10Y'))
     else if (key === 'y5') list = [...list].sort((a, b) => metricByLabel(b, '5Y') - metricByLabel(a, '5Y'))
     else if (key === 'p10x') list = [...list].sort((a, b) => metricByLabel(b, 'P(10x') - metricByLabel(a, 'P(10x'))
-    else list = [...list].sort((a, b) => verdictOrder[a.verdict] - verdictOrder[b.verdict])
+    else if (key === 'excess') list = [...list].sort((a, b) => metricByLabel(b, '被动') - metricByLabel(a, '被动'))
+    else list = [...list].sort((a, b) => {
+        const va = verdictOrder[a.verdict] - verdictOrder[b.verdict]
+        if (va !== 0) return va
+        return metricByLabel(b, '被动') - metricByLabel(a, '被动')
+    })
 
     return list
 })
@@ -117,6 +225,13 @@ function resetFilters() {
     sortBy.value = 'default'
 }
 
+function excessClass(c: (typeof companies)[number]): string {
+    const v = metricByLabel(c, '被动')
+    if (v >= 5) return 'cell-excess-strong'
+    if (v >= 0) return 'cell-excess-positive'
+    return 'cell-excess-negative'
+}
+
 const hasFilter = computed(
     () => search.value.length > 0 || activeMarkets.value.size > 0 || activeTags.value.size > 0 || sortBy.value !== 'default',
 )
@@ -136,11 +251,49 @@ const hasFilter = computed(
             <div class="hero-line">
                 <span><strong>{{ companies.length }}</strong> 家已覆盖</span>
                 <span class="sep">·</span>
-                <span><strong>29+</strong> 模块</span>
+                <span><strong>{{ marketCounts.US }}</strong> 美股 / <strong>{{ marketCounts.A }}</strong> A 股 / <strong>{{ marketCounts.HK }}</strong> 港股 / <strong>{{ marketCounts.PRIVATE }}</strong> Pre-IPO</span>
                 <span class="sep">·</span>
-                <span><strong>5Y × 10Y</strong> 双时间轴</span>
+                <span><strong>25</strong> 模块 × <strong>5Y × 10Y</strong></span>
                 <span class="sep">·</span>
-                <span>Kelly · 对照组 · Track Record</span>
+                <span><strong class="text-bull">{{ bullishCount }}</strong> 看多 · vs 被动超额排名</span>
+                <span class="sep">·</span>
+                <span class="latest-tag">最新 · {{ latestDate }}</span>
+            </div>
+        </section>
+
+        <!-- ========= 档案库矩阵（散点图）========= -->
+        <section class="section matrix-section">
+            <div class="section-head section-head-tight">
+                <div class="title-group">
+                    <div class="tag">// PORTFOLIO MATRIX</div>
+                    <h2>档案库全景矩阵</h2>
+                </div>
+                <p>
+                    每个点是一家公司 · 横轴 5Y 期望 / 纵轴 10Y 期望 · 颜色 = 评级。
+                    <span class="matrix-hint">右上角 = quality compounder · 左下角 = 估值陷阱 / 困境</span>
+                </p>
+            </div>
+            <div class="matrix-card">
+                <div class="matrix-chart">
+                    <ChartView :config="scatterConfig" />
+                </div>
+                <div class="matrix-legend">
+                    <div class="legend-block">
+                        <div class="legend-num text-bull">{{ bullishCount }}</div>
+                        <div class="legend-label">看多 (bullish)</div>
+                        <div class="legend-desc">vs 被动超额 ≥ 5pp · 核心持仓候选</div>
+                    </div>
+                    <div class="legend-block">
+                        <div class="legend-num">{{ companies.filter((c) => c.verdict === 'neutral').length }}</div>
+                        <div class="legend-label">中性 (neutral)</div>
+                        <div class="legend-desc">超额 0-5pp · 看情况配置</div>
+                    </div>
+                    <div class="legend-block">
+                        <div class="legend-num text-bear">{{ companies.filter((c) => c.verdict === 'bearish').length }}</div>
+                        <div class="legend-label">看空 (bearish)</div>
+                        <div class="legend-desc">vs 被动跑输 · 直接买 ETF 更优</div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -173,13 +326,13 @@ const hasFilter = computed(
 
                     <div class="segmented">
                         <button
-                            v-for="k in (['default', 'y5', 'y10', 'p10x'] as const)"
+                            v-for="k in (['default', 'excess', 'y5', 'y10', 'p10x'] as const)"
                             :key="k"
                             class="seg-btn"
                             :class="{ active: sortBy === k }"
                             @click="sortBy = k"
                         >
-                            {{ k === 'default' ? '默认' : k === 'y5' ? '按 5Y' : k === 'y10' ? '按 10Y' : '按 P(10x)' }}
+                            {{ k === 'default' ? '默认' : k === 'excess' ? '按超额' : k === 'y5' ? '按 5Y' : k === 'y10' ? '按 10Y' : '按 P(10x)' }}
                         </button>
                     </div>
 
@@ -233,7 +386,7 @@ const hasFilter = computed(
 
             <!-- 卡片视图 -->
             <div v-else-if="viewMode === 'grid'" class="company-grid">
-                <RouterLink v-for="c in filtered" :key="c.id" :to="`/company/${c.id}`" class="company-card">
+                <RouterLink v-for="c in filtered" :key="c.id" :to="`/company/${c.id}`" class="company-card" :class="`verdict-${c.verdict}`">
                     <span class="verdict" :class="c.verdict">{{ c.verdictText }}</span>
                     <div class="row">
                         <div>
@@ -246,9 +399,13 @@ const hasFilter = computed(
                     </div>
                     <div class="desc">{{ c.desc }}</div>
                     <div class="metrics">
-                        <div v-for="m in c.metrics" :key="m.label" class="metric">
+                        <div v-for="m in c.metrics" :key="m.label" class="metric" :class="{ 'metric-excess': m.label.includes('被动') }">
                             <div class="mlabel">{{ m.label }}</div>
-                            <div class="mvalue">{{ m.value }}</div>
+                            <div class="mvalue" :class="{
+                                'mvalue-strong': m.label.includes('被动') && extractNumber(m.value) >= 5,
+                                'mvalue-positive': m.label.includes('被动') && extractNumber(m.value) >= 0 && extractNumber(m.value) < 5,
+                                'mvalue-negative': m.label.includes('被动') && extractNumber(m.value) < 0,
+                            }">{{ m.value }}</div>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -270,6 +427,7 @@ const hasFilter = computed(
                             <th style="text-align: right">5Y 期望</th>
                             <th style="text-align: right">10Y 期望</th>
                             <th style="text-align: right">P(10x · 10Y)</th>
+                            <th style="text-align: right">vs 被动</th>
                             <th>评级</th>
                             <th>赛道</th>
                         </tr>
@@ -293,6 +451,9 @@ const hasFilter = computed(
                             </td>
                             <td style="text-align: right">
                                 {{ c.metrics.find((m) => m.label.includes('P(10x'))?.value ?? '—' }}
+                            </td>
+                            <td style="text-align: right; font-weight: 600" :class="excessClass(c)">
+                                {{ c.metrics.find((m) => m.label.includes('被动'))?.value ?? '—' }}
                             </td>
                             <td>
                                 <span class="verdict-badge" :class="c.verdict">{{ c.verdictText }}</span>
@@ -396,6 +557,112 @@ const hasFilter = computed(
 
 .hero-line .sep {
     color: var(--border-strong);
+}
+
+.hero-line .text-bull {
+    color: #059669;
+}
+
+.hero-line .text-bear {
+    color: #dc2626;
+}
+
+.hero-line .latest-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-primary);
+    background: rgba(67, 56, 202, 0.08);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono Variable', monospace;
+    letter-spacing: 0.02em;
+}
+
+/* ========= 档案库矩阵 ========= */
+.matrix-section {
+    margin-bottom: 28px;
+}
+
+.matrix-section .matrix-hint {
+    color: var(--text-muted);
+    font-size: 12.5px;
+    margin-left: 6px;
+}
+
+.matrix-card {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 20px;
+    padding: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-xs);
+}
+
+.matrix-chart {
+    position: relative;
+    height: 360px;
+    min-width: 0;
+}
+
+.matrix-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 6px 0;
+}
+
+.legend-block {
+    padding: 12px 14px;
+    background: var(--bg-base);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.legend-num {
+    font-family: 'Space Grotesk Variable', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent-primary);
+    margin-bottom: 4px;
+}
+
+.legend-num.text-bull { color: #059669; }
+.legend-num.text-bear { color: #dc2626; }
+
+.legend-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-ink);
+    margin-bottom: 4px;
+}
+
+.legend-desc {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+    .matrix-card {
+        grid-template-columns: 1fr;
+    }
+    .matrix-chart {
+        height: 320px;
+    }
+    .matrix-legend {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .legend-block {
+        flex: 1 1 calc(33.33% - 8px);
+        min-width: 140px;
+    }
 }
 
 /* ========= Section Head 紧凑 ========= */
@@ -621,6 +888,57 @@ const hasFilter = computed(
 /* ========= Company Card 增强 ========= */
 .company-card {
     position: relative;
+}
+
+.company-card.verdict-bullish {
+    border-left: 3px solid #059669;
+}
+
+.company-card.verdict-bullish::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+    border-radius: 0;
+}
+
+.company-card.verdict-bearish {
+    border-left: 3px solid rgba(220, 38, 38, 0.5);
+    opacity: 0.92;
+}
+
+.metric.metric-excess {
+    border-left: 1px dashed var(--border-strong);
+    padding-left: 10px;
+}
+
+.mvalue.mvalue-strong {
+    color: #059669;
+    font-weight: 700;
+}
+
+.mvalue.mvalue-positive {
+    color: var(--accent-primary);
+}
+
+.mvalue.mvalue-negative {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+.cell-excess-strong {
+    color: #059669 !important;
+}
+
+.cell-excess-positive {
+    color: var(--accent-primary) !important;
+}
+
+.cell-excess-negative {
+    color: #dc2626 !important;
 }
 
 .card-footer {
