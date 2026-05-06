@@ -6,6 +6,7 @@ import { coinbase } from './coinbase'
 import { nebius } from './nebius'
 import { popmart } from './popmart'
 import { robinhood } from './robinhood'
+import { sbet } from './sbet'
 import { spacex } from './spacex'
 import { strategy } from './strategy'
 import { wanhua } from './wanhua'
@@ -23,6 +24,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     weixing,
     strategy,
     bmnr,
+    sbet,
 }
 
 export const companies: CompanySummary[] = [
@@ -233,6 +235,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~12%' },
         ],
         tags: ['ETH 财库', '加密杠杆', 'staking 内生', 'Tom Lee'],
+        date: '2026-05-06',
+    },
+    {
+        id: 'sbet',
+        ticker: 'NASDAQ:SBET',
+        name: 'SharpLink Gaming',
+        market: 'US',
+        currency: 'USD',
+        desc: '全球第二大上市公司 ETH 财库（~580K ETH · 占总供应 ~0.48%）。2025-05 由原体育博彩营销公司转型，董事长 Joseph Lubin（以太坊联合创始人 + ConsenSys 创始人）启动 ETH 财库战略。结构性差异 vs BMNR：Lubin 是加密原生"教父级"叙事来源（远超 Tom Lee），但代价是规模仅 BMNR 1/3 + 12 个月稀释 30 倍 + Lubin 是兼职（主业 ConsenSys）+ NASDAQ 小盘流动性陷阱。当前 mNAV 1.48x 比 BMNR 略贵且未经历 mNAV<1 测试。在加权期望意义上跑输 ETHA + BMNR，是档案库中最具尾部偏度的标的——加密尾部赌注的尾部。',
+        price: '~$20',
+        marketCap: '~$3B',
+        verdict: 'neutral',
+        verdictText: 'Speculative Bet / 极小仓位试水',
+        metrics: [
+            { label: '5Y 期望', value: '1.68x' },
+            { label: '10Y 期望', value: '3.85x' },
+            { label: 'P(10x · 10Y)', value: '~10%' },
+        ],
+        tags: ['ETH 财库', '加密原生', 'Lubin', 'ConsenSys'],
         date: '2026-05-06',
     },
 ]
