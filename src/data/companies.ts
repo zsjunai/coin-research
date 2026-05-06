@@ -3,6 +3,7 @@ import { beigene } from './beigene'
 import { bmnr } from './bmnr'
 import { circle } from './circle'
 import { coinbase } from './coinbase'
+import { huayou } from './huayou'
 import { longi } from './longi'
 import { nebius } from './nebius'
 import { popmart } from './popmart'
@@ -29,6 +30,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     sbet,
     sungrow,
     longi,
+    huayou,
 }
 
 export const companies: CompanySummary[] = [
@@ -277,6 +279,25 @@ export const companies: CompanySummary[] = [
             { label: 'P(10x · 10Y)', value: '~10%' },
         ],
         tags: ['新能源', '光伏逆变器全球第一', '储能爆发', 'AI 数据中心', '曹仁贤'],
+        date: '2026-05-06',
+    },
+    {
+        id: 'huayou',
+        ticker: 'SH:603799',
+        name: '华友钴业 Huayou Cobalt',
+        market: 'A',
+        currency: 'CNY',
+        desc: 'A 股锂电材料一体化最完整龙头：钴产品全球第一 + 印尼镍 HPAL 全球领跑（2025 MHP 出货 23.65 万吨 +30%；2027E 24 万金属吨/年，3-4x 当前）+ 9 系超高镍正极全球 33% 市占。2024 净利 -49% 困境后 2025 +47% (¥61 亿) / Q1\'26 +99.45% 见周期反转。陈雪华 1995 起家钴贸易 → 30 年构建从矿到正极五位一体（钴+镍+锂+前驱体+正极）。客户绑定 LG / POSCO / 大众 / 容百 / Ford。**核心争议**：LFP 持续侵蚀三元 vs 印尼镍资源垄断 + 钴金属是否被替代。vs 加权期望被动组合超额仅 +3.7pp（marginal），明显弱于阳光电源（+9.3pp）。',
+        price: '~¥65.78',
+        marketCap: '~¥1,248 亿',
+        verdict: 'neutral',
+        verdictText: '周期反转 / 小仓位投机',
+        metrics: [
+            { label: '5Y 期望', value: '1.54x' },
+            { label: '10Y 期望', value: '2.98x' },
+            { label: 'P(10x · 10Y)', value: '~3%' },
+        ],
+        tags: ['锂电材料', '印尼镍 HPAL', '钴全球第一', '一体化', '陈雪华'],
         date: '2026-05-06',
     },
     {
