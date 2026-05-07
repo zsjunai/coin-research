@@ -6,6 +6,7 @@ import { coinbase } from './coinbase'
 import { huayou } from './huayou'
 import { longi } from './longi'
 import { nebius } from './nebius'
+import { oracle } from './oracle'
 import { pltr } from './pltr'
 import { popmart } from './popmart'
 import { robinhood } from './robinhood'
@@ -33,6 +34,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     longi,
     huayou,
     pltr,
+    oracle,
 }
 
 export const companies: CompanySummary[] = [
@@ -315,6 +317,26 @@ export const companies: CompanySummary[] = [
         ],
         tags: ['AI 平台', '政府软件', 'AIP 商业爆发', '估值透支', 'Karp/Thiel'],
         date: '2026-05-06',
+    },
+    {
+        id: 'oracle',
+        ticker: 'NASDAQ:ORCL',
+        name: 'Oracle Corporation',
+        market: 'US',
+        currency: 'USD',
+        desc: '全球第 4 大云 + AI 算力新基建 hyperscaler · 47 年企业数据库王者。**RPO $553B (+325% YoY)** 含 OpenAI Stargate $300B / 4.5 GW 合同；FY 2026 Q3 单季营收 + EPS 双 +20% 是 15 年来首次；OCI +84% / AI 基础设施 +243% / Multicloud db +531%；FY 2027 营收指引 raised 至 $90B (+34%)。**估值已从巅峰 $345 大幅回调至 $194 (-44%)，PE forward 24.8x 是 5 年来最合理水平**。Larry Ellison 81 岁仍是 CTO + 董事长 + 40% 持股 founder mode。**核心争议**：转型 AI 算力新基建 quality compounder vs OpenAI 单客户集中度风险（54% RPO）+ 信用评级 BBB negative + FCF -$25B + Bondholder $38B 诉讼。',
+        price: '~$194',
+        marketCap: '~$558B',
+        verdict: 'bullish',
+        verdictText: '分批建仓 / Quality + AI 算力',
+        metrics: [
+            { label: '5Y 期望', value: '2.13x' },
+            { label: '10Y 期望', value: '3.24x' },
+            { label: 'P(10x · 10Y)', value: '~5%' },
+            { label: 'vs 被动', value: '+4.7pp' },
+        ],
+        tags: ['云 / Hyperscaler', 'AI 算力', 'Stargate', 'OpenAI 绑定', 'Larry Ellison'],
+        date: '2026-05-07',
     },
     {
         id: 'huayou',

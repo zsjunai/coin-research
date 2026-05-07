@@ -35,7 +35,7 @@ const roadmap = [
     { name: '微软', ticker: 'MSFT', sector: 'Hyperscaler 王 · Azure / Copilot', market: '🇺🇸' },
     { name: '特斯拉', ticker: 'TSLA', sector: '电动车 · FSD · Optimus', market: '🇺🇸' },
     { name: '台积电', ticker: 'TSM', sector: '半导体代工 · AI 算力底座', market: '🇺🇸' },
-    { name: '甲骨文', ticker: 'ORCL', sector: '企业云 · OpenAI Stargate 受益方', market: '🇺🇸' },
+    { name: 'Anthropic', ticker: '未上市', sector: 'AI 模型 · Claude · OpenAI 对手', market: '⚫' },
     { name: '宁德时代', ticker: 'SH:300750', sector: '动力电池 · LFP 全球王者', market: '🇨🇳' },
     { name: '中芯国际', ticker: 'SH:688981', sector: '半导体代工 · 国产替代', market: '🇨🇳' },
     { name: '紫金矿业', ticker: 'SH:601899', sector: '黄金 / 铜 全球资源龙头', market: '🇨🇳' },
