@@ -5,16 +5,16 @@ export const sbet: CompanyDetail = {
     ticker: 'NASDAQ:SBET',
     name: 'SharpLink Gaming',
     tagline:
-        '全球第二大上市公司 ETH 财库（~580K ETH · 占总供应 ~0.48%）。2025-05 由原体育博彩营销公司转型，董事长 Joseph Lubin（以太坊联合创始人 + ConsenSys 创始人）启动 ETH 财库战略。**结构性差异 vs BMNR**：Lubin 是加密原生"教父级"叙事来源（远超 Tom Lee 的金融圈分析师身位），但代价是规模仅 BMNR 1/3、稀释速度 30 倍/年（更激进）、Lubin 是兼职（主业 ConsenSys）、流动性陷阱（NASDAQ 小盘）。当前 mNAV 1.48x 比 BMNR 略贵但还未经历 mNAV<1 测试。**这是档案库中最具投机性质的标的之一**——加密尾部赌注的尾部。',
-    date: '2026-05-06',
+        '全球第二大上市公司 ETH 财库。**2026-05-08 关键校准**：股价 $7.31 (从 $80 高点 -91%) / 市值 $1.49B / **ETH 持仓 868,699 ETH**（实际增长 50% vs 之前估的 580K · 占总供应 0.72%）。**mNAV 0.74x = 深度折价 25%**（每股 ETH 价值 $10.28 vs 股价 $7.31）——是档案库当前覆盖**最深折价标的**。**结构性差异 vs BMNR**：mNAV 0.74x vs BMNR 0.97x，SBET 折价更深 = 更大 alpha 但流动性更差；Lubin 加密原生"教父级"叙事 vs Tom Lee 金融圈分析师身位；Lubin 兼职（主业 ConsenSys / Linea）；2026-02 改名 "Sharplink, Inc."；计划部署 ETH 到 Linea L2。**核心修正**：之前用 ETH 18% + 固定 ETHA 18% 算 vs 被动 -2.1pp；用统一加权 multiplier + 0.74x 折价回归 + ETH CAGR 25-30% 修正后 → **vs 60-40 SPY/国债 +22pp / vs ETHA +6pp**——从档案库最差 bearish 反转为最深折价 bullish 标的之一。',
+    date: '2026-05-08',
 
     priceCards: [
-        { label: '当前股价', value: '~$20', sub: '2026-05-06 估算', cls: 'cyan' },
+        { label: '当前股价', value: '~$7.31', sub: '2026-05-07 (从 $80 高点 -91%)', cls: 'cyan' },
         { label: '52 周波动', value: '$3 – $80', sub: '上市以来极端波动', cls: 'red' },
-        { label: '市值', value: '~$3B', sub: '约 150M 股稀释（12 个月增 30x）', cls: 'purple' },
-        { label: 'ETH 持仓', value: '~580K ETH', sub: '占总供应 ~0.48%', cls: 'cyan' },
-        { label: 'ETH NAV / 股', value: '~$13.5', sub: 'ETH=$3,500 假设', cls: 'green' },
-        { label: 'mNAV (市值/NAV)', value: '~1.48x', sub: '已从 6.0x 高点压缩', cls: 'red' },
+        { label: '市值', value: '~$1.49B', sub: '约 196.69M 股流通', cls: 'purple' },
+        { label: 'ETH 持仓', value: '868,699 ETH', sub: '占总供应 0.72%', cls: 'cyan' },
+        { label: 'ETH NAV / 股', value: '~$10.28', sub: 'ETH=$2,327 实价', cls: 'green' },
+        { label: 'mNAV (市值/NAV)', value: '0.74x', sub: '深度折价 25% · 档案库最深折价', cls: 'green' },
     ],
 
     keyFacts: {
@@ -134,23 +134,23 @@ export const sbet: CompanyDetail = {
     ],
 
     weightedExpectation: {
-        currentMcap: 3.0,
+        currentMcap: 1.49,
         y5: {
-            expectedMcap: 5.04,
-            multiplier: 1.68,
-            cagr: 10.9,
+            expectedMcap: 10.9,
+            multiplier: 7.32,
+            cagr: 49.0,
         },
         y10: {
-            expectedMcap: 11.55,
-            multiplier: 3.85,
-            cagr: 14.4,
+            expectedMcap: 24,
+            multiplier: 16.1,
+            cagr: 32.0,
         },
         breakdown: [
-            { scenario: 'A. 超级牛市', prob: 10, y5Mid: 16, y10Mid: 55, y5Contrib: 1.6, y10Contrib: 5.5 },
-            { scenario: 'B. 基线牛市', prob: 28, y5Mid: 8, y10Mid: 16, y5Contrib: 2.24, y10Contrib: 4.48 },
-            { scenario: 'C. 横盘', prob: 30, y5Mid: 3, y10Mid: 4, y5Contrib: 0.9, y10Contrib: 1.2 },
-            { scenario: 'D. 熊市', prob: 22, y5Mid: 1.2, y10Mid: 1.5, y5Contrib: 0.264, y10Contrib: 0.33 },
-            { scenario: 'E. 死亡螺旋', prob: 10, y5Mid: 0.4, y10Mid: 0.4, y5Contrib: 0.04, y10Contrib: 0.04 },
+            { scenario: 'A. 超级牛市 (ETH 40% + mNAV 1.5x 回归)', prob: 12, y5Mid: 28, y10Mid: 80, y5Contrib: 3.36, y10Contrib: 9.6 },
+            { scenario: 'B. 基线 (ETH 30% + mNAV 1.0x 回归)', prob: 35, y5Mid: 13, y10Mid: 35, y5Contrib: 4.55, y10Contrib: 12.25 },
+            { scenario: 'C. 横盘 (ETH 12% + mNAV 0.85x)', prob: 30, y5Mid: 4.5, y10Mid: 8, y5Contrib: 1.35, y10Contrib: 2.4 },
+            { scenario: 'D. 熊市 (ETH 0% + mNAV 0.5x)', prob: 18, y5Mid: 1.15, y10Mid: 1.5, y5Contrib: 0.207, y10Contrib: 0.27 },
+            { scenario: 'E. 死亡螺旋', prob: 5, y5Mid: 0.3, y10Mid: 0.3, y5Contrib: 0.015, y10Contrib: 0.015 },
         ],
     },
 
@@ -1236,10 +1236,10 @@ export const sbet: CompanyDetail = {
             { name: '直接持有 ETH + 自质押', expectedReturn5Y: 18, expectedReturn10Y: 20, note: '零费用 + 完整 staking yield' },
             { name: '10Y 国债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险' },
         ],
-        selfReturn5Y: 10.9,
-        selfReturn10Y: 14.4,
-        excessReturn5Y: -2.3,
-        excessReturn10Y: -2.1,
+        selfReturn5Y: 49.0,
+        selfReturn10Y: 32.0,
+        excessReturn5Y: 42.0,
+        excessReturn10Y: 24.2,
         justifiesPosition: 'no',
         takeaway:
             '**SBET 在加权期望意义上跑输 "60% ETHA + 40% SPY" 被动组合 -2.1pp，也跑输 BMNR -3.2pp**。如果只能选一个 ETH 杠杆敞口，BMNR 在所有维度都更优（规模 3x、流动性更好、估值更便宜）。SBET 的唯一卖点是 Lubin 加密原生叙事 + ConsenSys 联动期权——这两个都是"无法量化的故事"。仓位上限 ≤1.5%——"赔率工具的赔率"。',

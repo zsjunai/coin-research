@@ -5,16 +5,16 @@ export const bmnr: CompanyDetail = {
     ticker: 'NYSE:BMNR',
     name: 'Bitmine Immersion Technologies',
     tagline:
-        '全球最大的"上市公司以太坊财库"。2025-06 由原浸没式 BTC 矿企（市值 <$20M）转型，董事长 Tom Lee（Fundstrat 创始人）启动 ETH 财库战略，9 个月内从 0 起步累计 ~1.83M ETH（占总供应 ~1.5%），是 MSTR 的"以太坊镜像"。**结构性差异**：ETH 提供 ~$220M/年 staking 内生收益（BTC 没有），但代价是公司 9 个月稀释 23 倍 + PIPE 解锁砸盘风险 + Tom Lee 不是 Saylor。核心争议：是 ETH 版 MSTR 还是 SPAC 类昙花一现？',
-    date: '2026-05-06',
+        '全球最大的"上市公司以太坊财库"。**2026-05-08 关键校准**：股价 $22.91 / 市值 $12.66B / **ETH 持仓 5.18M**（占总供应 4.29% · 接近 5% Alchemy 目标 86%）。**mNAV 0.97x 接近平价**（每股 ETH 价值 $22.43 vs 股价 $22.91）。Tom Lee（Fundstrat 创始人）+ ARK Cathie Wood + Founders Fund + Pantera + Galaxy + Bill Miller III 投资者阵容；2026-04 转 NYSE。**结构性差异 vs MSTR**：ETH 提供 ~$352M/年 staking 内生收益（BTC 没有）；ETH 长期 CAGR 主流共识 25-37%（VanEck 2030 $22K = 37.8%）。**核心修正**：之前用 ETH 18% 假设 + 固定 ETHA 18% 算 vs 被动 +1.1pp；用统一加权 multiplier + ETH CAGR 25-30% 修正后 → **vs 60-40 SPY/国债 +20pp / vs ETHA +6pp**。',
+    date: '2026-05-08',
 
     priceCards: [
-        { label: '当前股价', value: '~$45', sub: '2026-05-06 估算', cls: 'cyan' },
+        { label: '当前股价', value: '~$22.91', sub: '2026-05-07 收盘 (NYSE)', cls: 'cyan' },
         { label: '52 周波动', value: '$8 – $135', sub: '上市以来极端波动', cls: 'red' },
-        { label: '市值', value: '~$8.5B', sub: '约 190M 股稀释（9 个月增 23x）', cls: 'purple' },
-        { label: 'ETH 持仓', value: '~1.83M ETH', sub: '占总供应 ~1.5%', cls: 'cyan' },
-        { label: 'ETH NAV / 股', value: '~$34', sub: 'ETH=$3,500 假设', cls: 'green' },
-        { label: 'mNAV (市值/NAV)', value: '~1.33x', sub: '已从 5.5x 高点压缩', cls: 'red' },
+        { label: '市值', value: '~$12.66B', sub: '约 537.6M 股流通', cls: 'purple' },
+        { label: 'ETH 持仓', value: '5.18M ETH', sub: '占总供应 4.29% (5% 目标 86%)', cls: 'cyan' },
+        { label: 'ETH NAV / 股', value: '~$22.43', sub: 'ETH=$2,327 实价', cls: 'green' },
+        { label: 'mNAV (市值/NAV)', value: '0.97x', sub: '接近平价 + ETH 飞轮锁定', cls: 'green' },
     ],
 
     keyFacts: {
@@ -130,23 +130,23 @@ export const bmnr: CompanyDetail = {
     ],
 
     weightedExpectation: {
-        currentMcap: 8.5,
+        currentMcap: 12.66,
         y5: {
-            expectedMcap: 18.3,
-            multiplier: 2.16,
-            cagr: 16.6,
+            expectedMcap: 56.7,
+            multiplier: 4.48,
+            cagr: 35.0,
         },
         y10: {
-            expectedMcap: 43.1,
-            multiplier: 5.07,
-            cagr: 17.6,
+            expectedMcap: 152,
+            multiplier: 12.0,
+            cagr: 28.3,
         },
         breakdown: [
-            { scenario: 'A. 超级牛市', prob: 12, y5Mid: 58, y10Mid: 180, y5Contrib: 7.0, y10Contrib: 21.6 },
-            { scenario: 'B. 基线牛市', prob: 30, y5Mid: 26, y10Mid: 55, y5Contrib: 7.8, y10Contrib: 16.5 },
-            { scenario: 'C. 横盘', prob: 30, y5Mid: 9, y10Mid: 13, y5Contrib: 2.7, y10Contrib: 3.9 },
-            { scenario: 'D. 熊市', prob: 20, y5Mid: 4, y10Mid: 5, y5Contrib: 0.8, y10Contrib: 1.0 },
-            { scenario: 'E. 死亡螺旋', prob: 8, y5Mid: 1, y10Mid: 1, y5Contrib: 0.1, y10Contrib: 0.1 },
+            { scenario: 'A. 超级牛市 (ETH 40% CAGR)', prob: 15, y5Mid: 131, y10Mid: 480, y5Contrib: 19.65, y10Contrib: 72 },
+            { scenario: 'B. 基线 (ETH 30% CAGR)', prob: 40, y5Mid: 72, y10Mid: 200, y5Contrib: 28.8, y10Contrib: 80 },
+            { scenario: 'C. 横盘 (ETH 12% CAGR)', prob: 30, y5Mid: 25, y10Mid: 50, y5Contrib: 7.5, y10Contrib: 15 },
+            { scenario: 'D. 熊市 (ETH 0% CAGR)', prob: 12, y5Mid: 6.4, y10Mid: 10, y5Contrib: 0.77, y10Contrib: 1.2 },
+            { scenario: 'E. 死亡螺旋', prob: 3, y5Mid: 0.9, y10Mid: 1, y5Contrib: 0.027, y10Contrib: 0.03 },
         ],
     },
 
@@ -1208,10 +1208,10 @@ export const bmnr: CompanyDetail = {
             { name: '60/40 (经典)', expectedReturn5Y: 7, expectedReturn10Y: 8, note: 'SPY + 国债' },
             { name: '10Y 国债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险' },
         ],
-        selfReturn5Y: 16.6,
-        selfReturn10Y: 17.6,
-        excessReturn5Y: 3.4,
-        excessReturn10Y: 1.1,
+        selfReturn5Y: 35.0,
+        selfReturn10Y: 28.3,
+        excessReturn5Y: 28.0,
+        excessReturn10Y: 20.5,
         justifiesPosition: 'marginal',
         takeaway:
             '**BMNR 在加权期望意义上 marginal 跑赢 "60% ETHA + 40% SPY" 被动组合 1.1pp**——比 MSTR 的负超额 -2.2pp 好。但 BMNR 有两个 ETHA 不具备的特征：①**上行尾部更厚**（mNAV 飞轮 + staking 复利双红利）；②**传统券商账户兼容性**（退休账户/保证金/期权）。仓位上限 ≤2%——"赔率工具"而非"主仓位"。',
