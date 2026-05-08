@@ -5,7 +5,7 @@ export const strategy: CompanyDetail = {
     ticker: 'NASDAQ:MSTR',
     name: 'Strategy (MicroStrategy)',
     tagline:
-        '全球最大的"上市公司比特币财库"。2025-02 由 MicroStrategy 改名为 Strategy，主营是用普通股 ATM + 5 只优先股（STRK/STRF/STRC/STRH/STRG/STRD）+ 多档可转债把资本市场工具变成"BTC 复利飞轮"。**截至 2026-04 持有 818,334 BTC**（占总供应 3.897%）。**关键反转事实（2026-05-08）**：股价从 2025-Q4 高点 $543 跌至 **$186.90 (-65%)**；**mNAV 已从 2024 末峰值 3.0x 压缩至 0.97x（市值基础）**——首次自 2024-01 以来跌破 NAV，是历史罕见折价窗口；CAMT 风险已被 IRS Notice 2025-49 / 2025-46 / 2026-7 明确豁免（FVI Exclusion Option）。**核心修正**：当 mNAV < 1.0x 折价买入时，每股 BTC 价值 $192.66 vs 股价 $186.90（**折价 3%**）+ BTC per share 飞轮（2025 BTC Yield +22.8% / 2026 YTD +9.6%）+ mNAV 均值回归 alpha = **vs IBIT 60-40 被动组合超额 +10.6pp**（与之前 mNAV 1.5x 时 -2.2pp 反转）。**最大风险**：18 个月股息覆盖期（$1.5B/年优先股股息义务）+ Saylor 2026-05-05 首次表示可能卖 BTC 服务股息 + Q1 2026 fair value 净亏 -$12.54B（BTC 跌 25% 触发）。',
+        '全球最大的"上市公司比特币财库"。2025-02 由 MicroStrategy 改名为 Strategy，主营是用普通股 ATM + 5 只优先股（STRK/STRF/STRC/STRH/STRG/STRD）+ 多档可转债把资本市场工具变成"BTC 复利飞轮"。**截至 2026-04 持有 818,334 BTC**（占总供应 3.897%）。**关键反转事实（2026-05-08）**：股价从 2025-Q4 高点 $543 跌至 **$186.90 (-65%)**；**mNAV 已从 2024 末峰值 3.0x 压缩至 0.97x（市值基础）**——首次自 2024-01 以来跌破 NAV，是历史罕见折价窗口；CAMT 风险已被 IRS Notice 2025-49 / 2025-46 / 2026-7 明确豁免（FVI Exclusion Option）。**核心修正**：当 mNAV < 1.0x 折价买入时，每股 BTC 价值 $192.66 vs 股价 $186.90（**折价 3%**）+ BTC per share 飞轮（2025 BTC Yield +22.8% / 2026 YTD +9.6%）+ mNAV 均值回归 alpha = **vs IBIT 直接（加权情景下 26.1%）超额 +9.2pp / vs 60-40 IBIT/SPY +13.6pp / vs 60-40 SPY/国债 +27.5pp**（用加权 multiplier 算，非固定 IBIT 18% 假设）。**最大风险**：18 个月股息覆盖期（$1.5B/年优先股股息义务）+ Saylor 2026-05-05 首次表示可能卖 BTC 服务股息 + Q1 2026 fair value 净亏 -$12.54B（BTC 跌 25% 触发）。',
     date: '2026-05-08',
 
     priceCards: [
@@ -194,7 +194,7 @@ export const strategy: CompanyDetail = {
     ],
 
     finalQuote:
-        '<strong>第二次校准：基于 BTC 长期 CAGR 主流共识（25-40%）修正后，MSTR 10Y 期望 CAGR 35.3% / vs 被动 +27.5pp，跃居档案库 #1 超额回报标的（超过 Nebius +16pp）</strong>。**3 次迭代轨迹**：① 2026-05-06 版（错）：mNAV 1.5x 假设 + "21% 即使不卖" 税收阻力 → -2.2pp 跑输；② 2026-05-08 第一次修正：mNAV 0.97x 实况 + CAMT 豁免确认 → +17.6pp；③ 2026-05-08 第二次修正：BTC 长期 CAGR 主流共识 25-40%（之前用 15% 太悲观）→ +27.5pp。**核心数据来源**：历史 BTC 10Y CAGR 84% / 8Y 44% / ARK 基线 40% / 摩根 25% / Cathie Wood 30%；历史 MSTR 流通股 6Y CAGR 24% + 持仓 6Y CAGR 52% + BTC per share 6Y CAGR 26%。**当前 mNAV 0.97x 是过去 28 个月罕见折价窗口**（首次 < 1.0 自 2024-01）：股价 $186.90 vs 每股 BTC 价值 $192.66 = 直接折价买 BTC + 飞轮锁定 + mNAV 均值回归三重 alpha。**风险与置信区间**：90% CI -10% 到 +50% CAGR 极宽；核心依赖 BTC 长期表现 + Saylor 不退场 + mNAV 不长期 < 1；如果 BTC CAGR 实际跌至 15%，MSTR 10Y CAGR 仍可达 ~20%（超额 +12pp 减半但仍正向）。**仓位建议**：mNAV < 1.0x 折价区间 = bullish 2-4% 仓位；mNAV > 1.5x trim 至 1.5%；mNAV > 2.5x 减仓至 0-0.5%。**与 IBIT 配合**：MSTR 2-3% + IBIT 1-2%。**校准免责声明**：本份分析在 30 分钟内经过 3 次迭代修正——感谢用户的两次实质质疑（税收 + mNAV）；这是 10x 框架"承认错误 + 修正落地"的实战案例。',
+        '<strong>第三次校准：vs IBIT 真实差距是 +9.2pp（不是之前错算的 +17.3pp）；vs 60-40 SPY/国债 +27.5pp 跃居档案库 #1</strong>。**4 次迭代轨迹**：① 2026-05-06 v1（错）：mNAV 1.5x 假设 + "21% 即使不卖" 税收 → -2.2pp 跑输；② 2026-05-08 v2：mNAV 0.97x + CAMT 豁免 → +17.6pp；③ 2026-05-08 v3：BTC 长期 CAGR 主流共识 25-40% → +27.5pp（vs 60-40 SPY/国债）；④ 2026-05-08 v4：vs IBIT 真实差距修正 +17.3pp → **+9.2pp**（用加权 multiplier 而非固定 IBIT 18%）。**核心数据来源**：历史 BTC 10Y CAGR 84% / 8Y 44% / ARK 基线 40% / 摩根 25% / Cathie Wood 30%；历史 MSTR 流通股 6Y CAGR 24% + 持仓 6Y CAGR 52% + BTC per share 6Y CAGR 26%。**当前 mNAV 0.97x 是过去 28 个月罕见折价窗口**（首次 < 1.0 自 2024-01）：股价 $186.90 vs 每股 BTC 价值 $192.66 = 直接折价买 BTC + 飞轮锁定 + mNAV 均值回归三重 alpha。**风险与置信区间**：90% CI -10% 到 +50% CAGR 极宽；核心依赖 BTC 长期表现 + Saylor 不退场 + mNAV 不长期 < 1；如果 BTC CAGR 实际跌至 15%，MSTR 10Y CAGR 仍可达 ~20%（超额 +12pp 减半但仍正向）。**仓位建议**：mNAV < 1.0x 折价区间 = bullish 2-4% 仓位；mNAV > 1.5x trim 至 1.5%；mNAV > 2.5x 减仓至 0-0.5%。**与 IBIT 配合**：MSTR 2-3% + IBIT 1-2%。**校准免责声明**：本份分析在 30 分钟内经过 3 次迭代修正——感谢用户的两次实质质疑（税收 + mNAV）；这是 10x 框架"承认错误 + 修正落地"的实战案例。',
 
     revenueChart: {
         labels: ['2021 BTC NAV', '2022 BTC NAV', '2023 BTC NAV', '2024 BTC NAV', '2025 BTC NAV', '2026E BTC NAV'],
@@ -1022,7 +1022,7 @@ export const strategy: CompanyDetail = {
         addingZone: 'mNAV ≤ 1.0x（当前 0.97x = 罕见折价窗口）/ 股价 < $180（每股 BTC 价值以下）',
         stopLoss: 'mNAV 持续 60 天 < 0.8 + Saylor 公开宣布卖 BTC 服务股息 + 优先股出现违约风险 → 减仓 50% 至清仓',
         thesis:
-            '**重大修正**：本份分析（2026-05-08）相对 2026-05-06 版本（-2.2pp 跑输 IBIT）做了关键反转。**核心反转事实**：① mNAV 已从 1.5x 跌至 0.97x（首次 < 1 自 2024-01）；② 每股 BTC 价值 $192.66 vs 股价 $186.90 = 折价 3% 直接买 BTC；③ CAMT 已被 IRS 明确豁免（之前担忧的税收阻力不成立）；④ 持仓 5 个月从 597K → 818K BTC（+37% 飞轮快速运转）。**当前是 mNAV 套利窗口**——mNAV 0.97x 是过去 28 个月最低，均值回归方向预期向上；vs IBIT 60-40 被动组合超额 +10.6pp（10Y）/ +16.6pp（5Y）；vs 60-40 SPY/国债 +17.6pp（10Y）。**最大风险**：18 个月股息覆盖期 + Saylor 2026-05-05 首次承认可能卖 BTC 服务股息（飞轮叙事关键裂缝）；如果 BTC 持续跌触发被迫减持，加权期望可能再次反转。**仓位建议**：mNAV < 1.0x 折价区间 = 2-4% bullish 仓位；mNAV 涨回 1.5x 应 trim 至 1.5-2%；mNAV > 2.5x 减仓至 0-0.5%。**配合 IBIT**：MSTR 2-3% + IBIT 1-2% = 加密暴露最优组合（避免单一 mNAV 风险）。',
+            '**重大修正**：本份分析（2026-05-08）相对 2026-05-06 版本（-2.2pp 跑输 IBIT）做了关键反转。**核心反转事实**：① mNAV 已从 1.5x 跌至 0.97x（首次 < 1 自 2024-01）；② 每股 BTC 价值 $192.66 vs 股价 $186.90 = 折价 3% 直接买 BTC；③ CAMT 已被 IRS 明确豁免（之前担忧的税收阻力不成立）；④ 持仓 5 个月从 597K → 818K BTC（+37% 飞轮快速运转）。**当前是 mNAV 套利窗口**——mNAV 0.97x 是过去 28 个月最低，均值回归方向预期向上；vs IBIT 直接（加权 26.1%）+9.2pp / vs 60-40 IBIT/SPY +13.6pp / vs 60-40 SPY/国债 +27.5pp（10Y）。**最大风险**：18 个月股息覆盖期 + Saylor 2026-05-05 首次承认可能卖 BTC 服务股息（飞轮叙事关键裂缝）；如果 BTC 持续跌触发被迫减持，加权期望可能再次反转。**仓位建议**：mNAV < 1.0x 折价区间 = 2-4% bullish 仓位；mNAV 涨回 1.5x 应 trim 至 1.5-2%；mNAV > 2.5x 减仓至 0-0.5%。**配合 IBIT**：MSTR 2-3% + IBIT 1-2% = 加密暴露最优组合（避免单一 mNAV 风险）。',
         keyAssumptions: [
             'BTC 5Y 不会陷入 >18 个月深熊（BTC 不长期 < $50K）',
             'Saylor 5 年内不退场或失能',
@@ -1226,16 +1226,16 @@ export const strategy: CompanyDetail = {
 
     benchmarkComparison: {
         narrative:
-            '**第二次校准（2026-05-08 后续）**：基于 BTC 长期 CAGR 主流共识修正——之前用 BTC 15% CAGR 太悲观，主流共识 25-40%（ARK 基线 40% / 摩根 25% / Cathie Wood 30%）。MSTR 10Y CAGR 修正为 **35.3%**（之前 25.4% → 历史 BTC 84% / 8Y 44% 的现实校准）。**机会成本基准比较**：vs 60-40 SPY/国债 (7.8%) **超额 +27.5pp**（10Y）；vs 60-40 IBIT/SPY (14.8%) **+20.5pp**；vs IBIT 直接 (18%) **+17.3pp**；vs Nebius (24.6%) **+10.7pp**——**MSTR 修正后跃居档案库 #1 超额回报标的**。',
+            '**第二次校准（2026-05-08 后续）**：基于 BTC 长期 CAGR 主流共识修正——之前用 BTC 15% CAGR 太悲观，主流共识 25-40%（ARK 基线 40% / 摩根 25% / Cathie Wood 30%）。MSTR 10Y CAGR 修正为 **35.3%**（之前 25.4% → 历史 BTC 84% / 8Y 44% 的现实校准）。**机会成本基准比较（用加权 multiplier 算）**：vs 60-40 SPY/国债 (7.8% CAGR) **超额 +27.5pp**（10Y）；vs 60-40 IBIT/SPY (加权 21.7% CAGR) **+13.6pp**；vs IBIT 直接 (加权 26.1% CAGR) **+9.2pp**——**注意**：之前用 IBIT 固定 18% 假设算出的 +17.3pp 是错的，因为加权情景下 IBIT 自身的 CAGR 也提高了（BTC 牛市/基线情景占 55% 权重）。MSTR vs IBIT 真实 alpha 来源：mNAV 均值回归（+1.9pp/年）+ BTC per share 飞轮（+2.7pp/年）+ 牛市尾部 mNAV 放大（+6.5pp/年）− 资本结构 cost（-2pp/年）= 净 +9pp。',
         alternatives: [
-            { name: 'IBIT (BTC ETF)', ticker: 'IBIT', expectedReturn5Y: 25, expectedReturn10Y: 18, note: 'BTC 5Y CAGR 主流共识 25%（摩根）；10Y 减速至 18%' },
+            { name: 'IBIT (BTC ETF, 加权情景)', ticker: 'IBIT', expectedReturn5Y: 23.1, expectedReturn10Y: 26.1, note: '加权 multiplier 算（不是固定 18%）：5Y mult 2.83x / 10Y 10.2x' },
             { name: 'SPY (S&P 500)', ticker: 'SPY', expectedReturn5Y: 9, expectedReturn10Y: 10, note: '美国宽基' },
             { name: 'QQQ (纳斯达克 100)', ticker: 'QQQ', expectedReturn5Y: 10, expectedReturn10Y: 12, note: '科技权重' },
-            { name: '60% IBIT + 40% SPY', expectedReturn5Y: 18.6, expectedReturn10Y: 14.8, note: 'BTC 现货 + 美股宽基（加密基准）' },
+            { name: '60% IBIT + 40% SPY (加权)', expectedReturn5Y: 18.3, expectedReturn10Y: 21.7, note: 'BTC 现货 + 美股宽基（加密基准, 加权情景）' },
             { name: '60/40 (经典)', expectedReturn5Y: 7, expectedReturn10Y: 7.8, note: 'SPY + 国债（档案库标准基准）' },
-            { name: 'Nebius (NBIS)', ticker: 'NBIS', expectedReturn5Y: 31, expectedReturn10Y: 24.6, note: 'AI 算力 · 档案库前 #1' },
+            { name: 'Nebius (NBIS)', ticker: 'NBIS', expectedReturn5Y: 31, expectedReturn10Y: 24.6, note: 'AI 算力 · 档案库前 #2' },
             { name: 'ARK 基线 BTC 2030', expectedReturn5Y: 40, expectedReturn10Y: 35, note: 'ARK Cathie Wood 公开模型' },
-            { name: '直接持有 BTC', expectedReturn5Y: 25, expectedReturn10Y: 18, note: '零费用零稀释' },
+            { name: '直接持有 BTC (加权情景)', expectedReturn5Y: 23.4, expectedReturn10Y: 26.4, note: '零费用零稀释 = IBIT + 0.25%' },
             { name: '10Y 国债 (TLT)', ticker: 'TLT', expectedReturn5Y: 4, expectedReturn10Y: 4.5, note: '无风险' },
         ],
         selfReturn5Y: 43.1,
@@ -1244,7 +1244,7 @@ export const strategy: CompanyDetail = {
         excessReturn10Y: 27.5,
         justifiesPosition: 'yes',
         takeaway:
-            '**MSTR 修正后跃居档案库 #1 超额回报标的（+27.5pp vs 60-40 SPY/国债，超过 Nebius +16pp / Sungrow +9.3pp）**。但要警告：建立在 BTC 长期 CAGR 25-30% 假设上——如果 BTC 实际 CAGR 跌至 15%（边际买家递减 / 监管反转），MSTR 10Y CAGR 会下降到 20% 区间，超额仍 +12pp 但减半。**90% 置信区间 -10% 到 +50% CAGR 极宽**——核心是 BTC 长期表现 + Saylor 不退场 + mNAV 不长期 < 1。**仓位建议**：mNAV < 1.0x 折价区间 2-4%（当前）；mNAV > 1.5x trim 至 1.5%；mNAV > 2.5x 减仓至 0-0.5%。**与 IBIT 配合**：MSTR 2-3% + IBIT 1-2%。',
+            '**MSTR 修正后跃居档案库 #1 超额回报标的（+27.5pp vs 60-40 SPY/国债）**。但 vs IBIT 的真实差距是 **+9.2pp**（不是之前错算的 +17.3pp）——因为加权情景下 IBIT 自身 CAGR 也是 26.1%（不是固定 18%）。**MSTR vs IBIT alpha 来源**：mNAV 均值回归 +1.9pp/年 + BTC per share 飞轮 +2.7pp/年 + 牛市尾部 mNAV 放大 +6.5pp/年 − 资本结构 cost -2pp/年 = 净 +9pp。**逐情景 MSTR − IBIT**：超牛 +10pp / 基线 +7pp / 横盘 +1pp / 熊市 -1.5pp / 死亡螺旋 -7pp。**仓位建议**：mNAV < 1.0x 折价区间 2-4%（当前）；mNAV > 1.5x trim 至 1.5%；mNAV > 2.5x 减仓至 0-0.5%。**与 IBIT 配合**：MSTR 2-3% + IBIT 1-2%。',
     },
 
     trackRecord: {
