@@ -6,12 +6,37 @@
 > **这家公司 5 年和 10 年后分别值多少钱？有多大概率翻 10 倍？**
 
 🌐 **在线访问**：[coin.puliot.com](https://coin.puliot.com)
+🧠 **方法论 skill（开源）**：[github.com/zsjunai/claude-skill-10x-analysis](https://github.com/zsjunai/claude-skill-10x-analysis)
 
 ![Vue](https://img.shields.io/badge/Vue-3.5-42b883?logo=vue.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-6.4-646cff?logo=vite&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?logo=typescript&logoColor=white)
 ![ChartJS](https://img.shields.io/badge/Chart.js-4.5-ff6384?logo=chart.js&logoColor=white)
 ![Deploy](https://img.shields.io/badge/Deploy-Aliyun%20ECS-FF6A00?logo=alibabacloud&logoColor=white)
+[![Skill](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://github.com/zsjunai/claude-skill-10x-analysis)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
+---
+
+## 🧠 方法论开源（Claude Code Skill）
+
+本站所有报告由一套**开源的 Claude Code skill** 驱动：
+
+📦 **[claude-skill-10x-analysis](https://github.com/zsjunai/claude-skill-10x-analysis)** — 25 模块 · 9 步流程 · 17+14 硬规则 · v3 校准案例库
+
+```bash
+# 任何 Claude Code 用户可一键使用
+cd ~/.claude/skills
+git clone https://github.com/zsjunai/claude-skill-10x-analysis.git investment--10x-analysis
+```
+
+之后在 Claude Code 下直接问"分析下英伟达"、"腾讯 10 年 10x 空间吗"，Claude 会自动按本站同款方法论输出完整 25 模块分析。
+
+**开源仓库包含**：
+- `SKILL.md` — 主方法论（v3.1）
+- `calibration-cases.md` — 7 个真实校准案例（避免重复犯错）
+- `README.md` — 安装 + 演进史 + 贡献指南
+- MIT License
 
 ---
 
