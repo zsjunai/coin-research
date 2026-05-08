@@ -10,6 +10,7 @@ import { nebius } from './nebius'
 import { oracle } from './oracle'
 import { pltr } from './pltr'
 import { popmart } from './popmart'
+import { qualcomm } from './qualcomm'
 import { robinhood } from './robinhood'
 import { sbet } from './sbet'
 import { spacex } from './spacex'
@@ -37,6 +38,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     pltr,
     oracle,
     intel,
+    qualcomm,
 }
 
 export const companies: CompanySummary[] = [
@@ -319,6 +321,26 @@ export const companies: CompanySummary[] = [
         ],
         tags: ['AI 平台', '政府软件', 'AIP 商业爆发', '估值透支', 'Karp/Thiel'],
         date: '2026-05-06',
+    },
+    {
+        id: 'qualcomm',
+        ticker: 'NASDAQ:QCOM',
+        name: 'Qualcomm Incorporated',
+        market: 'US',
+        currency: 'USD',
+        desc: '全球最大移动 SoC + 5G/4G 标准必要专利持有者 + 多元化转型期。**FY 2025 营收 $44.28B (+13.66%)** + Q2 FY 2026 营收 $10.6B + EPS $6.88（含 $5.7B 一次性税收）+ **$20B 新回购** + Alphawave 收购 + Snap AR + Hyperscaler AI 数据中心入局。**核心争议**：**Apple modem cliff 2027 完全转 in-house（消失 $5.7-5.9B 年营收 / ~13% 营收）**vs **汽车业务 $5B → 2029 $8B + $45B 设计管线 + AI PC + 数据中心 + $20B 回购**。当前 PE forward 19.83x / P/S 4.8x 合理。**与 Intel（PE 125x）/ PLTR（PE 234x）相比估值最理性**——但增长被 Apple cliff 压制。加权期望 5Y 1.02x / 10Y 1.51x（CAGR 4.2%）vs 60-40 被动跑输 -3.6pp。',
+        price: '~$202.59',
+        marketCap: '~$213.5B',
+        verdict: 'neutral',
+        verdictText: '持有 / Apple cliff 观察期',
+        metrics: [
+            { label: '5Y 期望', value: '1.02x' },
+            { label: '10Y 期望', value: '1.51x' },
+            { label: 'P(10x · 10Y)', value: '~3%' },
+            { label: 'vs 被动', value: '-3.6pp' },
+        ],
+        tags: ['移动 SoC', '5G 专利', '汽车 ADAS', 'AI PC', 'Apple cliff'],
+        date: '2026-05-08',
     },
     {
         id: 'intel',
