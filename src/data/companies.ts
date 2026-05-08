@@ -4,6 +4,7 @@ import { bmnr } from './bmnr'
 import { circle } from './circle'
 import { coinbase } from './coinbase'
 import { huayou } from './huayou'
+import { intel } from './intel'
 import { longi } from './longi'
 import { nebius } from './nebius'
 import { oracle } from './oracle'
@@ -35,6 +36,7 @@ export const companyRegistry: Record<string, CompanyDetail> = {
     huayou,
     pltr,
     oracle,
+    intel,
 }
 
 export const companies: CompanySummary[] = [
@@ -317,6 +319,26 @@ export const companies: CompanySummary[] = [
         ],
         tags: ['AI 平台', '政府软件', 'AIP 商业爆发', '估值透支', 'Karp/Thiel'],
         date: '2026-05-06',
+    },
+    {
+        id: 'intel',
+        ticker: 'NASDAQ:INTC',
+        name: 'Intel Corporation',
+        market: 'US',
+        currency: 'USD',
+        desc: '全球第 3 大半导体 IDM 重大转型期。**股价从 2024-09 低点 $19 暴涨 5.8x 至 $110**（YoY +449%），反映美国政府 $8.9B (10%) + NVIDIA $5B (4.4%) + SoftBank $2B + Lip-Bu Tan + 18A HVM 五重利好。**当前 PE forward 125x / P/S 9.48x 已严重透支困境反转预期**。Intel Foundry Q4 亏损 $2.5B / yield 未达盈利 / GAAP 净亏 -$3.17B 滚动；Microsoft 是唯一外部大客户；Apple 仍在评估。**与 Coinbase / 隆基不同——Intel 已经过反转涨幅 5.8x，加权期望已变 negative**。是档案库**第二最差超额回报**（仅次 Strategy）。Lip-Bu vs Yeary 内部"卖给 TSMC vs 自营 foundry"分歧仍是定时炸弹。',
+        price: '~$109.62',
+        marketCap: '~$551B',
+        verdict: 'bearish',
+        verdictText: 'Avoid / 估值已透支',
+        metrics: [
+            { label: '5Y 期望', value: '0.68x' },
+            { label: '10Y 期望', value: '1.05x' },
+            { label: 'P(10x · 10Y)', value: '~3%' },
+            { label: 'vs 被动', value: '-7.3pp' },
+        ],
+        tags: ['半导体', 'Foundry', '美国国家队', '困境反转', 'Lip-Bu Tan'],
+        date: '2026-05-08',
     },
     {
         id: 'oracle',
