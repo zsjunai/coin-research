@@ -31,7 +31,8 @@ useHead(() => {
     if (!d) return {}
     const url = `https://coin.puliot.com/company/${d.id}/`
     const title = `${d.name} (${d.ticker}) — 10 倍股深度投研 · Coin.research`
-    const desc = `${d.tagline} 5Y 期望 ${d.weightedExpectation.y5.multiplier}x · 10Y 期望 ${d.weightedExpectation.y10.multiplier}x · 锚定日期 ${d.date}。`
+    const plainTagline = d.tagline.replace(/\*\*/g, '')
+    const desc = `${plainTagline} 5Y 期望 ${d.weightedExpectation.y5.multiplier}x · 10Y 期望 ${d.weightedExpectation.y10.multiplier}x · 锚定日期 ${d.date}。`
     const jsonLd = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -56,7 +57,7 @@ useHead(() => {
                 '@type': 'FinancialProduct',
                 name: `${d.name} ${d.ticker}`,
                 category: '股票分析 · 投研报告',
-                description: d.tagline,
+                description: plainTagline,
                 url,
                 provider: { '@type': 'Organization', name: 'Coin.research' },
             },
@@ -912,7 +913,7 @@ const analystConfig = computed<ChartConfiguration>(() => {
                 <h1>{{ data.name }}</h1>
                 <span class="ticker-pill">{{ data.ticker }}</span>
             </div>
-            <div class="detail-tagline">{{ data.tagline }}</div>
+            <div class="detail-tagline" v-html="mdBold(data.tagline)"></div>
             <div class="price-row">
                 <PriceCard v-for="c in data.priceCards" :key="c.label" :card="c" />
             </div>
