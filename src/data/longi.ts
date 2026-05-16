@@ -723,6 +723,12 @@ export const longi: CompanyDetail = {
         summary:
             '隆基所在的光伏赛道是**全行业同质化困境 + 技术路线博弈**：①**第一阵营**：隆基（HPBC）+ 通威 + 晶澳 + 天合 + 晶科（TOPCon），5 家头部全部亏损或微利；②**美国本土**：First Solar（CdTe + IRA 补贴）独享美国市场红利；③**新进入者**：BIPV + 氢能等差异化赛道。**核心战略**：靠 HPBC 2.0 + 现金 + 海外渠道熬过出清期，2027-2028 重回盈利。**与阳光电源对照鲜明** —— 同样光伏赛道，但阳光在储能爆发期享受溢价，隆基在组件最差期承受价格战。',
 
+        competitorColumnLabels: {
+            aiRevenue: '细分营收',
+            gpuFleet: '出货 / 产能',
+            nvidiaLevel: '光伏全球身位',
+        },
+
         competitors: [
             {
                 name: '隆基绿能 (自身)',

@@ -742,6 +742,12 @@ export const sbet: CompanyDetail = {
         summary:
             'SBET 处于"ETH 财库赛道夹缝"——既不是 BMNR 那种规模龙头（持仓 3x 差距），也不是 ETHA / FETH 那种零费用现货 ETF（流动性 + 费用全面优势），更不是 Lubin 主业 ConsenSys（生态完整度）。SBET 的差异化在 **Lubin 加密原生叙事 + ConsenSys 联动期权**——只在 mNAV>1 时成立。**真正的竞争对手是 BMNR**：两者高度共振（相关系数 0.85），投资者通常二选一。',
 
+        competitorColumnLabels: {
+            aiRevenue: '加密持仓 / NAV',
+            gpuFleet: '股本结构',
+            nvidiaLevel: 'mNAV 飞轮身位',
+        },
+
         competitors: [
             {
                 name: 'SBET (自身)',

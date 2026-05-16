@@ -729,6 +729,12 @@ export const wanhua: CompanyDetail = {
         summary:
             '全球 MDI 是 CR5 89% 的高度寡头格局：万华 33.8% / BASF 19% / Covestro 16% (已私有化) / Huntsman 13% / Dow 10%。**结构性变化**：①Covestro 被 ADNOC/XRG 收购进入整合期，市场份额可能流失；②BASF 化工部门长期亏损，欧洲产能有关停可能；③万华是过去 10 年唯一持续上升的厂家，2026 Q2 福建二期投产后份额跃升至 37%。**真正的 10 倍对手**是"中国版 BASF"——综合化工平台 + 新材料平台 + 全球本地化的三位一体。',
 
+        competitorColumnLabels: {
+            aiRevenue: '细分营收',
+            gpuFleet: '产能 / 基地',
+            nvidiaLevel: 'MDI 全球身位',
+        },
+
         competitors: [
             {
                 name: '万华化学 (自身)',

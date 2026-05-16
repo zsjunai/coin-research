@@ -713,6 +713,12 @@ export const sungrow: CompanyDetail = {
         summary:
             '阳光电源的竞争格局是**两强对决 + 多线挑战**：①**全球第一阵营**：阳光电源 + 华为数字能源（占据光伏逆变器 50%+ 份额）；②**储能赛道**：阳光 + 比亚迪 + Tesla + Fluence 四强；③**国内挑战者**：锦浪 / 固德威 / 古瑞瓦特等多线竞争；④**海外品牌**：SMA Solar / Enphase / SolarEdge 各有市场。**核心战略**：靠技术 + 全球渠道 + 大客户绑定保持龙头身位；储能 + AI 数据中心是 2026-2030 关键增长点。',
 
+        competitorColumnLabels: {
+            aiRevenue: '细分营收',
+            gpuFleet: '出货 / 装机',
+            nvidiaLevel: '全球市占身位',
+        },
+
         competitors: [
             {
                 name: '阳光电源 (自身)',

@@ -722,6 +722,12 @@ export const weixing: CompanyDetail = {
         summary:
             '中国 C2/C3 化工龙头格局：①**万华化学** = MDI 全球第一 + POE 已规模化（直接对手）；②**卫星化学** = 气头路线 + 全球 SAP 龙头 + α-烯烃在建（差异化）；③**恒力 / 荣盛 / 东方盛虹** = 大炼化集团（不同赛道）；④**陶氏 / LyondellBasell** = 全球聚烯烃龙头（国际对照）。**结构性变化**：①Covestro 私有化 → 万华受益；②美国页岩气长期富余 → 卫星气头壁垒可持续；③国内高端聚烯烃国产替代提速。**真正的 10x 对手**是 "中国版陶氏 / LyondellBasell"——气头 + 高端聚烯烃 + 全球化的三位一体。',
 
+        competitorColumnLabels: {
+            aiRevenue: '细分营收',
+            gpuFleet: '产能 / 路线',
+            nvidiaLevel: '气头全球身位',
+        },
+
         competitors: [
             {
                 name: '卫星化学 (自身)',

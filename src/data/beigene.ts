@@ -727,6 +727,12 @@ export const beigene: CompanyDetail = {
         summary:
             '全球肿瘤药赛道正从"跨国大药企统治"演化为"**三层竞争**"：①**Mega Pharma**（辉瑞 / 默克 / 罗氏 / BMS 等 $100B+ 市值）；②**专注型 Biotech**（Gilead / Regeneron / Vertex · $50-150B）；③**新兴全球化 Biotech**（百济神州是第一家真正从中国走出来的 · $20-30B）。百济的核心定位是"**中国血统 × 全球销售 × 创新药**"——这是历史上从未有过的组合。真正的 10 倍对手是 Regeneron / Vertex 级别的专注型 biotech · 需要 5-8 个 $500M+ 分子组合。',
 
+        competitorColumnLabels: {
+            aiRevenue: '产品营收',
+            gpuFleet: '管线 / 适应症',
+            nvidiaLevel: '全球身位',
+        },
+
         competitors: [
             {
                 name: '百济神州 (自身)',

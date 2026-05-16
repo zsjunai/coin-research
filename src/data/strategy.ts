@@ -749,6 +749,12 @@ export const strategy: CompanyDetail = {
         summary:
             'MSTR 的"竞争对手"不是其他公司，而是**所有持有 BTC 的方式**：①**现货 BTC ETF（IBIT/FBTC）**：被动持有标准方案，2025 AUM 突破 $200B；②**直接持有 BTC**：零费用零稀释，但需自管私钥；③**矿企（MARA/RIOT）**：BTC 敞口 + 哈希率 + 电费风险；④**其他 BTC 财库公司（Metaplanet/Semler）**：模仿 MSTR 但规模小 50x。MSTR 的差异化在 mNAV 飞轮 + BTC Yield 复利——只在 mNAV>1 时成立。',
 
+        competitorColumnLabels: {
+            aiRevenue: '加密持仓 / NAV',
+            gpuFleet: '股本结构',
+            nvidiaLevel: 'mNAV 飞轮身位',
+        },
+
         competitors: [
             {
                 name: 'Strategy (自身)',

@@ -701,6 +701,12 @@ export const popmart: CompanyDetail = {
         summary:
             '全球潮玩（Art Toy）赛道正从"收藏品小众市场"升级为"全球 Z 世代 IP 消费主流"。泡泡玛特已占据中国心智 TOP 1 + 全球市占 ~15-20%，核心优势是**艺术家 IP 矩阵 + 盲盒零售机制 + 全球门店网络**。主要对手分三类：①**中国同行**（52TOYS · TOPTOY · 寻宝魂等，规模小 5-10x）；②**全球潮玩 / 收藏品**（日本 Medicom / Bearbrick · 美国 Funko）；③**大零售 + 授权 IP 巨头**（Hasbro / Mattel / 迪士尼自营商品）。真正的"10 倍对手"是迪士尼式的"全球 IP 生态平台"——泡泡玛特正在沿这条路径走。',
 
+        competitorColumnLabels: {
+            aiRevenue: '细分营收',
+            gpuFleet: '门店 / IP 数',
+            nvidiaLevel: '品牌身位',
+        },
+
         competitors: [
             {
                 name: '泡泡玛特 (自身)',

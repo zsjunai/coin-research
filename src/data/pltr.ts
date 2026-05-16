@@ -770,6 +770,12 @@ export const pltr: CompanyDetail = {
         summary:
             'Palantir 的竞争格局是**政府独家身位 + 商业三栖战场**：①**政府端**：5 年内无对手（Microsoft / Google IL5/IL6 资质 + 安全许可不够）；②**商业端**：Microsoft Fabric / Databricks Mosaic / Snowflake Cortex 多线竞争；③**AI 工作流端**：OpenAI Enterprise / Anthropic Claude 是互补而非竞争。**核心战略**：用 22 年政府 ontology 积累作为商业护城河 → AIP 训练营低成本获客 → 商业 / 政府互相强化。**最大战略机会是"AI 时代的 Salesforce"**——但实现需要 10 年。',
 
+        competitorColumnLabels: {
+            aiRevenue: '政府 / 商业拆分',
+            gpuFleet: '客户 / 部署规模',
+            nvidiaLevel: 'AI 平台身位',
+        },
+
         competitors: [
             {
                 name: 'Palantir (自身)',

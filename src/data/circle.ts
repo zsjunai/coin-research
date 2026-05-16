@@ -699,6 +699,12 @@ export const circle: CompanyDetail = {
         summary:
             '稳定币市场正从"Tether + USDC 双寡头"演化为"**合规 vs 离岸 vs 银行**三层格局"。Circle 在合规层占据首位（OCC 牌照 + NYSE 上市），但 Tether 仍凭借离岸灵活性占 58% 市占。新入场者 Ripple RLUSD、Paxos USDG、JPMorgan Deposit Coin、Trump USD1 同时挤压。Circle 的关键护城河是"**合规深度 × 机构信任 × Arc+CPN 新场景**"，但所有护城河都有时效窗口。',
 
+        competitorColumnLabels: {
+            aiRevenue: '储备 / 收益',
+            gpuFleet: '流通量 / 用户',
+            nvidiaLevel: '稳定币赛道身位',
+        },
+
         competitors: [
             {
                 name: 'Circle (自身)',

@@ -721,6 +721,12 @@ export const bmnr: CompanyDetail = {
         summary:
             'BMNR 的"竞争对手"不是其他公司，而是**所有持有 ETH 的方式**：①**现货 ETH ETF (ETHA/FETH/ETHE)**：被动持有标准方案；②**直接持有 ETH + 自己 staking**：零费用零稀释但需自管节点；③**SharpLink Gaming (SBET)**：第二大 ETH 财库公司，规模 1/3；④**MSTR**：BTC 财库镜像，资产类别不同但商业模型类似。BMNR 的差异化在 mNAV 飞轮 + staking yield 复利——只在 mNAV>1 时成立。',
 
+        competitorColumnLabels: {
+            aiRevenue: '加密持仓 / NAV',
+            gpuFleet: '股本结构',
+            nvidiaLevel: 'mNAV 飞轮身位',
+        },
+
         competitors: [
             {
                 name: 'BMNR (自身)',

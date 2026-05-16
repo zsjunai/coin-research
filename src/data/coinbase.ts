@@ -721,6 +721,12 @@ export const coinbase: CompanyDetail = {
         summary:
             '加密交易赛道正从"交易所对决"转向"**三维身位竞争**"：①**合规身位**（Coinbase 独占 OCC 信托 + S&P500）；②**全球规模**（Binance 40-55% 市占无对手）；③**消费者 Super App**（Robinhood ARPU +82% 领跑）。Coinbase 的终局策略是"**美国合规护城河 → 全球衍生品扩张 → 代币化基础设施**"，并以 Base L2 + Deribit 作为差异化武器。',
 
+        competitorColumnLabels: {
+            aiRevenue: '细分营收',
+            gpuFleet: '用户 / 交易量',
+            nvidiaLevel: '加密赛道身位',
+        },
+
         competitors: [
             {
                 name: 'Coinbase (自身)',

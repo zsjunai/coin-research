@@ -777,6 +777,12 @@ export const huayou: CompanyDetail = {
         summary:
             '华友钴业的竞争格局是**资源派 + 一体化的独特身位**：①**资源端**：vs 嘉能可（瑞士 Glencore）+ 洛阳钼业 (CMOC) 钴矿三强；②**印尼镍**：vs 青山系（青山 + 华峰）+ 力勤资源（Lygend）+ 中伟（Lygend 合作）；③**三元前驱体**：vs 中伟股份（市占第一）+ 邦普（CATL 子）+ 格林美；④**三元正极**：vs 容百 / 当升 / 振华新材。**核心战略**：靠"资源（钴+镍+锂）+ 一体化（前驱体+正极）"双重壁垒，是 A 股唯一能从矿山做到正极的公司。竞争对手要么资源端弱（中伟）、要么材料端弱（青山 / 嘉能可）、要么规模小（容百）。',
 
+        competitorColumnLabels: {
+            aiRevenue: '细分营收',
+            gpuFleet: '产能 / 资源',
+            nvidiaLevel: '资源全球身位',
+        },
+
         competitors: [
             {
                 name: '华友钴业 (自身)',

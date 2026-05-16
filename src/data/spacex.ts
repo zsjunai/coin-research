@@ -722,6 +722,12 @@ export const spacex: CompanyDetail = {
         summary:
             '太空经济分三层：①**发射服务**（SpaceX 垄断 + 中俄欧日追赶 + Rocket Lab 小型化）；②**卫星互联网**（SpaceX Starlink 先发 + Amazon Kuiper + 主权星座 + OneWeb）；③**深空 / 载人**（SpaceX + Blue Origin + NASA + 中俄载人）。SpaceX 的核心位置是"**低轨基础设施唯一玩家**"——竞争对手都需要 5-10 年追赶，且多数被资本限制（Blue Origin / ULA 融资能力远弱于 Musk）。',
 
+        competitorColumnLabels: {
+            aiRevenue: '主业营收',
+            gpuFleet: '卫星 / 发射',
+            nvidiaLevel: '太空赛道身位',
+        },
+
         competitors: [
             {
                 name: 'SpaceX (自身)',
