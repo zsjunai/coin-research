@@ -1670,12 +1670,12 @@ const analystConfig = computed<ChartConfiguration>(() => {
                                 <th>公司</th>
                                 <th style="text-align: left">类型</th>
                                 <th style="text-align: left">2026E 营收</th>
-                                <th style="text-align: left">AI 营收</th>
-                                <th style="text-align: left">GPU 队列</th>
+                                <th style="text-align: left">{{ data.competitiveLandscape.competitorColumnLabels?.aiRevenue ?? 'AI 营收' }}</th>
+                                <th style="text-align: left">{{ data.competitiveLandscape.competitorColumnLabels?.gpuFleet ?? 'GPU 队列' }}</th>
                                 <th style="text-align: left">合同积压</th>
                                 <th style="text-align: left">EBITDA %</th>
                                 <th style="text-align: left">市值</th>
-                                <th style="text-align: left">英伟达绑定</th>
+                                <th style="text-align: left">{{ data.competitiveLandscape.competitorColumnLabels?.nvidiaLevel ?? '英伟达绑定' }}</th>
                                 <th>对 {{ selfTicker }} 威胁</th>
                             </tr>
                         </thead>

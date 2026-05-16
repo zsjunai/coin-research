@@ -279,9 +279,16 @@ export interface RadarCompare {
     note: string
 }
 
+export interface CompetitorColumnLabels {
+    aiRevenue?: string
+    gpuFleet?: string
+    nvidiaLevel?: string
+}
+
 export interface CompetitiveLandscape {
     summary: string
     competitors: CompetitorRow[]
+    competitorColumnLabels?: CompetitorColumnLabels
     positioning: PositioningRow[]
     marketShare2026: MarketShareSlice[]
     winLoss: WinLossScenario[]
